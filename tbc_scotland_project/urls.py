@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf.urls import include
+from tbc import views
 
 urlpatterns = [
+    url(r'^$', views.home, name='home'),
+    url(r'^tbc/', include('tbc.urls')),
     url(r'^admin/', admin.site.urls),
 ]
