@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="aee12659-3f56-46cd-8732-0e4c03b1313d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/tbc_scotland_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tbc_scotland_project/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tbc_scotland_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/tbc_scotland_project/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,7 +16,7 @@
         <entry file="file://$PROJECT_DIR$/tbc/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -25,14 +24,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tbc/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+              <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tbc_scotland_project/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="65" column="60" selection-start-line="65" selection-start-column="60" selection-end-line="65" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -52,10 +60,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tbc_scotland_project/settings.py" />
         <option value="$PROJECT_DIR$/tbc_scotland_project/urls.py" />
         <option value="$PROJECT_DIR$/tbc/urls.py" />
         <option value="$PROJECT_DIR$/tbc/views.py" />
+        <option value="$PROJECT_DIR$/tbc_scotland_project/settings.py" />
       </list>
     </option>
   </component>
@@ -156,17 +164,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tbc_scotland_project/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="39" column="10" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tbc/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
@@ -176,10 +177,17 @@
     <entry file="file://$PROJECT_DIR$/tbc/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tbc_scotland_project/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="65" column="60" selection-start-line="65" selection-start-column="60" selection-end-line="65" selection-end-column="60" />
         </state>
       </provider>
     </entry>
