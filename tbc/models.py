@@ -2,19 +2,6 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
-#Should this be from a pre-determined list? Like the shirt sizes
-# here: https://docs.djangoproject.com/en/2.1/topics/db/models/
-class Category(models.Model):
-    name = models.CharField(max_length=128)
-    views = models.IntegerField(default=0)
-
-
-    class Meta:
-        verbose_name_plural = 'Categories'
-
-    def __str__(self):
-        return self.name
-
 class Profile(models.Model):
     name = models.CharField(max_length=128)
     image = models.ImageField(upload_to='profile_images', blank=True)
@@ -38,26 +25,63 @@ class Profile(models.Model):
     def __str__(self):
         return self.name
 
-class Ad(models.Model):
-    category = models.ForeignKey(Category)
+class LendAndSell(models.Model):
     profile = models.ForeignKey(Profile)
     title = models.CharField(max_length=128)
-    # startdate
-    # enddate
     description = models.TextField()
     views = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
-    image = models.ImageField(upload_to='ad_images', blank=True)
+    image = models.ImageField(upload_to='LendAndSell_images', blank=True)
+    price = models.CharField(max_length=128)
+    availability = models.CharField(max_length=128)
+    keywords = models.TextField()
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
-        super(Ad, self).save(*args, **kwargs)
+        super(LendAndSell, self).save(*args, **kwargs)
+    
+    def __str__(self):
+        return self.name
+
+class Service():
+    profile = models.ForeignKey(Profile)
+    title = models.CharField(max_length=128)
+    description = models.TextField()
+    views = models.IntegerField(default=0)
+    slug = models.SlugField(unique=True)
+    image = models.ImageField(upload_to='Service_images', blank=True)
+    price = models.CharField(max_length=128)
+    availability = models.CharField(max_length=128)
+    keywords = models.TextField()
+    location = models.CharField(max_length=128)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Service, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+class Projects():
+    profile = models.ForeignKey(Profile)
+    title = models.CharField(max_length=128)
+    description = models.TextField()
+    lookingFor = models.TextField()
+    views = models.IntegerField(default=0)
+    slug = models.SlugField(unique=True)
+    image = models.ImageField(upload_to='Projects_images', blank=True)
+    timeline = models.CharField(max_length=128)
+    keywords = models.TextField()
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Projects, self).save(*args, **kwargs)
     
     def __str__(self):
         return self.name
 
 class Inbox(models.Model):
-    ad = models.ForeignKey(Ad)
+    profile = models.ForeignKey(Profile)
     messages = models.TextField()
     sender = models.ForeignKey(Profile)
     slug = models.SlugField(unique=True)
