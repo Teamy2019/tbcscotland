@@ -25,6 +25,18 @@ class Profile(models.Model):
     def __str__(self):
         return self.name
 
+class Inbox(models.Model):
+    profile = models.ForeignKey(Profile)
+    messages = models.TextField()
+    slug = models.SlugField(unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Inbox, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
 class LendAndSell(models.Model):
     profile = models.ForeignKey(Profile)
     title = models.CharField(max_length=128)
@@ -43,7 +55,7 @@ class LendAndSell(models.Model):
     def __str__(self):
         return self.name
 
-class Service():
+class Service(models.Model):
     profile = models.ForeignKey(Profile)
     title = models.CharField(max_length=128)
     description = models.TextField()
@@ -62,7 +74,7 @@ class Service():
     def __str__(self):
         return self.name
 
-class Projects():
+class Projects(models.Model):
     profile = models.ForeignKey(Profile)
     title = models.CharField(max_length=128)
     description = models.TextField()
@@ -77,19 +89,6 @@ class Projects():
         self.slug = slugify(self.name)
         super(Projects, self).save(*args, **kwargs)
     
-    def __str__(self):
-        return self.name
-
-class Inbox(models.Model):
-    profile = models.ForeignKey(Profile)
-    messages = models.TextField()
-    sender = models.ForeignKey(Profile)
-    slug = models.SlugField(unique=True)
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(Inbox, self).save(*args, **kwargs)
-
     def __str__(self):
         return self.name
 
