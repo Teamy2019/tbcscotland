@@ -1,10 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from tbc.forms import UserForm, UserProfileForm
+from django.contrib.auth import authenticate, login, logout
+from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
 from tbc.models import LendAndSell
 from tbc.models import Projects
 from tbc.models import Service
 from tbc.models import Profile
+
 
 # Create your views here.
 
@@ -92,7 +96,6 @@ def login(request):
     context_dict = {'boldmessage': "Login to TBCScotland!"}
     return render(request, 'TBCScotland/login.html', context=context_dict)
 
-
 def signup(request):
     registered = False
 
@@ -121,3 +124,25 @@ def signup(request):
         profile_form = UserProfileForm()
 
     return render(request, 'tbc/signup.html', {'user_form': user_form, 'registered': registered})
+
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect(reverse('home'))
+            else:
+                return HttpResponse("The account has been disabled")
+        else:
+            print("Invalid login details: {0}, {1}".format(username, password))
+            return HttpResponse("Invalid login details supplied")
+    else:
+        return render(request, 'tbc/login.html', {})
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('home'))
