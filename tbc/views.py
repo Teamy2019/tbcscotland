@@ -4,49 +4,97 @@ from tbc.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from tbc.models import LendAndSell
+from tbc.models import Projects
+from tbc.models import Service
+from tbc.models import Profile
+
 
 # Create your views here.
 
 
 def home(request):
 
-    return render(request, 'tbc/home.html')
+    context_dict = {}
+    return render(request, 'TBCScotland/home.html', context=context_dict)
 
 
 def search(request):
 
-    return HttpResponse("Welcome to TBCScotland/search")
+    context_dict = {}
+    return render(request, 'TBCScotland/search.html', context=context_dict)
 
 
 def about(request):
 
-    return HttpResponse("Welcome to TBCScotland/about")
+    context_dict = {}
+    return render(request, 'TBCScotland/about.html', context=context_dict)
 
 
 def getstarted(request):
 
-    return HttpResponse("Welcome to TBCScotland/getstarted")
+    context_dict = {'boldmessage': "How to get started at TBCScotland!"}
+    return render(request, 'TBCScotland/getstarted.html', context=context_dict)
 
 
 def profiles(request):
 
-    return HttpResponse("Welcome to TBCScotland/profiles")
+    profiles_list = Profile.objects.order_by('-views')[:20]
+
+    context_dict = {'profiles': profiles_list}
+
+    return render(request, 'TBCScotland/profiles.html', context=context_dict)
 
 
-def lendandsell(request):
+def lendandsell(request, lend_and_sell_slug):
 
-    return HttpResponse("Welcome to TBCScotland/lendandsell")
+    try:
+
+        context_dict = {}
+        lend_and_sell = LendAndSell.objects.get(slug=lend_and_sell_slug)
+        context_dict['lend_and_sell'] = lend_and_sell
+
+    except LendAndSell.DoesNotExist:
+
+        context_dict['lend_and_sell'] = None
+
+    return render(request, 'TBCScotland/lendandsell.html', context_dict)
 
 
-def projects(request):
+def projects(request, projects_slug):
 
-    return HttpResponse("Welcome to TBCScotland/projects")
+    try:
+
+        context_dict = {}
+        lend_and_sell = Projects.objects.get(slug=projects_slug)
+        context_dict['projects_slug'] = lend_and_sell
+
+    except Projects.DoesNotExist:
+
+        context_dict['projects'] = None
+
+    return render(request, 'TBCScotland/projects.html', context_dict)
 
 
-def services(request):
+def services(request, services_slug):
 
-    return HttpResponse("Welcome to TBCScotland/services")
+    try:
 
+        context_dict = {}
+        service = Service.objects.get(slug=services_slug)
+        context_dict['service'] = service
+
+    except Service.DoesNotExist:
+
+        context_dict['service'] = None
+
+    return render(request, 'TBCScotland/services.html', context_dict)
+
+
+def login(request):
+
+    context_dict = {'boldmessage': "Login to TBCScotland!"}
+    return render(request, 'TBCScotland/login.html', context=context_dict)
 
 def signup(request):
     registered = False
