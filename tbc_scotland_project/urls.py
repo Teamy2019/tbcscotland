@@ -22,5 +22,7 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^tbc/', include('tbc.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^signup/$', views.signup, name='signup')
+    url(r'^signup/$', views.signup, name='signup'),
+    url(r'^login/$', views.user_login, name='login'),
+    url(r'^logout/$', views.user_logout, name='logout')
 ]
