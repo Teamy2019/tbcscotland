@@ -51,7 +51,7 @@ class LendAndSell(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(LendAndSell, self).save(*args, **kwargs)
-    
+
     def __str__(self):
         return self.name
 
@@ -88,8 +88,14 @@ class Projects(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Projects, self).save(*args, **kwargs)
-    
+
     def __str__(self):
         return self.name
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    website = models.URLField(blank=True)
+    picture = models.ImageField(upload_to='profile_images', blank=True)
 
+    def __str__(self):
+        return self.user.username

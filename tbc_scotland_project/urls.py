@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^tbc/', include('tbc.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^signup/$', views.signup, name='signup')
 ]
