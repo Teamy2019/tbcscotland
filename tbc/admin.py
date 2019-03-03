@@ -1,11 +1,5 @@
 from django.contrib import admin
-<<<<<<< HEAD
-from tbc.models import Profile, Inbox, LendAndSell, Service, Projects
-#class PageAdmin(admin.ModelAdmin):
- #   list_display = ('title', 'category', 'url')
-=======
 from tbc.models import Profile, Inbox, LendAndSell, Service, Projects, UserProfile
->>>>>>> master
 
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('name', 'aboutme')
