@@ -49,11 +49,11 @@ class LendAndSell(models.Model):
     keywords = models.TextField()
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        self.slug = slugify(self.title)
         super(LendAndSell, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return self.title
 
 class Service(models.Model):
     profile = models.ForeignKey(Profile)
@@ -68,11 +68,11 @@ class Service(models.Model):
     location = models.CharField(max_length=128)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        self.slug = slugify(self.title)
         super(Service, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return self.title
 
 class Projects(models.Model):
     profile = models.ForeignKey(Profile)
@@ -86,11 +86,11 @@ class Projects(models.Model):
     keywords = models.TextField()
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        self.slug = slugify(self.title)
         super(Projects, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return self.title
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
