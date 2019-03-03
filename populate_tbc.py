@@ -20,29 +20,35 @@ def populate():
         "availability": "Until Wednesday",
         "keywords": "Cool, Effects"} ]
 
-    Randy_L_and_S = [
-        {"title": "Bass Guitar",
-        "description": "Old Bass Guitar",
-        "price": "£45",
-        "availability": "Til Tuesday",
-        "keywords": "Bass, Old"},
-        {"title": "Speaker",
-        "description": "Biiiiig speaker",
-        "price": "£25",
-        "availability": "Anytime, anyplace",
-        "keywords": "Speaker, Big"} ]
-    
-    user_profiles = [
-        {"name": "Randy",
-        "ads": Randy_L_and_S},
+    John_profile = [ 
         {"name": "John",
-        "ads": John_L_and_S} ]
+        "ads": John_L_and_S}    ]
+        
+#     Randy_L_and_S = [
+#         {"title": "Bass Guitar",
+#         "description": "Old Bass Guitar",
+#         "price": "£45",
+#         "availability": "Til Tuesday",
+#         "keywords": "Bass, Old"},
+#         {"title": "Speaker",
+#         "description": "Biiiiig speaker",
+#         "price": "£25",
+#         "availability": "Anytime, anyplace",
+#         "keywords": "Speaker, Big"} ]
+    
+#     user_profiles = [
+#         {"name": "Randy",
+#         "ads": Randy_L_and_S},
+#         {"name": "John",
+#         "ads": John_L_and_S} ]
 
-#This isn't right
-    for x in user_profiles:
-        profile = add_profile(x["name"])
-        for l in x["ads"]:
-            add_L_and_S(profile, l["title"], l["description"], l["price"], l["availability"], l["keywords"])    
+# #This isn't right
+#     for x in user_profiles:
+#         profile = add_profile(x["name"])
+#         # for l in x["ads"]:
+#         #     add_L_and_S(profile, l["title"], l["description"], l["price"], l["availability"], l["keywords"])   
+
+
     
 
 
