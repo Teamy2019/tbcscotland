@@ -5,7 +5,7 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ('name', 'aboutme')
 
 class LendAndSellAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description')
+    list_display = ('title', 'profile', 'description')
 
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ('title', 'description')
