@@ -7,22 +7,27 @@ from tbc.models import Profile, Inbox, LendAndSell, Service, Projects
 
 def populate():
 
+    John_profile = {"name": "John"}
+    for name in John_profile:
+        add_profile(John_profile["name"])
 
-    John_L_and_S = [
-        {"title": "Guitar",
-        "description": "Lovely guitar",
-        "price": "£75",
-        "availability": "Until Sold",
-        "keywords": "Guitar, Lovely"},
-        {"title": "Effects Pedal",
-        "description": "Cool effects pedal",
-        "price": "£30",
-        "availability": "Until Wednesday",
-        "keywords": "Cool, Effects"} ]
+    #add_L_and_S("John", "Guitar", "lovely guitar", "£30", "Until Wednesday", "Guitar, Lovely")
 
-    John_profile = [ 
-        {"name": "John",
-        "ads": John_L_and_S}    ]
+    # John_L_and_S = [
+    #     {"title": "Guitar",
+    #     "description": "Lovely guitar",
+    #     "price": "£75",
+    #     "availability": "Until Sold",
+    #     "keywords": "Guitar, Lovely"},
+    #     {"title": "Effects Pedal",
+    #     "description": "Cool effects pedal",
+    #     "price": "£30",
+    #     "availability": "Until Wednesday",
+    #     "keywords": "Cool, Effects"} ]
+
+    # John_profile = [ 
+    #     {"name": "John",
+    #     "ads": John_L_and_S}    ]
         
 #     Randy_L_and_S = [
 #         {"title": "Bass Guitar",
