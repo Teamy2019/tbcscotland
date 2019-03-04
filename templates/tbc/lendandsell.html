@@ -13,7 +13,7 @@
             <ul>
                 {% for lends in lend_and_sell %}
                 <li>
-                    {{ lends.title }}<i>- Ad posted by </i>{{ lends.profile }}
+                   <a href="{% url 'show_lendandsell' lends.slug %}">{{ lends.title }}</a> <i>- Ad posted by </i>{{ lends.profile }}
                 </li>
                 {% endfor %}
             </ul>

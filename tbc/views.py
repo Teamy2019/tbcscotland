@@ -53,6 +53,18 @@ def lendandsell(request):
 
     return render(request, 'tbc/lendandsell.html', context_dict)
 
+#One instance of an ad here:
+def show_lendandsell(request, lendandsell_name_slug):
+    context_dict = {}
+
+    try:
+        lendandsell = LendAndSell.objects.get(slug=lendandsell_name_slug)
+        context_dict['lend_ad'] = lendandsell
+    except LendAndSell.DoesNotExist:
+        context_dict['lend_ad'] = None
+
+    return render(request, 'tbc/lendandsellad.html', context_dict)
+
 
 def projects(request):
 
@@ -61,13 +73,35 @@ def projects(request):
 
     return render(request, 'tbc/projects.html', context_dict)
 
+def show_project(request, project_name_slug):
+    context_dict = {}
+
+    try:
+        project = Projects.objects.get(slug=project_name_slug)
+        context_dict['project_ad'] = project
+    except Projects.DoesNotExist:
+        context_dict['project_ad'] = None
+    
+    return render(request, 'tbc/projectad.html', context_dict)
+
 
 def services(request):
 
     service = Service.objects.order_by('views')[:20]
-    context_dict ={ 'services': service}
+    context_dict ={'services': service}
 
     return render(request, 'tbc/services.html', context_dict)
+
+def show_service(request, service_name_slug):
+    context_dict = {}
+
+    try:
+        service = Service.objects.get(slug=service_name_slug)
+        context_dict['service_ad'] = service
+    except Service.DoesNotExist:
+        context_dict['service_ad'] = None
+    
+    return render(request, 'tbc/servicead.html', context_dict)
 
 
 def login(request):

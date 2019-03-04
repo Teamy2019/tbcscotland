@@ -13,7 +13,7 @@
             <ul>
                 {% for service in services %}
                 <li>
-                    {{ service.title }}<i>- Ad posted by </i>{{ service.profile }}
+                    <a href="{% url 'show_service' service.slug %}">{{ service.title }}</a><i>- Ad posted by </i>{{ service.profile }}
                 </li>
                 {% endfor %}
             </ul>

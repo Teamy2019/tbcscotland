@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TBCScotland</title>
+        <link rel="stylesheet" type="text/css" href="https://raw.githack.com/Teamy2019/tbcscotland/master/templates/tbc/cssmain.css">
+    </head>
+    <body>
+        {% if lend_ad %}
+        <h1>{{ lend_ad.title }}</h1>
+        <div>
+            {{ lend_ad.description }}
+        </div>
+        <div>
+            {{ lend_ad.keywords }}
+        </div>
+        {% else %}
+        <strong>No Ad!</strong>
+        {% endif %}
+    </body>
+</html>

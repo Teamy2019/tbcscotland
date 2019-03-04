@@ -13,7 +13,7 @@
             <ul>
                 {% for project in projects %}
                 <li>
-                    {{ project.title }}<i>- Ad posted by </i>{{ project.profile }}
+                    <a href="{% url 'show_project' project.slug %}">{{ project.title }}</a><i>- Ad posted by </i>{{ project.profile }}
                 </li>
                 {% endfor %}
             </ul>
