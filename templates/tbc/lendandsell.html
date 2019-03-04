@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TBCScotland</title>
+        <link rel="stylesheet" type="text/css" href="https://raw.githack.com/Teamy2019/tbcscotland/master/templates/tbc/cssmain.css">
+    </head>
+
+    <body>
+        <h1>Lend and Sell Ads</h1>
+        <div>
+            {% if lend_and_sell %}
+            <strong>Most popular Ads!</strong>
+            <ul>
+                {% for lends in lend_and_sell %}
+                <li>
+                    {{ lends.title }}<i>- Ad posted by </i>{{ lends.profile }}
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>No Ads yet!</strong>
+        {% endif %}
+        </div>
+    </body>
+</html>

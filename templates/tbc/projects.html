@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TBCScotland</title>
+        <link rel="stylesheet" type="text/css" href="https://raw.githack.com/Teamy2019/tbcscotland/master/templates/tbc/cssmain.css">
+    </head>
+
+    <body>
+        <h1>Project Ads</h1>
+        <div>
+            {% if projects %}
+            <strong>Most popular Ads!</strong>
+            <ul>
+                {% for project in projects %}
+                <li>
+                    {{ project.title }}<i>- Ad posted by </i>{{ project.profile }}
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>No Ads yet!</strong>
+        {% endif %}
+        </div>
+    </body>
+</html>

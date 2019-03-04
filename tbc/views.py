@@ -22,19 +22,19 @@ def home(request):
 def search(request):
 
     context_dict = {}
-    return render(request, 'TBCScotland/search.html', context=context_dict)
+    return render(request, 'tbc/search.html', context=context_dict)
 
 
 def about(request):
 
     context_dict = {}
-    return render(request, 'TBCScotland/about.html', context=context_dict)
+    return render(request, 'tbc/about.html', context=context_dict)
 
 
 def getstarted(request):
 
     context_dict = {'boldmessage': "How to get started at TBCScotland!"}
-    return render(request, 'TBCScotland/getstarted.html', context=context_dict)
+    return render(request, 'tbc/getstarted.html', context=context_dict)
 
 
 def profiles(request):
@@ -46,49 +46,28 @@ def profiles(request):
     return render(request, 'tbc/profiles.html', context=context_dict)
 
 
-def lendandsell(request, lend_and_sell_slug):
+def lendandsell(request):
 
-    try:
+    lend_and_sell_list = LendAndSell.objects.order_by('views')[:20]
+    context_dict = {'lend_and_sell': lend_and_sell_list}
 
-        context_dict = {}
-        lend_and_sell = LendAndSell.objects.get(slug=lend_and_sell_slug)
-        context_dict['lend_and_sell'] = lend_and_sell
-
-    except LendAndSell.DoesNotExist:
-
-        context_dict['lend_and_sell'] = None
-
-    return render(request, 'TBCScotland/lendandsell.html', context_dict)
+    return render(request, 'tbc/lendandsell.html', context_dict)
 
 
-def projects(request, projects_slug):
+def projects(request):
 
-    try:
+    projects_list = Projects.objects.order_by('views')[:20]
+    context_dict = {'projects': projects_list}
 
-        context_dict = {}
-        lend_and_sell = Projects.objects.get(slug=projects_slug)
-        context_dict['projects_slug'] = lend_and_sell
-
-    except Projects.DoesNotExist:
-
-        context_dict['projects'] = None
-
-    return render(request, 'TBCScotland/projects.html', context_dict)
+    return render(request, 'tbc/projects.html', context_dict)
 
 
-def services(request, services_slug):
+def services(request):
 
-    try:
+    service = Service.objects.order_by('views')[:20]
+    context_dict ={ 'services': service}
 
-        context_dict = {}
-        service = Service.objects.get(slug=services_slug)
-        context_dict['service'] = service
-
-    except Service.DoesNotExist:
-
-        context_dict['service'] = None
-
-    return render(request, 'TBCScotland/services.html', context_dict)
+    return render(request, 'tbc/services.html', context_dict)
 
 
 def login(request):
