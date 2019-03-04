@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TBCScotland</title>
+        <link rel="stylesheet" type="text/css" href="https://raw.githack.com/Teamy2019/tbcscotland/master/templates/tbc/cssmain.css">
+    </head>
+
+    <body>
+        <h1>Profiles</h1>
+        <div>
+            {% if profiles %}
+            <strong>Most popular Profiles!</strong>
+            <ul>
+                {% for profile in profiles %}
+                <li>
+                    {{ profile.name }}
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>No Profiles yet!</strong>
+        {% endif %}
+        </div>
+    </body>
+</html>

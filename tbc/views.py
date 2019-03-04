@@ -16,7 +16,7 @@ from tbc.models import Profile
 def home(request):
 
     context_dict = {}
-    return render(request, 'TBCScotland/home.html', context=context_dict)
+    return render(request, 'tbc/home.html', context=context_dict)
 
 
 def search(request):
@@ -43,7 +43,7 @@ def profiles(request):
 
     context_dict = {'profiles': profiles_list}
 
-    return render(request, 'TBCScotland/profiles.html', context=context_dict)
+    return render(request, 'tbc/profiles.html', context=context_dict)
 
 
 def lendandsell(request, lend_and_sell_slug):
