@@ -4,7 +4,9 @@
         <title>TBCScotland</title>
         <link rel="stylesheet" type="text/css" href="https://raw.githack.com/Teamy2019/tbcscotland/master/templates/tbc/cssmain.css">
     </head>
-
+    <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<!-- Don't know what I'm doing and really we probably just need to do a separate page for each type of ad :( -->
     <h1>Post an Ad!</h1>
     <body>
             <div>
@@ -12,28 +14,50 @@
                 <button id=lendButton onclick="lendAndSell()" value="Lend And Sell"></button>
             </div>   
              <div>
-                 <h2>If you have a service you can provide, whtehr regular or one-off, click here:</h2>
+                 <h2>If you have a service you can provide, whether regular or one-off, click here:</h2>
                 <button id=serviceButton onclick="service()" value="Service"></button>
             </div>    
             <div>
                 <h2>If you have a project you're working on and you'd like help, click here:</h2>
                 <button id=projectButton onclick="project()" value="Project"></button>
             </div>
+
             <script type="text/javascript">
+
                 document.getElementById("lendButton").innerHTML = lendButton.value;
                 document.getElementById("serviceButton").innerHTML = serviceButton.value;
                 document.getElementById("projectButton").innerHTML = projectButton.value;
             </script>
 
+            <form id="form_space" method="post" action=null enctype="multipart/form-data">
+            
+            {% csrf_token %}
 
-    <!-- <form id="lendAndSell_form" method="post" action="{% url 'post_lendandsell' %}"
-    enctype="multipart/form-data">
+           <script> var form = "blank" </script>
 
-    {% csrf_token %}
+            <input type="submit" name="submit" value="Post your ad!" />
+            </form>
+            <div>
+                <button id=backButton onclick="goBack()" value="Back"></button>
+            </div>
+            <script type="text/javascript">
+                document.getElementById("backButton").innerHTML = backButton.value;
+                document.getElementById("backButton").style.visibility = "hidden";
+            </script>
 
-    {{ lendAndSell_form.as_p }}
+            <script type="text/javascript">
+                document.getElementById("form_space").style.visibility = "hidden";
+            </script>
 
-    <input type="submit" name="submit" value="Post your ad!" />
-    </form> -->
+            <script type="text/javascript">
+                function lendAndSell(){
+                    document.getElementById("form_space").style.visibility = "visible";
+                    document.getElementById("form_space").setAttribute("action", "{% url 'post_lendandsell' %}");
+                    // form = "hello world";
+                }
+                    
+            </script>
+
+ 
     </body>
 </html>

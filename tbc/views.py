@@ -143,7 +143,7 @@ def post_ad(request):
         project_form = ProjectForm()
         service_form = ServiceForm()
 
-    return render(request, 'tbc/postad.html', {'lendandSell_form': lendAndSell_form, 'project_form': project_form, 'service_form': service_form})
+    return render(request, 'tbc/postad.html', {'lendAndSell_form': lendAndSell_form, 'project_form': project_form, 'service_form': service_form})
 
 def login(request):
 
