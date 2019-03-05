@@ -1,23 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>TBCScotland</title>
-        <link rel="stylesheet" type="text/css" href="https://raw.githack.com/Teamy2019/tbcscotland/master/templates/tbc/cssmain.css">
-    </head>
+{% extends 'tbc/base.html' %}
 
-    <body>
+{%block body_block %}
         <h1>TBCScotland</h1>
         <div>
-            <p>
-                <a href="/tbc/about/">About</a>
-            </p>
+            <p>Welcome to TBCScotland</p>
         </div>
-    </body>
-</html>
+{% endblock %}
 
-<!-- code for welcoming logged/not logged in user:
-{% if user.is_authenticated %}
-Hello {{ user.username }}!
-{% else %}
-hey there partner!
-{% endif %}
+

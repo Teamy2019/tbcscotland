@@ -16,8 +16,8 @@ from tbc.forms import LendAndSellForm, ServiceForm, ProjectForm
 
 def home(request):
 
-    context_dict = {}
-    return render(request, 'tbc/home.html', context=context_dict)
+    #context_dict = {}
+    return render(request, 'tbc/home.html')
 
 
 def search(request):
