@@ -16,7 +16,7 @@ class UserProfileForm(forms.ModelForm):
         fields = ('website', 'picture')
 
 class LendAndSellForm(forms.ModelForm):
-    profile = forms.CharField(widget=forms.HiddenInput(), required=False)
+    #profile = forms.CharField(widget=forms.HiddenInput(), required=False)
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
     image = forms.ImageField(required=False)
@@ -31,7 +31,7 @@ class LendAndSellForm(forms.ModelForm):
         fields = ('title', 'description', 'image', 'price', 'availability', 'keywords')
 
 class ProjectForm(forms.ModelForm):
-    profile = forms.CharField(widget=forms.HiddenInput(), required=False)
+  # profile should link atuomatically!!!  profile = forms.CharField(widget=forms.HiddenInput(), required=False)
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
     image = forms.ImageField(required=False)

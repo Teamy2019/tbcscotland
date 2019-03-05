@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^services/(?P<service_name_slug>[\w\-]+)/$', views.show_service, name='show_service'),    
     url(r'^profiles/(?P<profile_name_slug>[\w\-]+)/$', views.show_profile, name='show_profile'), 
     url(r'^postlendandsell/$', views.post_lendAndSell, name='post_lendandsell'),   
+    url(r'^postad/$', views.post_ad, name='post_ad'),
 ]

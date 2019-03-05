@@ -8,7 +8,7 @@ from tbc.models import LendAndSell
 from tbc.models import Projects
 from tbc.models import Service
 from tbc.models import Profile
-from tbc.forms import LendAndSellForm
+from tbc.forms import LendAndSellForm, ServiceForm, ProjectForm
 
 
 # Create your views here.
@@ -114,12 +114,13 @@ def show_service(request, service_name_slug):
     
     return render(request, 'tbc/servicead.html', context_dict)
 
+@login_required
 def post_lendAndSell(request):
 
     if request.method == 'POST':
 
         lendAndSell_form = LendAndSellForm(data=request.POST)
-        print(request.POST)
+        # added for testing - <<retrieve type of form from request objectprint>> (request.POST)
 
         if lendAndSell_form.is_valid(): 
             lendandsell = lendAndSell_form.save()
@@ -132,7 +133,17 @@ def post_lendAndSell(request):
     
     return render(request, 'tbc/postlendandsell.html', {'lendAndSell_form': lendAndSell_form})
 
+def post_ad(request):
 
+    if request.method == 'POST':
+        print("Hello world")
+        #Do some stuff
+    else: 
+        lendAndSell_form = LendAndSellForm()
+        project_form = ProjectForm()
+        service_form = ServiceForm()
+
+    return render(request, 'tbc/postad.html', {'lendandSell_form': lendAndSell_form, 'project_form': project_form, 'service_form': service_form})
 
 def login(request):
 
