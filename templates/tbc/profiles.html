@@ -13,7 +13,7 @@
             <ul>
                 {% for profile in profiles %}
                 <li>
-                    {{ profile.name }}
+                    <a href="{% url 'show_profile' profile.slug %}">{{ profile.name }}</a>
                 </li>
                 {% endfor %}
             </ul>

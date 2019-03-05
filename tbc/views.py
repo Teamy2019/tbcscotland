@@ -45,6 +45,16 @@ def profiles(request):
 
     return render(request, 'tbc/profiles.html', context=context_dict)
 
+def show_profile(request, profile_name_slug):
+    context_dict = {}
+
+    try:
+        profile = Profile.objects.get(slug=profile_name_slug)
+        context_dict['profile'] = profile
+    except Profile.DoesNotExist:
+        context_dict['profile'] = None
+
+    return render(request, 'tbc/profile.html', context_dict)
 
 def lendandsell(request):
 

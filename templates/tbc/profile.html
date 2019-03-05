@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TBCScotland</title>
+        <link rel="stylesheet" type="text/css" href="https://raw.githack.com/Teamy2019/tbcscotland/master/templates/tbc/cssmain.css">
+    </head>
+    <body>
+        {% if profile %}
+        <h1>{{ profile.name }}</h1>
+            {% if profile.aboutme %}
+            <div>{{ profile.aboutme }}</div>
+            {% else %}
+            <div>User {{ profile.name }} has not added in their 'About Me' section yet!</div>
+            {% endif %}
+        {% else %}
+        <strong>No Ad!</strong>
+        {% endif %}
+    </body>
+</html>
