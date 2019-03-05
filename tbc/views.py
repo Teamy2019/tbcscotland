@@ -8,6 +8,7 @@ from tbc.models import LendAndSell
 from tbc.models import Projects
 from tbc.models import Service
 from tbc.models import Profile
+from tbc.forms import LendAndSellForm
 
 
 # Create your views here.
@@ -112,6 +113,25 @@ def show_service(request, service_name_slug):
         context_dict['service_ad'] = None
     
     return render(request, 'tbc/servicead.html', context_dict)
+
+def post_lendAndSell(request):
+
+    if request.method == 'POST':
+
+        lendAndSell_form = LendAndSellForm(data=request.POST)
+        print(request.POST)
+
+        if lendAndSell_form.is_valid(): 
+            lendandsell = lendAndSell_form.save()
+            lendandsell.save()
+        
+        else:
+            print(lendAndSell_form.errors)
+    else:
+        lendAndSell_form = LendAndSellForm()
+    
+    return render(request, 'tbc/postlendandsell.html', {'lendAndSell_form': lendAndSell_form})
+
 
 
 def login(request):

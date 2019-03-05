@@ -15,5 +15,6 @@ urlpatterns = [
     url(r'^lendandsell/(?P<lendandsell_name_slug>[\w\-]+)/$', views.show_lendandsell, name='show_lendandsell'),
     url(r'^projects/(?P<project_name_slug>[\w\-]+)/$', views.show_project, name='show_project'),
     url(r'^services/(?P<service_name_slug>[\w\-]+)/$', views.show_service, name='show_service'),    
-    url(r'^profiles/(?P<profile_name_slug>[\w\-]+)/$', views.show_profile, name='show_profile'),    
+    url(r'^profiles/(?P<profile_name_slug>[\w\-]+)/$', views.show_profile, name='show_profile'), 
+    url(r'^postlendandsell/$', views.post_lendAndSell, name='post_lendandsell'),   
 ]
