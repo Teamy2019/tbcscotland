@@ -1,12 +1,45 @@
-we need this:
-<ul>
-...
-{% if user.is_authenticated %}
-<li><a href="{% url 'logout' %}">Logout</a><li>
-{% else %}
-<li><a href="{% url 'signup' %}">Sign Up</a></li>
-<li><a href="{% url 'login' %}">Login</a><li>
-{% endif %}
-<li><a href="{% url 'home' %}">Home</a></li>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TBCScotland</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://raw.githack.com/Teamy2019/tbcscotland/master/templates/tbc/cssmain.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
 
-</ul>
+<body>
+    {% block navbar_block %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="row">
+        `       <div class="navbar-header">
+                    <a class="navbar-brand" href="">TBCScotland</a>
+                </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'getstarted' %}">Get Started</a></li>
+                <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+                <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+            </ul>
+            </div>     
+            <div class="row">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'profiles' %}">Profiles</a></li>
+                    <li><a href="{% url 'projects' %}">Projects</a></li>
+                    <li><a href="{% url 'services' %}">Services</a></li>
+                    <li><a href="{% url 'lendandsell' %}">Lend & Sell</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    {% endblock %}
+        <div class="container-fluid">
+            {% block body_block %}            
+            {% endblock %}
+        </div>
+    </body>
+</html>

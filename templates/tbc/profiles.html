@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>TBCScotland</title>
-        <link rel="stylesheet" type="text/css" href="https://raw.githack.com/Teamy2019/tbcscotland/master/templates/tbc/cssmain.css">
-    </head>
+{% extends 'tbc/base.html' %}
 
-    <body>
-        <h1>Profiles</h1>
+{%block body_block %}
+    <h1>Profiles</h1>
         <div>
             {% if profiles %}
             <strong>Most popular Profiles!</strong>
@@ -17,9 +12,8 @@
                 </li>
                 {% endfor %}
             </ul>
-        {% else %}
+            {% else %}
             <strong>No Profiles yet!</strong>
-        {% endif %}
+            {% endif %}
         </div>
-    </body>
-</html>
+{% endblock %}
