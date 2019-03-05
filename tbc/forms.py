@@ -50,7 +50,7 @@ class ServiceForm(forms.ModelForm):
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
     image = forms.ImageField(required=False)
     title = forms.CharField(help_text="Please enter the title of your ad")
-    description = forms.CharField(widget=forms.Textarea, help_text="Tell everyone about the pService you can provide")
+    description = forms.CharField(widget=forms.Textarea, help_text="Tell everyone about the Service you can provide")
     price = forms.CharField(max_length=128, required=False)
     availability = forms.CharField(max_length=256, required=False)
     keywords = forms.CharField(required=False)

@@ -133,6 +133,32 @@ def post_lendAndSell(request):
     
     return render(request, 'tbc/postlendandsell.html', {'lendAndSell_form': lendAndSell_form})
 
+def post_project(request):
+    if request.method == 'POST':
+        project_form = ProjectForm(data=request.POST)
+        if project_form.is_valid():
+            project = project_form.save()
+            project.save()
+
+        else:
+            print(project_form.errors)
+    else:
+        project_form = ProjectForm()
+    
+    return render(request, 'tbc/postproject.html', {'project_form': project_form})
+
+def post_service(request):
+    if request.method == 'POST':
+        service_form = Service(data=request.POST)
+        if service_form.is_valid():
+            service = service_form.save()
+            service.save()
+        else:
+            print(service_form.errors)
+    else:
+        service_form = ServiceForm()
+    return render(request, 'tbc/postservice.html', {'service_form': service_form})
+    
 def post_ad(request):
 
     if request.method == 'POST':
