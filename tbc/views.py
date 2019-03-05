@@ -15,8 +15,8 @@ from tbc.models import Profile
 
 def home(request):
 
-    context_dict = {}
-    return render(request, 'tbc/home.html', context=context_dict)
+    #context_dict = {}
+    return render(request, 'tbc/home.html')
 
 
 def search(request):
