@@ -8,7 +8,8 @@ from tbc.models import LendAndSell
 from tbc.models import Projects
 from tbc.models import Service
 from tbc.models import Profile
-
+from tbc.forms import LendAndSellForm, ServiceForm, ProjectForm
+from django.db.models import Q
 
 # Create your views here.
 
@@ -22,7 +23,13 @@ def home(request):
 def search(request):
 
     context_dict = {}
-    return render(request, 'tbc/search.html', context=context_dict)
+    query = request.GET.get('q')
+
+    resultsLend = LendAndSell.objects.filter(Q(title__icontains=query) | Q(keywords__icontains=query))
+    resultsProject = Projects.objects.filter(Q(title__icontains=query) | Q(keywords__icontains=query))
+    resultsService = Service.objects.filter(Q(title__icontains=query) | Q(keywords__icontains=query))
+    context_dict = {'resultsLend': resultsLend, 'resultsProject': resultsProject, 'resultsService': resultsService}
+    return render(request, 'tbc/search.html', context_dict)
 
 
 def about(request):
@@ -113,6 +120,70 @@ def show_service(request, service_name_slug):
     
     return render(request, 'tbc/servicead.html', context_dict)
 
+@login_required
+def post_lendAndSell(request):
+
+    if request.method == 'POST':
+
+        lendAndSell_form = LendAndSellForm(data=request.POST)
+        # added for testing - <<retrieve type of form from request objectprint>> (request.POST)
+
+        if lendAndSell_form.is_valid(): 
+            lendandsell = lendAndSell_form.save()
+            lendandsell.save()
+            context_dict = {'ad_slug': lendandsell.slug, 'category': "lendandsell"}
+            return ad_posted(request, context_dict)
+        else:
+            print(lendAndSell_form.errors)
+    else:
+        lendAndSell_form = LendAndSellForm()
+    
+    return render(request, 'tbc/postlendandsell.html', {'lendAndSell_form': lendAndSell_form})
+
+def post_project(request):
+    if request.method == 'POST':
+        project_form = ProjectForm(data=request.POST)
+        if project_form.is_valid():
+            project = project_form.save()
+            project.save()
+            context_dict = {'ad_slug': project.slug, 'category': "projects"}
+            return ad_posted(request, context_dict)
+
+        else:
+            print(project_form.errors)
+    else:
+        project_form = ProjectForm()
+    
+    return render(request, 'tbc/postproject.html', {'project_form': project_form})
+
+def post_service(request):
+    if request.method == 'POST':
+        service_form = ServiceForm(data=request.POST)
+        if service_form.is_valid():
+            service = service_form.save()
+            service.save()
+            context_dict = {'ad_slug': service.slug, 'category': "services"}
+            return ad_posted(request, context_dict)
+        else:
+            print(service_form.errors)
+    else:
+        service_form = ServiceForm()
+    return render(request, 'tbc/postservice.html', {'service_form': service_form})
+    
+def post_ad(request):
+
+    if request.method == 'POST':
+        print("Hello world")
+        #Do some stuff
+    else: 
+        lendAndSell_form = LendAndSellForm()
+        project_form = ProjectForm()
+        service_form = ServiceForm()
+
+    return render(request, 'tbc/postad.html', {'lendAndSell_form': lendAndSell_form, 'project_form': project_form, 'service_form': service_form})
+
+def ad_posted(request, context_dict):
+    return render(request, 'tbc/adposted.html', context_dict)
 
 def login(request):
 

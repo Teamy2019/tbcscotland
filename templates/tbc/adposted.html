@@ -1,0 +1,16 @@
+{% extends 'tbc/base.html' %}
+
+{%block body_block %}
+        <h1>TBCScotland</h1>
+        <div>
+            <p>Welcome to TBCScotland</p>
+        </div>
+
+        <div> 
+        <h2>You posted an ad!</h2>
+        </div>
+        <a href="/tbc/{{ category }}/{{ ad_slug }}/">view the ad!</a>
+        <a href="/tbc/">Back to home</a>
+{% endblock %}
+
+
