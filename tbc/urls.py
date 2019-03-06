@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from tbc import views
+from tbc.views import search
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),

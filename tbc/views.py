@@ -9,7 +9,7 @@ from tbc.models import Projects
 from tbc.models import Service
 from tbc.models import Profile
 from tbc.forms import LendAndSellForm, ServiceForm, ProjectForm
-
+from django.db.models import Q
 
 # Create your views here.
 
@@ -23,7 +23,13 @@ def home(request):
 def search(request):
 
     context_dict = {}
-    return render(request, 'tbc/search.html', context=context_dict)
+    query = request.GET.get('q')
+
+    resultsLend = LendAndSell.objects.filter(Q(title__icontains=query) | Q(keywords__icontains=query))
+    resultsProject = Projects.objects.filter(Q(title__icontains=query) | Q(keywords__icontains=query))
+    resultsService = Service.objects.filter(Q(title__icontains=query) | Q(keywords__icontains=query))
+    context_dict = {'resultsLend': resultsLend, 'resultsProject': resultsProject, 'resultsService': resultsService}
+    return render(request, 'tbc/search.html', context_dict)
 
 
 def about(request):

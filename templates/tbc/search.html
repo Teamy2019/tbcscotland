@@ -1,0 +1,57 @@
+{% extends 'tbc/base.html' %}
+
+
+{% block body_block %}
+<h1>MAKE SPACE</h1>
+<h1>MAKE SPACE</h1>
+<h1>MAKE SPACE</h1>
+<h1>MAKE SPACE</h1>
+<h1>MAKE SPACE</h1>
+    <body>
+        <div>
+        {% if resultsLend %}
+        <strong>Results in 'Lend and Sell':</strong>
+        <ul>
+            {% for result in resultsLend %}
+                <li>
+                <a href="/tbc/lendandsell/{{ result.slug }}/">{{ result.title }}</a>
+                - {{ result.description }}
+                </li>
+            {% endfor %}    
+        </ul>
+        {% else %}
+            <strong>There are no results in 'Lend and Sell' </strong>
+        {% endif %}
+        </div>
+        <div>
+        {% if resultsService %}
+        <strong>Results in 'Services':</strong>
+        <ul>
+            {% for result in resultsService %}
+            <li>
+                <a href="/tbc/services/{{ result.slug }}/">{{ result.title }}</a>
+                - {{ result.description}}
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <strong>There are no results in 'Services'</strong>
+        {% endif %}
+        </div>
+        <div>
+        {% if resultsProject %}
+        <strong>Results in 'Projects':</strong>
+        <ul>
+            {% for result in resultsProject %}
+            <li>
+                <a href="/tbc/projects/{{ result.slug }}/">{{ result.title }}</a>
+                - {{ result.description }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <strong>There are no results in 'Projects'</strong>
+        {% endif %}
+    </div>
+    </body>
+{% endblock %}
