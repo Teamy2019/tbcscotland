@@ -1,0 +1,18 @@
+{% extends 'tbc/base.html' %}
+
+{%block body_block %}
+        <h1>TBCScotland</h1>
+        <div>
+            <p>Welcome to TBCScotland</p>
+        </div>
+
+        {{ boldmessage }}
+
+        <div>TBCScotland is a platofrm for those working or volunteering in the creative industry to connect with others in the same field</div>
+        <div>From this site you can browse the profiles of people working in the industry, and each user can post an ad looking for something more specific</div>
+        <div>TBCScotland supports three different types of ad, <a href="/tbc/lendandsell/">'Lend and Sell'</a>, <a href="/tbc/services/">'Services'</a>, and <a href="/tbc/projects/">'Projects'</a></div>
+        <div><a href="/tbc/signup/">Click here to sign up!</a></div>
+        {% if user.is_authenticated %}
+        <a href="/tbc/postad/">Already got a profile? Click here to post an ad!</a>
+        {% endif %}
+{% endblock %}

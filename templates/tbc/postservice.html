@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>TBCScotland</title>
-        <link rel="stylesheet" type="text/css" href="https://raw.githack.com/Teamy2019/tbcscotland/master/templates/tbc/cssmain.css">
-    </head>
+{% extends 'tbc.base.html' %}
 
+{% block body_block %}
     <h1>Post a 'Service' ad</h1>
     <body>
     <form id="service_form" method="post" action="{% url 'post_service' %}"
@@ -17,4 +13,4 @@
     <input type="submit" name="submit" value="Post your ad!" />
     </form>
     </body>
-</html>
+{% endblock %}
