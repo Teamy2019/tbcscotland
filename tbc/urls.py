@@ -19,5 +19,6 @@ urlpatterns = [
     url(r'^postad/$', views.post_ad, name='post_ad'),
     url(r'^postlendandsell/$', views.post_lendAndSell, name='post_lendandsell'), 
     url(r'^postproject/$', views.post_project, name='post_project'),
-    url(r'^postservice/$', views.post_service, name='post_service'),  
+    url(r'^postservice/$', views.post_service, name='post_service'), 
+    url(r'^adposted/$', views.ad_posted, name='ad_posted'), 
 ]

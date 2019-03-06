@@ -125,7 +125,8 @@ def post_lendAndSell(request):
         if lendAndSell_form.is_valid(): 
             lendandsell = lendAndSell_form.save()
             lendandsell.save()
-        
+            context_dict = {'ad_slug': lendandsell.slug, 'category': "lendandsell"}
+            return ad_posted(request, context_dict)
         else:
             print(lendAndSell_form.errors)
     else:
@@ -139,6 +140,8 @@ def post_project(request):
         if project_form.is_valid():
             project = project_form.save()
             project.save()
+            context_dict = {'ad_slug': project.slug, 'category': "projects"}
+            return ad_posted(request, context_dict)
 
         else:
             print(project_form.errors)
@@ -149,10 +152,12 @@ def post_project(request):
 
 def post_service(request):
     if request.method == 'POST':
-        service_form = Service(data=request.POST)
+        service_form = ServiceForm(data=request.POST)
         if service_form.is_valid():
             service = service_form.save()
             service.save()
+            context_dict = {'ad_slug': service.slug, 'category': "services"}
+            return ad_posted(request, context_dict)
         else:
             print(service_form.errors)
     else:
@@ -170,6 +175,9 @@ def post_ad(request):
         service_form = ServiceForm()
 
     return render(request, 'tbc/postad.html', {'lendAndSell_form': lendAndSell_form, 'project_form': project_form, 'service_form': service_form})
+
+def ad_posted(request, context_dict):
+    return render(request, 'tbc/adposted.html', context_dict)
 
 def login(request):
 

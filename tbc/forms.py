@@ -23,12 +23,12 @@ class LendAndSellForm(forms.ModelForm):
     title = forms.CharField(help_text="Please enter the title of your ad")
     description = forms.CharField(widget=forms.Textarea, help_text="Tell everyone what it is you're offering")
     keywords = forms.CharField(required=False)
-
+    slug = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     class Meta:
         model = LendAndSell
 
-        fields = ('title', 'description', 'image', 'price', 'availability', 'keywords')
+        fields = ('title', 'description', 'image', 'price', 'availability', 'keywords', 'profile')
 
 class ProjectForm(forms.ModelForm):
   # profile should link atuomatically!!!  profile = forms.CharField(widget=forms.HiddenInput(), required=False)
@@ -40,10 +40,11 @@ class ProjectForm(forms.ModelForm):
     lookingFor = forms.CharField(widget=forms.Textarea, help_text="What do you need?")
     timeline = forms.CharField(widget=forms.Textarea, help_text="When do you need it? How long for?")
     keywords = forms.CharField(required=False)
+    slug = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     class Meta:
         model = Projects
-        fields = ('title', 'image', 'description', 'lookingFor', 'timeline', 'keywords')
+        fields = ('title', 'image', 'description', 'lookingFor', 'timeline', 'keywords', 'profile')
 
 class ServiceForm(forms.ModelForm):
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
@@ -55,10 +56,11 @@ class ServiceForm(forms.ModelForm):
     availability = forms.CharField(max_length=256, required=False)
     keywords = forms.CharField(required=False)
     location = forms.CharField(required=False)
+    slug = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     class Meta:
         model = Service
-        fields = ('title', 'image', 'description', 'price', 'availability', 'keywords', 'location')
+        fields = ('title', 'image', 'description', 'price', 'availability', 'keywords', 'location', 'profile')
 
 
 
