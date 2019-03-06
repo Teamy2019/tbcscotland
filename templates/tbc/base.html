@@ -19,6 +19,10 @@
                     <a class="navbar-brand" href="">TBCScotland</a>
                 </div>
             <ul class="nav navbar-nav navbar-right">
+                <li><form method="GET" action="{% url 'search' %}">
+                        <input name ="q" value="{{request.GET.q}}" placeholder="search">
+                        <button type="submit">Search</button>
+                    </form></li>
                 <li><a href="{% url 'about' %}">About</a></li>
                 <li><a href="{% url 'getstarted' %}">Get Started</a></li>
                 <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
@@ -34,6 +38,7 @@
                 </ul>
             </div>
         </div>
+
     </nav>
     
     {% endblock %}
