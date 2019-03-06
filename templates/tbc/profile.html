@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>TBCScotland</title>
-        <link rel="stylesheet" type="text/css" href="https://raw.githack.com/Teamy2019/tbcscotland/master/templates/tbc/cssmain.css">
-    </head>
+{% extends 'tbc/base.html' %}
+
+{% block body_block %}
     <body>
         {% if profile %}
         <h1>{{ profile.name }}</h1>
@@ -16,4 +13,4 @@
         <strong>No Ad!</strong>
         {% endif %}
     </body>
-</html>
+{% endblock %}
