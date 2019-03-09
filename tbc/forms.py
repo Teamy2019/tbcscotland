@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.models import User
 from tbc.models import UserProfile
 from tbc.models import LendAndSell, Projects, Service
+from django.db.models import Q
+import operator
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -61,6 +63,22 @@ class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
         fields = ('title', 'image', 'description', 'price', 'availability', 'keywords', 'location', 'profile')
+
+# class Search(Search):
+#     paginate_by = 10
+#     def get_queryset(self):
+#         result = super(Search, self).get_queryset()
+
+#         query = self.request.GET.get('q')
+#         if query:
+#             query_list = query.split()
+#             result = result.filter(
+#                 reduce(operator.and_,
+#                     (Q(LendAndSell__icontains=q) for q in query_list)) |
+#                 reduce(operator.and_,
+#                     (Q(LendAndSell__icontains=q) for q in query_list))
+#             )
+#         return result
 
 
 

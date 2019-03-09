@@ -17,6 +17,9 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import include
 from tbc import views
+from django.conf import settings
+from django.conf.urls.static import static
+#from registration.backends.simple.views import RegistrationView
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
@@ -25,4 +28,8 @@ urlpatterns = [
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^login/$', views.user_login, name='login'),
     url(r'^logout/$', views.user_logout, name='logout')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+#class MyRegistrationView(RegistrationView):
+#    def get_success_url(self, user):
+#        return '/tbc/'

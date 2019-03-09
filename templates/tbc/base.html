@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>TBCScotland</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="https://raw.githack.com/Teamy2019/tbcscotland/master/templates/tbc/cssmain.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://raw.githack.com/Teamy2019/tbcscotland/master/templates/tbc/cssmain.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>
+        TBCScotland
+    </title>
 </head>
-
 <body>
     {% block navbar_block %}
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="row">
         `       <div class="navbar-header">
-                    <a class="navbar-brand" href="">TBCScotland</a>
+                    <a class="navbar-brand" href="{% url 'home' %}">TBCScotland</a>
                 </div>
-            <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right">
+                <li><form method="GET" action="{% url 'search' %}">
+                <input name ="q" value="{{request.GET.q}}" placeholder="search">
+                <button type="submit">Search</button>
+                </form></li>
                 <li><a href="{% url 'about' %}">About</a></li>
                 <li><a href="{% url 'getstarted' %}">Get Started</a></li>
                 <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
                 <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-            </ul>
+                </ul>
             </div>     
             <div class="row">
                 <ul class="nav navbar-nav">
@@ -34,12 +39,34 @@
                 </ul>
             </div>
         </div>
-    </nav>
-    
+    </nav>    
     {% endblock %}
-        <div class="container-fluid">
-            {% block body_block %}            
-            {% endblock %}
-        </div>
-    </body>
+
+    <div class="container-fluid">
+            <br>
+            <br>
+            <div class="row">
+                    <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 main">
+                        {% block body_block %}            
+                        {% endblock %}
+
+                        {% block map_block %}
+                        <div id="googleMap" style="width:50%;height:400px;">
+                            <script>
+                                function myMap() {
+                                        var mapProp= {
+                                            center:new google.maps.LatLng(55.8740524,-4.2921628),
+                                            zoom:12,
+                                            };
+                                        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                                        }
+                            </script>
+                
+                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUXtu62ki7o058ozMTIy5tmHbvyjdzymc&callback=myMap"></script>
+                        {% endblock %}
+
+                    </div>
+            </div>
+    </div>
+</body>
 </html>
