@@ -4,6 +4,9 @@
         <h1>TBCScotland</h1>
         <div>
             <p>Welcome to TBCScotland</p>
+            <form method="GET" action="{% url 'search' %}">
+            <input name ="q" value="{{request.GET.q}}" placeholder="search">
+            <button type="submit">Search</button>
         </div>
 {% endblock %}
 
