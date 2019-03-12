@@ -2,50 +2,28 @@
 
 {% block body_block %}
     <body>
-        {% if service_ad %}
-        <h1>{{ service_ad.title }}</h1>
+        {% if project_ad %}
+        <h1>{{ project_ad.title }}</h1>
         <div>
-            {{ service_ad.description }}
+            {{ project_ad.description }}
         </div>
         <div>
-            {{ service_ad.keywords }}
+            {{ project_ad.keywords }}
         </div>
+            {% if project_ad.image %}
         <div>
-            {% if service_ad.location %}\\
-            {{ service_ad.location }}
+            {{ project_ad.image }}
+        </div>
             {% else %}
-            <strong>No Location!</strong>
+        <div>
+            {{ project_ad.profile }} has not uploaded an image yet. 
+        </div>
             {% endif %}
+        <div>
+            <a href="{% url 'show_profile' project_ad.profile.slug %}">Visit {{ project_ad.profile }}'s Profile!</a>
         </div>
         {% else %}
         <strong>No Ad!</strong>
         {% endif %}
-        <div id="googleMap" style="width:50%;height:400px;">
-            <script>
-                function myMap() {
-                    var mapProp = {center:new google.maps.LatLng(55.8740524,-4.2921628),zoom:11};
-                    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-                    var geocoder = new google.maps.Geocoder();
-                    var testLocation = "{{ service_ad.location }}";
-                    var test = "glasgow";
-                    geocodeAddress(geocoder, map);
-                }
-
-                function geocodeAddress(geocoder, resultsMap) {
-                    geocoder.geocode({'address' : "tenerife"}, function(results, status) {
-                        if (status === 'OK') {
-                            resultsMap.setCenter(results[0].geometry.location);
-                            var marker = new google.maps.Marker({
-                                map: resultsMap,
-                                position: results[0].geometry.location
-                                });
-                            } else {
-                            alert('geocode not found for: ' + status);
-                            }
-                        });
-                }
-            </script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUXtu62ki7o058ozMTIy5tmHbvyjdzymc&callback=myMap"></script>
-        </div>
     </body>
 {% endblock %}
