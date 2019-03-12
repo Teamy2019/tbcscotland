@@ -2,6 +2,7 @@
 
 {% block body_block %}
     <body>
+        <h1>MAKE SPACE</h1>
         {% if profile %}
         <h1>{{ profile.name }}</h1>
             {% if profile.aboutme %}
@@ -9,10 +10,45 @@
             {% else %}
             <div>User {{ profile.name }} has not added in their 'About Me' section yet!</div>
             {% endif %}
+
+            {% if profile.image %}
+            <div>{{ profile.image }}</div>
+            {% else %}
+            <div>User {{ profile.name }} has not added any images!</div>
+            {% endif %}
+
+            {% if profile.skills %}
+            <div>{{ profile.skills }}</div>
+            {% else %}
+            <div>User {{ profile.name }} has not added in their 'Skills' section yet!</div>
+            {% endif %}
+
+            {% if profile.education %}
+            <div>{{ profile.education }}</div>
+            {% else %}
+            <div>User {{ profile.name }} has not added in their 'Education' section yet!</div>
+            {% endif %}
+
+            
+
+
+
+
+
         {% else %}
         <strong>No Ad!</strong>
         {% endif %}
-        <div id="googleMap" style="width:50%;height:400px;">
+
+
+
+
+
+
+
+
+
+
+        <div id="googleMap" style="width:50%;height:150px;">
             <script>
                 function myMap() {
                     var mapProp = {center:new google.maps.LatLng(55.8740524,-4.2921628),zoom:11};

@@ -10,6 +10,18 @@
         <div>
             {{ project_ad.keywords }}
         </div>
+            {% if project_ad.image %}
+        <div>
+            {{ project_ad.image }}
+        </div>
+            {% else %}
+        <div>
+            {{ project_ad.profile }} has not uploaded an image yet. 
+        </div>
+            {% endif %}
+        <div>
+            <a href="{% url 'show_profile' project_ad.profile.slug %}">Visit {{ project_ad.profile }}'s Profile!</a>
+        </div>
         {% else %}
         <strong>No Ad!</strong>
         {% endif %}
