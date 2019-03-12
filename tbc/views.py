@@ -58,6 +58,17 @@ def show_profile(request, profile_name_slug):
     try:
         profile = Profile.objects.get(slug=profile_name_slug)
         context_dict['profile'] = profile
+
+        query = profile
+        print(query)
+
+        resultsLend = LendAndSell.objects.filter(profile=query)
+        resultsProject = Projects.objects.filter(profile=query)
+        resultsService = Service.objects.filter(profile=query)
+        context_dict['resultsLend'] = resultsLend
+        context_dict['resultsProject'] = resultsProject
+        context_dict['resultsService'] = resultsService
+
     except Profile.DoesNotExist:
         context_dict['profile'] = None
 

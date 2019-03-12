@@ -2,6 +2,7 @@
 
 {% block body_block %}
     <body>
+        <h1>MAKE SPACE</h1>
         {% if profile %}
         <h1>{{ profile.name }}</h1>
             {% if profile.aboutme %}
@@ -9,10 +10,83 @@
             {% else %}
             <div>User {{ profile.name }} has not added in their 'About Me' section yet!</div>
             {% endif %}
+
+            {% if profile.image %}
+            <div>{{ profile.image }}</div>
+            {% else %}
+            <div>User {{ profile.name }} has not added any images!</div>
+            {% endif %}
+
+            {% if profile.skills %}
+            <div>{{ profile.skills }}</div>
+            {% else %}
+            <div>User {{ profile.name }} has not added in their 'Skills' section yet!</div>
+            {% endif %}
+
+            {% if profile.education %}
+            <div>{{ profile.education }}</div>
+            {% else %}
+            <div>User {{ profile.name }} has not added in their 'Education' section yet!</div>
+            {% endif %}
+
+    </hr>
+
+        {% if resultsLend %}
+            <strong>Here are John Smith's 'Lend and Sell' ads!</strong>
+            {% for lend in resultsLend %}
+            <div>{{ lend.title }}</div>
+            <div>{{ lend.description }}
+                <a href="{% url 'show_lendandsell' lend.slug %}">See the ad!</a>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div>No lend ads detected</div>
+            {% endif %}
+
+            {% if resultsProject %}
+            <strong>Here are John Smith's 'Project' ads!</strong>
+            {% for project in resultsProject %}
+            <div>{{ project.title }}</div>
+            <div>{{ project.description }}
+                <a href="{% url 'show_project' project.slug %}">See the ad!</a>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div>No project ads detected
+                </div>
+            {% endif %}
+
+            {% if resultsService %}
+            <strong>Here are John Smith's 'Service' ads!</strong>
+            {% for service in resultsService %}
+            <div>{{ service.title }}</div>
+            <div>{{ service.description }}
+                <a href="{% url 'show_service' service.slug %}">See the ad!</a>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div>            No service ads detected
+                </div>
+            {% endif %}            
+
+
+
+
+
         {% else %}
         <strong>No Ad!</strong>
         {% endif %}
-        <div id="googleMap" style="width:50%;height:400px;">
+
+
+
+
+
+
+
+
+
+
+        <div id="googleMap" style="width:50%;height:150px;">
             <script>
                 function myMap() {
                     var mapProp = {center:new google.maps.LatLng(55.8740524,-4.2921628),zoom:11};
