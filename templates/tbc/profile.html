@@ -12,5 +12,14 @@
         {% else %}
         <strong>No Ad!</strong>
         {% endif %}
+        <div id="googleMap" style="width:50%;height:400px;">
+            <script>
+                function myMap() {
+                    var mapProp = {center:new google.maps.LatLng(55.8740524,-4.2921628),zoom:11};
+                    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUXtu62ki7o058ozMTIy5tmHbvyjdzymc&callback=myMap"></script>
+        </div>
     </body>
 {% endblock %}

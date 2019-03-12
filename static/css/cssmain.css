@@ -1,0 +1,69 @@
+
+.navbar-fixed-top {
+	border-width: 0 0 3px;
+}
+
+.navbar-inverse {
+	background-color: white;
+	border-color: black;
+}
+
+.navbar-header {
+	margin-left: 10px;
+}
+
+.glyphicon {
+	top: 1px;
+	right: 3px;
+}
+
+.navbar-inverse .navbar-brand {
+    color: black;
+}
+
+.navbar-right {
+	margin-right: -5px;
+}
+
+.navbar-brand{
+	font-size: 25px;
+	background: white;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color: black;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+    background: black;
+	color: white;
+}
+
+.navbar-inverse .navbar-header .navbar-brand:hover {
+	background: black;
+}
+
+#profID {
+	padding-right: 100px;
+	padding-left: 100px;
+}
+
+#projID {
+	padding-right: 150px;
+	padding-left: 150px;
+}
+
+#servID {
+	padding-right: 150px;
+	padding-left: 150px;
+}
+
+#lensellID {
+	padding-right: 100px;
+	padding-left: 100px;
+}
+
+
+body {
+    background-color: white;
+}
