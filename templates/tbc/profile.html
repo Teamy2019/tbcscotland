@@ -29,7 +29,45 @@
             <div>User {{ profile.name }} has not added in their 'Education' section yet!</div>
             {% endif %}
 
-            
+    </hr>
+
+        {% if resultsLend %}
+            <strong>Here are John Smith's 'Lend and Sell' ads!</strong>
+            {% for lend in resultsLend %}
+            <div>{{ lend.title }}</div>
+            <div>{{ lend.description }}
+                <a href="{% url 'show_lendandsell' lend.slug %}">See the ad!</a>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div>No lend ads detected</div>
+            {% endif %}
+
+            {% if resultsProject %}
+            <strong>Here are John Smith's 'Project' ads!</strong>
+            {% for project in resultsProject %}
+            <div>{{ project.title }}</div>
+            <div>{{ project.description }}
+                <a href="{% url 'show_project' project.slug %}">See the ad!</a>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div>No project ads detected
+                </div>
+            {% endif %}
+
+            {% if resultsService %}
+            <strong>Here are John Smith's 'Service' ads!</strong>
+            {% for service in resultsService %}
+            <div>{{ service.title }}</div>
+            <div>{{ service.description }}
+                <a href="{% url 'show_service' service.slug %}">See the ad!</a>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div>            No service ads detected
+                </div>
+            {% endif %}            
 
 
 
