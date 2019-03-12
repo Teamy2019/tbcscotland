@@ -1,6 +1,8 @@
 {% extends 'tbc/base.html' %}
 
 {%block body_block %}
+<div class="container">
+<div class="row"style="height:250px;"></div>
         <div>
             {% if profiles %}
             <strong>Most popular Profiles!</strong>
@@ -15,4 +17,5 @@
             <strong>No Profiles yet!</strong>
             {% endif %}
         </div>
+    </div>
 {% endblock %}

@@ -1,13 +1,20 @@
 {% extends 'tbc/base.html' %}
 
+<body>
 {%block body_block %}
-        <h1>TBCScotland</h1>
-        <div>
-            <p>Welcome to TBCScotland</p>
-            <form method="GET" action="{% url 'search' %}">
-            <input name ="q" value="{{request.GET.q}}" placeholder="search">
-            <button type="submit">Search</button>
-        </div>
+	<div class="container">
+		<div class="row"style="height:250px;"></div>
+		<div class="row">
+			<div class="input-group ">
+			<form class="form-inline" method="GET" action="{% url 'search' %}">
+				<input class="form-control" style="width: 550px;height:70px;" name ="q" placeholder="Try 'video production' " value="{{request.GET.q}}">
+				<button "btn btn-default" style="width:100px;height:70px;">Search</button>
+			</form>
+		</div>
+	</div>
+	</div>
 {% endblock %}
 
+</div>
+</body>
 

@@ -38,16 +38,7 @@
         </div>
     </nav>    
     {% endblock %}
-
-    <div class="container-fluid">
-            <br>
-            <br>
-            <div class="row">
-                    <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 main">
-                        {% block body_block %}            
-                        {% endblock %}
-                    </div>
-            </div>
-    </div>
+    {% block body_block %}            
+    {% endblock %}
 </body>
 </html>
