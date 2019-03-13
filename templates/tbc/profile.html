@@ -69,22 +69,20 @@
                 </div>
             {% endif %}            
 
-
-
-
-
         {% else %}
         <strong>No Ad!</strong>
         {% endif %}
 
 
-
-
-
-
-
-
-
+    {% if profile.views %}
+            <div>
+                Views: {{ visits }}
+            </div>
+            {% else %}
+            <div>
+                {{ profile.name }} has had no visitors to their profile :(
+            </div>
+    {% endif %}
 
         <div id="googleMap" style="width:50%;height:150px;">
             <script>
