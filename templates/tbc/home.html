@@ -2,16 +2,56 @@
 
 {%block body_block %}
 	<div class="container">
-		<div class="row"style="height:200px;"></div>
+		<div class="row"style="height:150px;"></div>
 		<div class="row">
 			<h1 style="font-size:40px">Find The Perfect Freelance Services</h1>
-			<h2 style="font-size:40px">For Your Business</h2>
-			<div class="input-group ">
+			<h2 style="font-size:40px">In Scotland</h2>
+			<div class="input-group">
 			<form class="form-inline" method="GET" action="{% url 'search' %}">
 				<input class="form-control" style="width:550px;height:70px;" name ="q" placeholder="Try 'video production'" value="{{request.GET.q}}">
 				<button class="btn btn-default" style="width:100px;height:70px;background-color:#B99AEF;border:1px;color:white;font-size:17px;border-radius:0px;border-top-right-radius:4px;border-bottom-right-radius:4px">Search</button>
 			</form>
 		</div>
+	</div>
+	<div class="row" style="height:30px;"></div>
+	<div class="row">
+		<div class="col-lg-4">
+			<div class="panel panel-default" style="width:400px;height:300px;border:4px solid black;border-radius:0px;">
+				<div class="panel-body">
+					{% if profiles %}
+						<strong>Most popular Profiles!</strong>
+						<ul>
+							{% for profile in profiles %}
+                			<li>
+                				<a href="{% url 'show_profile' profile.slug %}">{{ profile.name }}</a>
+                			</li>
+                			{% endfor %}
+            			</ul>
+            		{% else %}
+            			<strong>No Profiles yet!</strong>
+            		{% endif %}
+        		</div>
+        	</div>
+        </div>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-4">
+        	<div class="panel panel-default" style="width:400px;height:300px;border:4px solid black;border-radius:0px;">
+        		<div class="panel-body">
+        			{% if projects %}
+        				<strong>Most popular Ads!</strong>
+            			<ul>
+                			{% for project in projects %}
+                				<li>
+                    				<a href="{% url 'show_project' project.slug %}">{{ project.title }}</a><i>- Ad posted by </i>{{ project.profile }}
+                				</li>
+                			{% endfor %}
+            			</ul>
+        			{% else %}
+            			<strong>No Ads yet!</strong>
+        			{% endif %}
+        		</div>
+       		</div>
+        </div>
 	</div>
 	</div>
 {% endblock %}

@@ -1,6 +1,7 @@
 
 .navbar-fixed-top {
-	border-width: 0 0 3px;
+	box-shadow: 0px 2px 3px 0px;
+	border-width: 0 0 2px;
 }
 
 .navbar-inverse {
@@ -58,7 +59,7 @@
 	padding-left: 150px;
 }
 
-#lensellID {
+#lendsellID {
 	padding-right: 100px;
 	padding-left: 100px;
 }
