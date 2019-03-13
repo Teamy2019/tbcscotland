@@ -15,8 +15,10 @@ from django.db.models import Q
 
 
 def home(request):
+    # Line added to test cookies.
+    request.session.set_test_cookie()
 
-    #context_dict = {}
+    # context_dict = {}
     return render(request, 'tbc/home.html')
 
 
@@ -33,6 +35,10 @@ def search(request):
 
 
 def about(request):
+    # Lines added for cookie testing
+    if request.session.test_cookie_worked():
+        print("TEST: cookies functional...")
+        request.session.delete_test_cookie()
 
     context_dict = {}
     return render(request, 'tbc/about.html', context=context_dict)
