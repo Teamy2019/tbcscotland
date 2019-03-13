@@ -1,0 +1,14 @@
+{% extends 'tbc/base.html' %}
+
+{% block body_block %}
+Profile Registration
+{% endblock %}
+
+{% block body_block %}
+  <h1>Profiel Registration</h1>
+  <form methid="post" action="." enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" vlue="Submit" />
+  </form>
+{% endblock %}
