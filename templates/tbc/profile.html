@@ -69,16 +69,16 @@
                 </div>
             {% endif %}            
 
-
-
-
-
         {% else %}
         <strong>No Ad!</strong>
         {% endif %}
 
 
-
+     {% if profile.views %}
+            <div>Views: {{ profile.views }}</div>
+            {% else %}
+            <div>User {{ profile.name }} has had no visitors</div>
+            {% endif %}
 
 
 

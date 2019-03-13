@@ -10,6 +10,7 @@ from tbc.models import Service
 from tbc.models import Profile
 from tbc.forms import LendAndSellForm, ServiceForm, ProjectForm
 from django.db.models import Q
+from datetime import datetime
 
 # Create your views here.
 
@@ -35,10 +36,6 @@ def search(request):
 
 
 def about(request):
-    # Lines added for cookie testing
-    if request.session.test_cookie_worked():
-        print("TEST: cookies functional...")
-        request.session.delete_test_cookie()
 
     context_dict = {}
     return render(request, 'tbc/about.html', context=context_dict)
@@ -58,7 +55,15 @@ def profiles(request):
 
     return render(request, 'tbc/profiles.html', context=context_dict)
 
+
 def show_profile(request, profile_name_slug):
+
+    # Lines added for cookie testing
+    if request.session.test_cookie_worked():
+        print("TEST: cookies functional...")
+        request.session.delete_test_cookie()
+
+
     context_dict = {}
 
     try:
@@ -71,9 +76,11 @@ def show_profile(request, profile_name_slug):
         resultsLend = LendAndSell.objects.filter(profile=query)
         resultsProject = Projects.objects.filter(profile=query)
         resultsService = Service.objects.filter(profile=query)
+        visitor_cookie_handler(request)
         context_dict['resultsLend'] = resultsLend
         context_dict['resultsProject'] = resultsProject
         context_dict['resultsService'] = resultsService
+        context_dict['visits'] = request.session['visits']
 
     except Profile.DoesNotExist:
         context_dict['profile'] = None
@@ -253,7 +260,35 @@ def user_login(request):
     else:
         return render(request, 'tbc/login.html', {})
 
+
 @login_required
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('home'))
+
+
+def get_server_side_cookie(request, cookie, default_val=None):
+    val = request.session.get(cookie)
+    if not val:
+        val = default_val
+    return val
+
+
+def visitor_cookie_handler(request):
+    # Getting the number of visits to the site.
+
+    visits = int(get_server_side_cookie(request, 'visits', '1'))
+
+    last_visit_cookie = get_server_side_cookie(request, 'last_visit', str(datetime.now()))
+    last_visit_time = datetime.strptime(last_visit_cookie[:-7], '%Y-%m-%d %H:%M:%S')
+
+    if (datetime.now() - last_visit_time).seconds > 0:
+        visits = visits + 1
+
+        request.session['last_visit'] = str(datetime.now())
+    else:
+        # Set the last visit cookie
+        request.session['last_visit'] = last_visit_cookie
+
+    # Update/set the visits cookie
+    request.session['visits'] = visits
