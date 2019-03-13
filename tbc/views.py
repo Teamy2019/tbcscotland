@@ -72,6 +72,9 @@ def show_profile(request, profile_name_slug):
 
         visitor_cookie_handler(request)
         context_dict['visits'] = request.session['visits']
+        
+        profile.views += 1
+        profile.save()
 
         resultsLend = LendAndSell.objects.filter(profile=query)
         resultsProject = Projects.objects.filter(profile=query)
