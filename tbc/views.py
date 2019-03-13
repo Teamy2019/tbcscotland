@@ -230,6 +230,24 @@ def signup(request):
 
     return render(request, 'tbc/signup.html', {'user_form': user_form, 'registered': registered})
 
+@login_required
+def register_profile(request):
+    form = UserProfileForm()
+
+    if request.method == 'POST':
+        form =UserProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            user_profile = form.save(commit=False)
+            user_profile.user = request.user
+            user_profile.save()
+
+            return redirect('home')
+        else:
+            print(form.errors)
+    context_dict = {'form': form}
+
+    return render(request, 'tbc/profileregistration.html', context_dict)
+
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')

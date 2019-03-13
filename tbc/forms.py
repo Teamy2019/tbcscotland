@@ -7,15 +7,34 @@ import operator
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
+    firstname = forms.CharField(max_length=20)
+    surname = forms.CharField(max_length=20)
+    is_company = forms.BooleanField()
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password')
+        fields = ('username', 'firstname', 'surname', 'email', 'password', 'is_company')
+
+#class UserProfileForm(forms.ModelForm):
+#    class Meta:
+#        model = UserProfile
+#        fields = ('website', 'picture')
 
 class UserProfileForm(forms.ModelForm):
+    occupation = forms.CharField(max_length=20)
+    city = forms.CharField(max_length=20)
+    postcode = forms.CharField(max_length=7)
+    aboutme = forms.CharField(widget=forms.Textarea)
+    skills = forms.CharField(widget=forms.Textarea)
+    education = forms.CharField(widget=forms.Textarea)
+    equipment = forms.CharField(widget=forms.Textarea)
+    website = forms.URLField(required=False)
+    picture = forms.ImageField(required=False)
+
     class Meta:
         model = UserProfile
-        fields = ('website', 'picture')
+        fields = ('occupation', 'city', 'postcode', 'aboutme', 'skills', 'education', 'equipment', 'website', 'picture')
+        exclude = ('user',)
 
 class LendAndSellForm(forms.ModelForm):
     #profile = forms.CharField(widget=forms.HiddenInput(), required=False)
@@ -79,8 +98,3 @@ class ServiceForm(forms.ModelForm):
 #                     (Q(LendAndSell__icontains=q) for q in query_list))
 #             )
 #         return result
-
-
-
-
-

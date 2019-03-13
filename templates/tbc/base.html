@@ -23,10 +23,19 @@
                 <ul class="nav navbar-nav navbar-right">
                 <li><a href="{% url 'about' %}">About</a></li>
                 <li><a href="{% url 'getstarted' %}">Get Started</a></li>
+                {% if user.is_authenticated %}
+                <!-- <li><a
+                 href="{% url 'show_profile'
+                 this is a comment
+                  profile.slug %}"><span class="glyphicon glyphicon-user"></span>{{ profile.name }}</a></li>
+-->
+                <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+                {% else %}
                 <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
                 <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                {% endif %}
                 </ul>
-            </div>     
+            </div>
             <div class="row">
                 <ul class="nav navbar-nav">
                     <li id="profID"><a href="{% url 'profiles' %}">Profiles</a></li>
@@ -36,9 +45,9 @@
                 </ul>
             </div>
         </div>
-    </nav>    
+    </nav>
     {% endblock %}
-    {% block body_block %}            
+    {% block body_block %}
     {% endblock %}
 </body>
 </html>
