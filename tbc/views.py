@@ -57,35 +57,34 @@ def profiles(request):
 
 
 def show_profile(request, profile_name_slug):
-
     # Lines added for cookie testing
     if request.session.test_cookie_worked():
         print("TEST: cookies functional...")
         request.session.delete_test_cookie()
-
 
     context_dict = {}
 
     try:
         profile = Profile.objects.get(slug=profile_name_slug)
         context_dict['profile'] = profile
-
         query = profile
         print(query)
+
+        visitor_cookie_handler(request)
+        context_dict['visits'] = request.session['visits']
 
         resultsLend = LendAndSell.objects.filter(profile=query)
         resultsProject = Projects.objects.filter(profile=query)
         resultsService = Service.objects.filter(profile=query)
-        visitor_cookie_handler(request)
         context_dict['resultsLend'] = resultsLend
         context_dict['resultsProject'] = resultsProject
         context_dict['resultsService'] = resultsService
-        context_dict['visits'] = request.session['visits']
 
     except Profile.DoesNotExist:
         context_dict['profile'] = None
 
     return render(request, 'tbc/profile.html', context_dict)
+
 
 def lendandsell(request):
 
@@ -93,6 +92,7 @@ def lendandsell(request):
     context_dict = {'lend_and_sell': lend_and_sell_list}
 
     return render(request, 'tbc/lendandsell.html', context_dict)
+
 
 #One instance of an ad here:
 def show_lendandsell(request, lendandsell_name_slug):
@@ -114,6 +114,7 @@ def projects(request):
 
     return render(request, 'tbc/projects.html', context_dict)
 
+
 def show_project(request, project_name_slug):
     context_dict = {}
 
@@ -133,6 +134,7 @@ def services(request):
 
     return render(request, 'tbc/services.html', context_dict)
 
+
 def show_service(request, service_name_slug):
     context_dict = {}
 
@@ -143,6 +145,7 @@ def show_service(request, service_name_slug):
         context_dict['service_ad'] = None
 
     return render(request, 'tbc/servicead.html', context_dict)
+
 
 @login_required
 def post_lendAndSell(request):
@@ -164,6 +167,7 @@ def post_lendAndSell(request):
 
     return render(request, 'tbc/postlendandsell.html', {'lendAndSell_form': lendAndSell_form})
 
+
 def post_project(request):
     if request.method == 'POST':
         project_form = ProjectForm(data=request.POST)
@@ -179,6 +183,7 @@ def post_project(request):
         project_form = ProjectForm()
 
     return render(request, 'tbc/postproject.html', {'project_form': project_form})
+
 
 def post_service(request):
     if request.method == 'POST':
@@ -206,13 +211,16 @@ def post_ad(request):
 
     return render(request, 'tbc/postad.html', {'lendAndSell_form': lendAndSell_form, 'project_form': project_form, 'service_form': service_form})
 
+
 def ad_posted(request, context_dict):
     return render(request, 'tbc/adposted.html', context_dict)
+
 
 #def login(request):
 
     #context_dict = {'boldmessage': "Login to TBCScotland!"}
     #return render(request, 'TBCScotland/login.html', context=context_dict)
+
 
 def signup(request):
     registered = False
@@ -242,6 +250,7 @@ def signup(request):
         profile_form = UserProfileForm()
 
     return render(request, 'tbc/signup.html', {'user_form': user_form, 'registered': registered})
+
 
 def user_login(request):
     if request.method == 'POST':

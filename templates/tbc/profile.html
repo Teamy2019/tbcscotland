@@ -74,17 +74,15 @@
         {% endif %}
 
 
-     {% if profile.views %}
-            <div>Views: {{ profile.views }}</div>
+    {% if profile.views %}
+            <div>
+                Views: {{ visits }}
+            </div>
             {% else %}
-            <div>User {{ profile.name }} has had no visitors</div>
-            {% endif %}
-
-
-
-
-
-
+            <div>
+                {{ profile.name }} has had no visitors to their profile :(
+            </div>
+    {% endif %}
 
         <div id="googleMap" style="width:50%;height:150px;">
             <script>
