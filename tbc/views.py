@@ -70,11 +70,11 @@ def show_profile(request, profile_name_slug):
         query = profile
         print(query)
 
-        visitor_cookie_handler(request)
-        context_dict['visits'] = request.session['visits']
+        # visitor_cookie_handler(request)
+        # context_dict['visits'] = request.session['visits']
 
-        profile.views += 1
-        profile.save()
+        # profile.views += 1
+        # profile.save()
 
         resultsLend = LendAndSell.objects.filter(profile=query)
         resultsProject = Projects.objects.filter(profile=query)
@@ -230,42 +230,40 @@ def signup(request):
 
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
-        profile_form = UserProfileForm(data=request.POST)
 
-        if user_form.is_valid() and profile_form.is_valid():
+        if user_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
             user.save()
-            profile = profile_form.save(commit=False)
-            profile.user = user
-
-            if 'picture' in request.FILES:
-                profile.picture = request.FILES['picture']
-
-            profile.save()
             registered = True
+            profile = Profile.objects.get_or_create(user=user)[0]
+            form = UserProfileForm()
+            # form = UserProfileForm()
+
+
+            return render(request, 'tbc/profileregistration.html', {'user': user, 'profile': profile, 'form': form})
 
         else:
-            print(user_form.errors, profile_form.errors)
+            print(user_form.errors)
 
     else:
         user_form = UserForm()
-        profile_form = UserProfileForm()
 
     return render(request, 'tbc/signup.html', {'user_form': user_form, 'registered': registered})
 
 @login_required
-def register_profile(request):
+def register_profile(request, context_dict):
+    profile = Profile.objects.get_or_create(user=request.user)[0]
     form = UserProfileForm()
 
     if request.method == 'POST':
         form =UserProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            user_profile = form.save(commit=False)
-            user_profile.user = request.user
-            user_profile.save()
+            profile = form.save() 
+            profile.user = request.user           
+            profile.save()
 
-            return redirect('home')
+            return render(request, 'tbc/home.html')
         else:
             print(form.errors)
     context_dict = {'form': form}
@@ -296,28 +294,28 @@ def user_logout(request):
     return HttpResponseRedirect(reverse('home'))
 
 
-def get_server_side_cookie(request, cookie, default_val=None):
-    val = request.session.get(cookie)
-    if not val:
-        val = default_val
-    return val
+# def get_server_side_cookie(request, cookie, default_val=None):
+#     val = request.session.get(cookie)
+#     if not val:
+#         val = default_val
+#     return val
 
 
-def visitor_cookie_handler(request):
-    # Getting the number of visits to the site.
+# def visitor_cookie_handler(request):
+#     # Getting the number of visits to the site.
 
-    visits = int(get_server_side_cookie(request, 'visits', '1'))
+#     visits = int(get_server_side_cookie(request, 'visits', '1'))
 
-    last_visit_cookie = get_server_side_cookie(request, 'last_visit', str(datetime.now()))
-    last_visit_time = datetime.strptime(last_visit_cookie[:-7], '%Y-%m-%d %H:%M:%S')
+#     last_visit_cookie = get_server_side_cookie(request, 'last_visit', str(datetime.now()))
+#     last_visit_time = datetime.strptime(last_visit_cookie[:-7], '%Y-%m-%d %H:%M:%S')
 
-    if (datetime.now() - last_visit_time).seconds > 0:
-        visits = visits + 1
+#     if (datetime.now() - last_visit_time).seconds > 0:
+#         visits = visits + 1
 
-        request.session['last_visit'] = str(datetime.now())
-    else:
-        # Set the last visit cookie
-        request.session['last_visit'] = last_visit_cookie
+#         request.session['last_visit'] = str(datetime.now())
+#     else:
+#         # Set the last visit cookie
+#         request.session['last_visit'] = last_visit_cookie
 
-    # Update/set the visits cookie
-    request.session['visits'] = visits
+#     # Update/set the visits cookie
+#     request.session['visits'] = visits
