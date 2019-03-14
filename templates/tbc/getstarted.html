@@ -1,13 +1,31 @@
 {% extends 'tbc/base.html' %}
+{% load staticfiles %}
 
 {%block body_block %}
 
 <div class="container">
 <div class="row"style="height:250px;"></div>
-        {{ boldmessage }}
+	<div class="row">
+		<header>
+			<h4>How to get started at TBCScotland!</h4>
+		</header> 
+		<div class="col-12 col-sm-6 col-md-6 col-lg-3">
+			<img src="{% static "icons/register.png" %}" alt="Register icon not found" height="100" width="100">
+		</div>
 
+		<div class="col-12 col-sm-6 col-md-6 col-lg-3">
+			<img src="{% static "icons/register.png" %}" alt="Updateprofile icon not found" height="100" width="100">
+		</div>
+
+		<div class="col-12 col-sm-6 col-md-6 col-lg-3">
+			<img src="{% static "icons/register.png" %}" alt="Postad icon not found" height="100" width="100">
+		</div>
+
+	</div>
+	<div>
         <div>TBCScotland is a platofrm for those working or volunteering in the creative industry to connect with others in the same field</div>
-        <div>From this site you can browse the profiles of people working in the industry, and each user can post an ad looking for something more specific</div>
+        <div>From this site you can browse the profiles of people working in the industry, and each user can post an ad looking for something more specific
+        </div>
         <div>TBCScotland supports three different types of ad, <a href="/tbc/lendandsell/">'Lend and Sell'</a>, <a href="/tbc/services/">'Services'</a>, and <a href="/tbc/projects/">'Projects'</a></div>
         <div><a href="/tbc/signup/">Click here to sign up!</a></div>
         {% if user.is_authenticated %}
