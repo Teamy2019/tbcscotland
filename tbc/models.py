@@ -3,7 +3,7 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
 class Profile(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, blank=True)
     username = models.CharField(max_length=128, unique=True)
     image = models.ImageField(upload_to='profile_images', blank=True)
     skills = models.TextField(blank=True)

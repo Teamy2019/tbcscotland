@@ -12,7 +12,7 @@
     <strong>Sign up here</strong><br/>
     <strong>{{ profile.username }}</strong>
     {{ profile.skills }}
-    <form id="user_form" method="POST" action="{% url 'signup' %}"
+    <form id="user_form" method="POST" action="{% url 'editprofile' %}"
       enctype="multipart/form-data">
 
       {% csrf_token %}

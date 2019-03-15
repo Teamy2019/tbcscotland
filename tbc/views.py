@@ -68,13 +68,12 @@ def show_profile(request, profile_name_slug):
         profile = Profile.objects.get(slug=profile_name_slug)
         context_dict['profile'] = profile
         query = profile
-        print(query)
 
-        # visitor_cookie_handler(request)
-        # context_dict['visits'] = request.session['visits']
+        visitor_cookie_handler(request)
+        context_dict['visits'] = request.session['visits']
 
-        # profile.views += 1
-        # profile.save()
+        profile.views += 1
+        profile.save()
 
         resultsLend = LendAndSell.objects.filter(profile=query)
         resultsProject = Projects.objects.filter(profile=query)
@@ -170,7 +169,7 @@ def post_lendAndSell(request):
 
     return render(request, 'tbc/postlendandsell.html', {'lendAndSell_form': lendAndSell_form})
 
-
+@login_required
 def post_project(request):
     if request.method == 'POST':
         project_form = ProjectForm(data=request.POST)
@@ -187,7 +186,7 @@ def post_project(request):
 
     return render(request, 'tbc/postproject.html', {'project_form': project_form})
 
-
+@login_required
 def post_service(request):
     if request.method == 'POST':
         service_form = ServiceForm(data=request.POST)
@@ -202,6 +201,7 @@ def post_service(request):
         service_form = ServiceForm()
     return render(request, 'tbc/postservice.html', {'service_form': service_form})
 
+@login_required
 def post_ad(request):
 
     if request.method == 'POST':
@@ -218,11 +218,6 @@ def post_ad(request):
 def ad_posted(request, context_dict):
     return render(request, 'tbc/adposted.html', context_dict)
 
-
-#def login(request):
-
-    #context_dict = {'boldmessage': "Login to TBCScotland!"}
-    #return render(request, 'TBCScotland/login.html', context=context_dict)
 
 def signup(request):
 
@@ -270,7 +265,11 @@ def editprofile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, instance=profile)
         if form.is_valid():
-            form.save()
+            # profile = form.save(commit=False)
+            # profile.user = request.user 
+            # profile.username = request.user.username
+            # profile.skills = request.POST.get('skills')
+            profile.save()
             edited = True
 
         else:
@@ -303,28 +302,28 @@ def user_logout(request):
     return HttpResponseRedirect(reverse('home'))
 
 
-# def get_server_side_cookie(request, cookie, default_val=None):
-#     val = request.session.get(cookie)
-#     if not val:
-#         val = default_val
-#     return val
+def get_server_side_cookie(request, cookie, default_val=None):
+    val = request.session.get(cookie)
+    if not val:
+        val = default_val
+    return val
 
 
-# def visitor_cookie_handler(request):
-#     # Getting the number of visits to the site.
+def visitor_cookie_handler(request):
+    # Getting the number of visits to the site.
 
-#     visits = int(get_server_side_cookie(request, 'visits', '1'))
+    visits = int(get_server_side_cookie(request, 'visits', '1'))
 
-#     last_visit_cookie = get_server_side_cookie(request, 'last_visit', str(datetime.now()))
-#     last_visit_time = datetime.strptime(last_visit_cookie[:-7], '%Y-%m-%d %H:%M:%S')
+    last_visit_cookie = get_server_side_cookie(request, 'last_visit', str(datetime.now()))
+    last_visit_time = datetime.strptime(last_visit_cookie[:-7], '%Y-%m-%d %H:%M:%S')
 
-#     if (datetime.now() - last_visit_time).seconds > 0:
-#         visits = visits + 1
+    if (datetime.now() - last_visit_time).seconds > 0:
+        visits = visits + 1
 
-#         request.session['last_visit'] = str(datetime.now())
-#     else:
-#         # Set the last visit cookie
-#         request.session['last_visit'] = last_visit_cookie
+        request.session['last_visit'] = str(datetime.now())
+    else:
+        # Set the last visit cookie
+        request.session['last_visit'] = last_visit_cookie
 
-#     # Update/set the visits cookie
-#     request.session['visits'] = visits
+    # Update/set the visits cookie
+    request.session['visits'] = visits
