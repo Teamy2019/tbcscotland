@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User)
+    username = models.CharField(max_length=128, unique=True)
     image = models.ImageField(upload_to='profile_images', blank=True)
     skills = models.TextField()
     education = models.TextField()
@@ -14,16 +15,16 @@ class Profile(models.Model):
     views = models.IntegerField(default=0)
     reviews = models.TextField()
     # location
-    password = models.CharField(max_length=20)
-    email = models.CharField(max_length=128)
-    username = models.CharField(max_length=128)
+    # password = models.CharField(max_length=20)
+    # email = models.CharField(max_length=128)
+    # username = models.CharField(max_length=128)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.user)
+        self.slug = slugify(self.username)
         super(Profile, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return self.username
 
 class Inbox(models.Model):
     profile = models.ForeignKey(Profile)

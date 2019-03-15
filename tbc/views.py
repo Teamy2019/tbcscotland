@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from tbc.forms import UserForm, UserProfileForm
+from tbc.forms import UserForm, UserProfileForm, ProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -224,51 +224,58 @@ def ad_posted(request, context_dict):
     #context_dict = {'boldmessage': "Login to TBCScotland!"}
     #return render(request, 'TBCScotland/login.html', context=context_dict)
 
-
 def signup(request):
+
     registered = False
-
     if request.method == 'POST':
-        user_form = UserForm(data=request.POST)
 
-        if user_form.is_valid():
+        user_form = UserForm(data=request.POST)
+        profile_form = UserProfileForm(data=request.POST)
+
+        if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
             user.save()
+ 
+            profile = profile_form.save(commit=False)
+            profile.user = user 
+            profile.username = user.username
+            profile.save()
+            login(request, user)
+
             registered = True
-            profile = Profile.objects.get_or_create(user=user)[0]
-            form = UserProfileForm()
-            # form = UserProfileForm()
-
-
-            return render(request, 'tbc/profileregistration.html', {'user': user, 'profile': profile, 'form': form})
-
         else:
-            print(user_form.errors)
 
+            print(user_form.errors, profile_form.errors)
     else:
-        user_form = UserForm()
 
-    return render(request, 'tbc/signup.html', {'user_form': user_form, 'registered': registered})
+        user_form = UserForm()
+        profile_form = UserProfileForm()
+    
+    # Render the template depending on the context. 
+    return render(request,'tbc/signup.html', {'user_form': user_form,'profile_form': profile_form,'registered': registered})
+
 
 @login_required
-def register_profile(request, context_dict):
+def editprofile(request):
     profile = Profile.objects.get_or_create(user=request.user)[0]
-    form = UserProfileForm()
+    form = ProfileForm(instance=profile)
 
     if request.method == 'POST':
-        form =UserProfileForm(request.POST, request.FILES)
+        form = ProfileForm(request.POST, instance=profile)
         if form.is_valid():
-            profile = form.save() 
-            profile.user = request.user           
-            profile.save()
+            form.save()
+            # tempProfile = form.save(commit=False)
+            # profile.skills = tempProfile.skills
+            # profile.aboutme = tempProfile.aboutme
+            # profile.education = tempProfile.education
+            # profile.save()
 
-            return render(request, 'tbc/home.html')
         else:
             print(form.errors)
-    context_dict = {'form': form}
+    context_dict = {'form': form, 'profile': profile}
 
-    return render(request, 'tbc/profileregistration.html', context_dict)
+    return render(request, 'tbc/editprofile.html', context_dict)
 
 def user_login(request):
     if request.method == 'POST':
