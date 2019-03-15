@@ -11,6 +11,7 @@
   {% else %}
     <strong>Sign up here</strong><br/>
     <strong>{{ profile.username }}</strong>
+    {{ profile.skills }}
     <form id="user_form" method="POST" action="{% url 'signup' %}"
       enctype="multipart/form-data">
 

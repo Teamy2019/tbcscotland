@@ -230,7 +230,7 @@ def signup(request):
     if request.method == 'POST':
 
         user_form = UserForm(data=request.POST)
-        profile_form = UserProfileForm(data=request.POST)
+        profile_form = ProfileForm(data=request.POST)
 
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
@@ -250,7 +250,7 @@ def signup(request):
     else:
 
         user_form = UserForm()
-        profile_form = UserProfileForm()
+        profile_form = ProfileForm()
     
     # Render the template depending on the context. 
     return render(request,'tbc/signup.html', {'user_form': user_form,'profile_form': profile_form,'registered': registered})
@@ -258,22 +258,24 @@ def signup(request):
 
 @login_required
 def editprofile(request):
-    profile = Profile.objects.get_or_create(user=request.user)[0]
+    edited = False
+    currUser = request.user
+    # print(currUser.username)
+    profile = Profile.objects.get(user=currUser)
+    # print(profile.username)
+    # print("The user name should be above me")
+ 
     form = ProfileForm(instance=profile)
 
     if request.method == 'POST':
         form = ProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
-            # tempProfile = form.save(commit=False)
-            # profile.skills = tempProfile.skills
-            # profile.aboutme = tempProfile.aboutme
-            # profile.education = tempProfile.education
-            # profile.save()
+            edited = True
 
         else:
             print(form.errors)
-    context_dict = {'form': form, 'profile': profile}
+    context_dict = {'form': form, 'profile': profile, 'edited': edited}
 
     return render(request, 'tbc/editprofile.html', context_dict)
 
