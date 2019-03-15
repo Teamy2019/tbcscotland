@@ -2,11 +2,6 @@
 {% load staticfiles %}
 
 {% block body_block %}
-    <head>
-        <title>TBCScotland</title>
-        <link rel="stylesheet" type="text/css" href="https://raw.githack.com/Teamy2019/tbcscotland/master/templates/tbc/cssmain.css">
-    </head>
-    <body>
         {% if lend_ad %}
         <h1>{{ lend_ad.title }}</h1>
         <div>
@@ -18,5 +13,4 @@
         {% else %}
         <strong>No Ad!</strong>
         {% endif %}
-    </body>
 {% endblock %}
