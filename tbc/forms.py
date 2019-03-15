@@ -1,40 +1,46 @@
 from django import forms
 from django.contrib.auth.models import User
-from tbc.models import UserProfile
+from tbc.models import UserProfile, Profile
 from tbc.models import LendAndSell, Projects, Service
 from django.db.models import Q
 import operator
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
-    firstname = forms.CharField(max_length=20)
-    surname = forms.CharField(max_length=20)
-    is_company = forms.BooleanField()
+    #firstname = forms.CharField(max_length=20)
+    #surname = forms.CharField(max_length=20)
+    #is_company = forms.BooleanField(required=False)
 
     class Meta:
         model = User
-        fields = ('username', 'firstname', 'surname', 'email', 'password', 'is_company')
+        fields = ('username', 'password')
 
-#class UserProfileForm(forms.ModelForm):
-#    class Meta:
-#        model = UserProfile
-#        fields = ('website', 'picture')
-
-class UserProfileForm(forms.ModelForm):
-    occupation = forms.CharField(max_length=20)
-    city = forms.CharField(max_length=20)
-    postcode = forms.CharField(max_length=7)
-    aboutme = forms.CharField(widget=forms.Textarea)
-    skills = forms.CharField(widget=forms.Textarea)
-    education = forms.CharField(widget=forms.Textarea)
-    equipment = forms.CharField(widget=forms.Textarea)
-    website = forms.URLField(required=False)
-    picture = forms.ImageField(required=False)
+class ProfileForm(forms.ModelForm):
+    image = forms.ImageField(required=False)
+    skills = forms.CharField(widget=forms.Textarea, required=False)
+    education = forms.CharField(widget=forms.Textarea, required=False)
+    slug = forms.CharField(widget=forms.HiddenInput(), required=False)
+    aboutme = forms.CharField(widget=forms.Textarea, required=False)
+    portfolio = forms.ImageField(required=False)
+    activities = forms.ImageField(required=False)
 
     class Meta:
-        model = UserProfile
-        fields = ('occupation', 'city', 'postcode', 'aboutme', 'skills', 'education', 'equipment', 'website', 'picture')
-        exclude = ('user',)
+        model = Profile
+        fields = ('image', 'skills', 'education', 'aboutme', 'portfolio', 'activities')
+
+
+class UserProfileForm(forms.ModelForm):
+    username = forms.CharField(widget=forms.HiddenInput(), required=False)
+    aboutme = forms.CharField(widget=forms.HiddenInput(), required=False)
+    skills = forms.CharField(widget=forms.HiddenInput(), required=False)
+    education = forms.CharField(widget=forms.HiddenInput(), required=False)
+    picture = forms.ImageField(required=False)
+    slug = forms.CharField(widget=forms.HiddenInput(), required=False)
+    name = forms.CharField(widget=forms.HiddenInput(), required=False)
+
+    class Meta:
+        model = Profile
+        fields = ('picture', 'aboutme', 'skills')
 
 class LendAndSellForm(forms.ModelForm):
     #profile = forms.CharField(widget=forms.HiddenInput(), required=False)
@@ -82,19 +88,3 @@ class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
         fields = ('title', 'image', 'description', 'price', 'availability', 'keywords', 'location', 'profile')
-
-# class Search(Search):
-#     paginate_by = 10
-#     def get_queryset(self):
-#         result = super(Search, self).get_queryset()
-
-#         query = self.request.GET.get('q')
-#         if query:
-#             query_list = query.split()
-#             result = result.filter(
-#                 reduce(operator.and_,
-#                     (Q(LendAndSell__icontains=q) for q in query_list)) |
-#                 reduce(operator.and_,
-#                     (Q(LendAndSell__icontains=q) for q in query_list))
-#             )
-#         return result

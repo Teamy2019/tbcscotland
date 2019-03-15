@@ -23,6 +23,8 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL = '/tbc/login/'
 
+AUTH_PROFILE_MODULE = "tbc.Profile"
+
 
 
 # Quick-start development settings - unsuitable for production

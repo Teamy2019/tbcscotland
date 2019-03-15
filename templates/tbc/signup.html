@@ -5,6 +5,7 @@
 <div class="container">
   <div class="row"style="height:250px;"></div>
   <h1>Register for TBC</h1>
+<<<<<<< HEAD
     {% if registered %}
       <strong>You've sucessfully registered with TBC Scotland</strong>
       <a href="{% url 'home' %}">Return to the homepage</a><br/>
@@ -14,6 +15,21 @@
         {% csrf_token %}
         {{ user_form.as_p }}
         {{ profile_form.as_p }}
+=======
+  {% if registered %}
+    <strong>You've sucessfully registered with TBC Scotland</strong>
+    <a href="{% url 'home' %}">Return to the homepage</a><br/>
+    <a href="{% url 'editprofile' %}">Edit your profile</a><br/>
+  {% else %}
+    <strong>Sign up here</strong><br/>
+    <form id="user_form" method="POST" action="{% url 'signup' %}"
+      enctype="multipart/form-data">
+
+      {% csrf_token %}
+
+      {{ user_form.as_p }}
+      <!-- {{ profile_form.as_p }} -->
+>>>>>>> c5594c5e80f15ca4a05a3d06d8abbcf8f14bc3aa
       <input type="submit" name="submit" value="Sign up" />
       </form>
     {% endif %}

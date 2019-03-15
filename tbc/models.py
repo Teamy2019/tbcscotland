@@ -3,27 +3,28 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
 class Profile(models.Model):
-    name = models.CharField(max_length=128)
+    user = models.OneToOneField(User, blank=True)
+    username = models.CharField(max_length=128, unique=True)
     image = models.ImageField(upload_to='profile_images', blank=True)
-    skills = models.TextField()
-    education = models.TextField()
-    aboutme = models.TextField()
+    skills = models.TextField(blank=True)
+    education = models.TextField(blank=True)
+    aboutme = models.TextField(blank=True)
     slug = models.SlugField(unique=True)
     portfolio = models.ImageField(upload_to='portfolio_images', blank=True)
     activities = models.ImageField(upload_to='activities_images', blank=True)
     views = models.IntegerField(default=0)
     reviews = models.TextField()
     # location
-    password = models.CharField(max_length=20)
-    email = models.CharField(max_length=128)
-    username = models.CharField(max_length=128)
+    # password = models.CharField(max_length=20)
+    # email = models.CharField(max_length=128)
+    # username = models.CharField(max_length=128)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        self.slug = slugify(self.username)
         super(Profile, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return self.username
 
 class Inbox(models.Model):
     profile = models.ForeignKey(Profile)
