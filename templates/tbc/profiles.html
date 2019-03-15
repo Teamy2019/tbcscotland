@@ -13,20 +13,14 @@
 {% endblock %}
 
 {%block body_block %}
-<div class="container">
-<div class="row"style="height:100px;"></div>
-    <h1>Find the most suitable freelancer for your project</h1>
+    <div class="container">
+        <div class="row"style="height:100px;"></div>
+            <h1>Find the most suitable freelancer for your project</h1>
+
     <div class="row">
         <div class="col-12 col-sm-6 col-md-6 col-lg-3">
             <div id="profileBox" class="panel panel-default">
                 <div class="panel-body">
-                    {% if profiles %}
-                        {% for profile in profiles %}
-                            {{ profile.username }}
-                        {% endfor %}
-                    {% else %}
-                        <strong>No Profiles yet!</strong>
-                    {% endif %}
                 </div>
             </div>
         </div>
@@ -34,13 +28,13 @@
         <div class="col-12 col-sm-6 col-md-6 col-lg-3">
             <div id="profileBox" class="panel panel-default">
                 <div class="panel-body">
-                    {% if profiles %}
-                        {% for profile in profiles %}
-                            <a href="{% url 'show_profile' profile.slug %}">{{ profile.name }}</a>
-                        {% endfor %}
-                    {% else %}
-                        <strong>No Profiles yet!</strong>
-                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+           <div id="profileBox" class="panel panel-default">
+                <div class="panel-body">
                 </div>
             </div>
         </div>
@@ -48,45 +42,17 @@
         <div class="col-12 col-sm-6 col-md-6 col-lg-3">
             <div id="profileBox" class="panel panel-default">
                 <div class="panel-body">
-                    {% if profiles %}
-                        {% for profile in profiles %}
-                            <a href="{% url 'show_profile' profile.slug %}">{{ profile.name }}</a>
-                        {% endfor %}
-                    {% else %}
-                        <strong>No Profiles yet!</strong>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="profileBox" class="panel panel-default">
-                <div class="panel-body">
-                    {% if profiles %}
-                        {% for profile in profiles %}
-                            <a href="{% url 'show_profile' profile.slug %}">{{ profile.name }}</a>
-                        {% endfor %}
-                    {% else %}
-                        <strong>No Profiles yet!</strong>
-                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="row" style="height:30px;"></div>
 
     <div class="row">
         <div class="col-12 col-sm-6 col-md-6 col-lg-3">
             <div id="profileBox" class="panel panel-default">
                 <div class="panel-body">
-                    {% if profiles %}
-                        {% for profile in profiles %}
-                            <a href="{% url 'show_profile' profile.slug %}">{{ profile.name }}</a>
-                        {% endfor %}
-                    {% else %}
-                        <strong>No Profiles yet!</strong>
-                    {% endif %}
                 </div>
             </div>
         </div>
@@ -94,13 +60,6 @@
         <div class="col-12 col-sm-6 col-md-6 col-lg-3">
             <div id="profileBox" class="panel panel-default">
                 <div class="panel-body">
-                    {% if profiles %}
-                        {% for profile in profiles %}
-                            <a href="{% url 'show_profile' profile.slug %}">{{ profile.name }}</a>
-                        {% endfor %}
-                    {% else %}
-                        <strong>No Profiles yet!</strong>
-                    {% endif %}
                 </div>
             </div>
         </div>
@@ -108,13 +67,6 @@
         <div class="col-12 col-sm-6 col-md-6 col-lg-3">
             <div id="profileBox" class="panel panel-default">
                 <div class="panel-body">
-                    {% if profiles %}
-                        {% for profile in profiles %}
-                            <a href="{% url 'show_profile' profile.slug %}">{{ profile.name }}</a>
-                        {% endfor %}
-                    {% else %}
-                        <strong>No Profiles yet!</strong>
-                    {% endif %}
                 </div>
             </div>
         </div>
@@ -122,13 +74,6 @@
         <div class="col-12 col-sm-6 col-md-6 col-lg-3">
             <div id="profileBox" class="panel panel-default">
                 <div class="panel-body">
-                    {% if profiles %}
-                        {% for profile in profiles %}
-                            <a href="{% url 'show_profile' profile.slug %}">{{ profile.name }}</a>
-                        {% endfor %}
-                    {% else %}
-                        <strong>No Profiles yet!</strong>
-                    {% endif %}
                 </div>
             </div>
         </div>
