@@ -10,8 +10,7 @@
     <a href="{% url 'show_profile' profile.slug %}">See your profile</a><br/>
   {% else %}
     <strong>Sign up here</strong><br/>
-    <strong>{{ profile.username }}</strong>
-    {{ profile.skills }}
+
     <form id="user_form" method="POST" action="{% url 'editprofile' %}"
       enctype="multipart/form-data">
 
