@@ -67,3 +67,21 @@
 body {
     background-color: white;
 }
+
+div {
+  border: 1px solid black;
+}
+
+#div2-1,
+#div2-2 {
+  height: 50%;
+  border: 1px solid red !important;
+}
+#div1,#div2{
+  height:50px;
+  
+  }
+#div2.col-xs-6
+{
+  padding:0px !important;
+}

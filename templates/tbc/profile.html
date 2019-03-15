@@ -1,95 +1,151 @@
 {% extends 'tbc/base.html' %}
+{% load staticfiles %}
 
 {% block body_block %}
-        <h1>MAKE SPACE</h1>
-        {% if profile %}
-        <h1>{{ profile.name }}</h1>
-            {% if profile.aboutme %}
-            <div>{{ profile.aboutme }}</div>
-            {% else %}
-            <div>User {{ profile.name }} has not added in their 'About Me' section yet!</div>
-            {% endif %}
 
+<div class="container">
+
+    <div class="row"style="height:150px;"></div>
+
+    <div id="CoverPhoto" class="row" style="background-color:blue;">
+        <div class="col-lg-4">  
+            <img src="{% static "icons/profpic.jpg" %}" style="border-radius:50%;" alt="Postad icon not found" height="150" width="150">
             {% if profile.image %}
-            <div>{{ profile.image }}</div>
+                <div>{{ profile.image }}</div>
             {% else %}
-            <div>User {{ profile.name }} has not added any images!</div>
-            {% endif %}
+                <div>User {{ profile.name }} has not added any images!</div>
+            {% endif %} 
+        </div>
+        <div class="col-lg-4">
+            <h1>{{ profile.name }}</h1>
+        </div>
+    </div>
 
-            {% if profile.skills %}
-            <div>{{ profile.skills }}</div>
-            {% else %}
-            <div>User {{ profile.name }} has not added in their 'Skills' section yet!</div>
-            {% endif %}
+    <div class="row"style="height:30px;"></div>
 
-            {% if profile.education %}
-            <div>{{ profile.education }}</div>
-            {% else %}
-            <div>User {{ profile.name }} has not added in their 'Education' section yet!</div>
-            {% endif %}
-
-    </hr>
-
-        {% if resultsLend %}
-            <strong>Here are John Smith's 'Lend and Sell' ads!</strong>
-            {% for lend in resultsLend %}
-            <div>{{ lend.title }}</div>
-            <div>{{ lend.description }}
-                <a href="{% url 'show_lendandsell' lend.slug %}">See the ad!</a>
-            </div>
-            {% endfor %}
-            {% else %}
-            <div>No lend ads detected</div>
-            {% endif %}
-
-            {% if resultsProject %}
-            <strong>Here are John Smith's 'Project' ads!</strong>
-            {% for project in resultsProject %}
-            <div>{{ project.title }}</div>
-            <div>{{ project.description }}
-                <a href="{% url 'show_project' project.slug %}">See the ad!</a>
-            </div>
-            {% endfor %}
-            {% else %}
-            <div>No project ads detected
+    <div class="row">
+        <div class="col-xs-4" id="div1">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <strong>Skills</strong>
+                    {% if profile.skills %}
+                        <div>{{ profile.skills }}</div>
+                    {% else %}
+                    <div>User {{ profile.name }} has not added in their 'Skills' section yet!</div>
+                    {% endif %}
+                    <br>
+                    <hr class="style1">
+                    <strong>Education</strong>
+                    {% if profile.education %}
+                        <div>{{ profile.education }}</div>
+                    {% else %}
+                        <div>User {{ profile.name }} has not added in their 'Education' section yet!</div>
+                    {% endif %}
+                    <br>
+                    <hr class="style1">
+                    <strong>Equipment</strong>
+                    {% if profile.education %}
+                        <div>{{ profile.education }}</div>
+                    {% else %}
+                        <div>User {{ profile.name }} has not added in their 'Education' section yet!</div>
+                    {% endif %}
+                    <br>
+                    <hr class="style1">
+                   <strong>Location</strong>
+                    <div id="googleMap" style="width:50%;height:150px;">
+                    <script>
+                        function myMap() {
+                        var mapProp = {center:new google.maps.LatLng(55.8740524,-4.2921628),zoom:11};
+                        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                        }
+                    </script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUXtu62ki7o058ozMTIy5tmHbvyjdzymc&callback=myMap"></script>
+                    </div>
                 </div>
-            {% endif %}
-
-            {% if resultsService %}
-            <strong>Here are John Smith's 'Service' ads!</strong>
-            {% for service in resultsService %}
-            <div>{{ service.title }}</div>
-            <div>{{ service.description }}
-                <a href="{% url 'show_service' service.slug %}">See the ad!</a>
             </div>
-            {% endfor %}
-            {% else %}
-            <div>            No service ads detected
+        </div>
+
+        <div class="col-xs-6" id="div2">
+            <div id="div2-1">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <strong>About me</strong>
+                        {% if profile %}
+                        {% if profile.aboutme %}
+                            <div>{{ profile.aboutme }}</div>
+                        {% else %}
+                            <div>User {{ profile.name }} has not added in their 'About Me' section yet!</div>
+                        {% endif %}
+                    </div>
                 </div>
-            {% endif %}            
+            </div>
 
-        {% else %}
-        <strong>No Ad!</strong>
-        {% endif %}
+            <div id="div2-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <strong>Portfolio</strong>
+                    </div>
+                </div>
+            </div>
 
+            <div id="div2-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <strong>Activity</strong>
 
+                        {% if resultsLend %}
+                            <strong>Here are John Smith's 'Lend and Sell' ads!</strong>
+                            {% for lend in resultsLend %}
+                                <div>{{ lend.title }}</div>
+                                <div>{{ lend.description }}
+                                <a href="{% url 'show_lendandsell' lend.slug %}">See the ad!</a>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div>No lend ads detected</div>
+                        {% endif %}
+
+                        {% if resultsProject %}
+                            <strong>Here are John Smith's 'Project' ads!</strong>
+                            {% for project in resultsProject %}
+                                <div>{{ project.title }}</div>
+                                <div>{{ project.description }}
+                                <a href="{% url 'show_project' project.slug %}">See the ad!</a>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div>No project ads detected</div>
+                        {% endif %}
+
+                        {% if resultsService %}
+                            <strong>Here are John Smith's 'Service' ads!</strong>
+                            {% for service in resultsService %}
+                                <div>{{ service.title }}</div>
+                                <div>{{ service.description }}
+                                <a href="{% url 'show_service' service.slug %}">See the ad!</a>
+                                /div>
+                            {% endfor %}
+                        {% else %}
+                            <div>No service ads detected</div>
+                        {% endif %} 
+                        {% else %}
+                            <strong>No Ad!</strong>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
     {% if profile.views %}
-            <div>
-                Views: {{ visits }}
-            </div>
-            {% else %}
-            <div>
-                {{ profile.name }} has had no visitors to their profile :(
-            </div>
+        <div>
+            Views: {{ visits }}
+        </div>
+    {% else %}
+        <div>
+            {{ profile.name }} has had no visitors to their profile :(
+        </div>
     {% endif %}
 
-        <div id="googleMap" style="width:50%;height:150px;">
-            <script>
-                function myMap() {
-                    var mapProp = {center:new google.maps.LatLng(55.8740524,-4.2921628),zoom:11};
-                    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-                }
-            </script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUXtu62ki7o058ozMTIy5tmHbvyjdzymc&callback=myMap"></script>
-        </div>
+</div>
 {% endblock %}
