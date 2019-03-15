@@ -11,7 +11,7 @@
                 <div class="panel-body">
                     {% if profiles %}
                         {% for profile in profiles %}
-                            <a href="{% url 'show_profile' profile.slug %}">{{ profile.name }}</a>
+                            {{ profile.username }}
                         {% endfor %}
                     {% else %}
                         <strong>No Profiles yet!</strong>

@@ -29,6 +29,7 @@
                  this is a comment
                   profile.slug %}"><span class="glyphicon glyphicon-user"></span>{{ profile.name }}</a></li>
 -->
+                <li><a href="{% url 'editprofile' %}"><span class="glyphicon glyphicon-user"></span>Edit Profile</a></li>
                 <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
                 {% else %}
                 <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>

@@ -2,7 +2,7 @@ from django.contrib import admin
 from tbc.models import Profile, Inbox, LendAndSell, Service, Projects, UserProfile
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('name', 'aboutme')
+    list_display = ('user', 'aboutme')
 
 class LendAndSellAdmin(admin.ModelAdmin):
     list_display = ('title', 'profile', 'description')

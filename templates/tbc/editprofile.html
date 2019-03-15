@@ -1,0 +1,24 @@
+{% extends 'tbc/base.html' %}
+
+{% block body_block %}
+<div class="container">
+<div class="row"style="height:250px;"></div>
+  <h1>Edit your profile</h1>
+  {% if edited %}
+    <strong>You've sucessfully edited your profile</strong>
+    <a href="{% url 'home' %}">Return to the homepage</a><br/>
+    <a href="{% url 'show_profile' profile.slug %}">See your profile</a><br/>
+  {% else %}
+    <strong>Sign up here</strong><br/>
+
+    <form id="user_form" method="POST" action="{% url 'editprofile' %}"
+      enctype="multipart/form-data">
+
+      {% csrf_token %}
+
+      {{ form.as_p }}
+      <input type="submit" name="submit" value="Edit" />
+    </form>
+    {% endif %}
+  </div>
+{% endblock %}
