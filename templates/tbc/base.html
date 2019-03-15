@@ -22,29 +22,35 @@
                     <a class="navbar-brand" href="{% url 'home' %}">TBCScotland</a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% url 'about' %}">About</a></li>
-                <li><a href="{% url 'getstarted' %}">Get Started</a></li>
-                {% if user.is_authenticated %}
-                <!-- <li><a
-                 href="{% url 'show_profile'
-                 this is a comment
-                  profile.slug %}"><span class="glyphicon glyphicon-user"></span>{{ profile.name }}</a></li>
--->
-                <li><a href="{% url 'editprofile' %}"><span class="glyphicon glyphicon-user"></span>Edit Profile</a></li>
-                <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
-                {% else %}
-                <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
-                <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-                {% endif %}
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'getstarted' %}">Get Started</a></li>
+                    {% if user.is_authenticated %}
+                        <!-- <li><a
+                        href="{% url 'show_profile'
+                        this is a comment
+                        profile.slug %}"><span class="glyphicon glyphicon-user"></span>{{ profile.name }}</a></li>
+    -->
+                        <li><a href="{% url 'editprofile' %}"><span class="glyphicon glyphicon-user"></span>Edit Profile</a></li>
+                        <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+                        <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                    {% endif %}
                 </ul>
             </div>
-            <div class="row">
-                <ul class="nav navbar-nav">
-                    <li id="profID"><a href="{% url 'profiles' %}">Profiles</a></li>
-                    <li id="projID"><a href="{% url 'projects' %}">Projects</a></li>
-                    <li id="servID"><a href="{% url 'services' %}">Services</a></li>
-                    <li id="lendsellID"><a href="{% url 'lendandsell' %}">Lend & Sell</a></li>
-                </ul>
+            <div class="row grid-divider">
+                <div class="col-lg-3">
+                    <a id="catButton" href="{% url 'profiles' %}">Profiles</a>
+                </div>
+                <div class="col-lg-3">
+                    <a id="catButton" href="{% url 'projects' %}">Projects</a>
+                </div>
+                <div class="col-lg-3">
+                    <a id="catButton" href="{% url 'services' %}">Services</a>
+                </div>
+                <div class="col-lg-3">
+                    <a id="catButton" href="{% url 'lendandsell' %}">Lend & Sell</a>
+                </div>
             </div>
         </div>
     </nav>
