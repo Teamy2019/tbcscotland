@@ -1,25 +1,92 @@
 {% extends 'tbc/base.html' %}
+{% load staticfiles %}
 
 {% block body_block %}
 <div class="container">
-<div class="row"style="height:250px;"></div>
+    <div class="row"style="height:100px;"></div>
         <h1>Lend and Sell Ads</h1>
-        <div>
-            {% if lend_and_sell %}
+
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+            <div class="panel panel-default" style="width:180px;height:200px;border:2px solid black;border-radius:0px;">
+                <div class="panel-body">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+            <div class="panel panel-default" style="width:180px;height:200px;border:2px solid black;border-radius:0px;">
+                <div class="panel-body">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+            <div class="panel panel-default" style="width:180px;height:200px;border:2px solid black;border-radius:0px;">
+                <div class="panel-body">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+            <div class="panel panel-default" style="width:180px;height:200px;border:2px solid black;border-radius:0px;">
+                <div class="panel-body">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="height:30px;"></div>
+
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+            <div class="panel panel-default" style="width:180px;height:200px;border:2px solid black;border-radius:0px;">
+                <div class="panel-body">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+            <div class="panel panel-default" style="width:180px;height:200px;border:2px solid black;border-radius:0px;">
+                <div class="panel-body">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+            <div class="panel panel-default" style="width:180px;height:200px;border:2px solid black;border-radius:0px;">
+                <div class="panel-body">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+            <div class="panel panel-default" style="width:180px;height:200px;border:2px solid black;border-radius:0px;">
+                <div class="panel-body">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        {% if lend_and_sell %}
             <strong>Most popular Ads!</strong>
             <ul>
-                {% for lends in lend_and_sell %}
+            {% for lends in lend_and_sell %}
                 <li>
                    <a href="{% url 'show_lendandsell' lends.slug %}">{{ lends.title }}</a> <i>- Ad posted by </i>{{ lends.profile }}
                 </li>
-                {% endfor %}
+            {% endfor %}
             </ul>
         {% else %}
             <strong>No Ads yet!</strong>
         {% endif %}
-        </div>
-        {% if user.is_authenticated %}
-        <a href="/tbc/postlendandsell/">Post your own ad here!</a>
-        {% endif %}
     </div>
+
+    <div>
+    {% if user.is_authenticated %}
+        <a href="/tbc/postlendandsell/">Post your own ad here!</a>
+    {% endif %}
+    </div>
+</div>
 {% endblock %}
