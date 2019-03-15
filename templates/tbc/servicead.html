@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block body_block %}
-    <body>
+    <div class="row"style="height:250px;"></div>
         {% if service_ad %}
         <h1>{{ service_ad.title }}</h1>
         <div>
@@ -47,5 +47,4 @@
             </script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUXtu62ki7o058ozMTIy5tmHbvyjdzymc&callback=myMap"></script>
         </div>
-    </body>
 {% endblock %}
