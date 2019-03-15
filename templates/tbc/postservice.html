@@ -2,8 +2,8 @@
 {% load staticfiles %}
 
 {% block body_block %}
+	<div class="row"style="height:250px;"></div>
     <h1>Post a 'Service' ad</h1>
-    <body>
     <form id="service_form" method="post" action="{% url 'post_service' %}"
     enctype="multipart/form-data">
 
@@ -13,5 +13,4 @@
 
     <input type="submit" name="submit" value="Post your ad!" />
     </form>
-    </body>
 {% endblock %}
