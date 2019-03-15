@@ -2,41 +2,42 @@
 {% load staticfiles %}
 
 {%block body_block %}
-
 <div class="container">
 	<div class="row" style="height:150px;"></div>
+	<header>
+		<h4>How to get started at TBCScotland!</h4>
+	</header>
+
+	<div class="row" style="height:50px;"></div>
+
 	<div class="row">
-		<header>
-			<h4>How to get started at TBCScotland!</h4>
-		</header>
-		<div class="container-fluid">
-			<div class="row" style="height:50px;"></div>
-			<div class="col-12 col-sm-6 col-md-6 col-lg-3">
-				<img src="{% static "icons/register.png" %}" alt="Register icon not found" height="100" width="100" class="center">
-				<div class="row" style="height:20px;"></div>
-				<div>
-					<strong>Register your new account for free</strong>
-				</div>
-			</div>
-
-			<div class="col-12 col-sm-6 col-md-6 col-lg-3">
-				<img src="{% static "icons/update.png" %}" alt="Updateprofile icon not found" height="100" width="100" class="center">
-				<div class="row" style="height:20px;"></div>
-				<div>
-					<strong>Update your profile with your occupation, experience and past projects</strong>
-				</div>
-			</div>
-
-			<div class="col-12 col-sm-6 col-md-6 col-lg-3">
-				<img src="{% static "icons/postadd.png" %}" alt="Postad icon not found" height="100" width="100" class="center">
-				<div class="row" style="height:20px;"></div>
-				<div>
-					<strong>Post your first ad</strong>
-				</div>
+		<div class="col-lg-4">
+			<img src="{% static "icons/register.png" %}" alt="Register icon not found" height="100" width="100">
+		<div class="row" style="height:20px;"></div>
+		<div>
+			<strong>Register your new account for free</strong>
 			</div>
 		</div>
+
+		<div class="col-lg-4">
+			<img src="{% static "icons/update.png" %}" alt="Updateprofile icon not found" height="100" width="100">
+		<div class="row" style="height:20px;"></div>
+		<div>
+			<strong>Update your profile with your occupation, experience and past projects</strong>
+		</div>
+		</div>
+
+		<div class="col-lg-4">
+			<img src="{% static "icons/postadd.png" %}" alt="Postad icon not found" height="100" width="100">
+		<div class="row" style="height:20px;"></div>
+		<div>
+			<strong>Post your first ad</strong>
+		</div>
+		</div>
 	</div>
+
 	<div class="row" style="height:50px;"></div>
+
 	<div>
 		<div>TBCScotland is a platofrm for those working or volunteering in the creative industry to connect with others in the same field</div>
 		<div>From this site you can browse the profiles of people working in the industry, and each user can post an ad looking for something more specific
@@ -47,4 +48,4 @@
 		<a href="/tbc/postad/">Already got a profile? Click here to post an ad!</a>
 		{% endif %}
 	</div>
-	{% endblock %}
+{% endblock %}
