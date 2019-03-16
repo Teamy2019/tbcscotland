@@ -75,6 +75,46 @@
 	padding-left: 100px;
 }
 
+.cover_image{
+	background-image: url("../icons/defaultcoverpicture.jpeg");
+	background-size: cover;
+}
+.container_body{
+	margin-top: 50px;
+}
+
+.profile_image{
+	max-width: 200px;
+	padding: 25px;
+}
+
+.profile_details{
+	margin-top: 80px;
+	color: white;
+}
+
+.main_profile_body{
+	margin-top: 30px;
+}
+
+.second_nav{
+	margin-top: 60px;
+}
+.slick-prev:before, .slick-next:before{
+	color: black;
+}
+
+.comment{
+	background-color: lightgrey;
+	padding: 20px;
+	border-radius: 20px;
+	width: 100%;
+	margin-bottom: 20px;
+}
+.glyphicon-star{
+	color: yellow;
+}
+
 body {
     background-color: white;
 }
