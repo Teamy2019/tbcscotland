@@ -2,32 +2,35 @@
 {% load staticfiles %}
 
 {% block body_block %}
-<div class="container">
-    <div class="row"style="height:150px;"></div>
+<div class="container container_body">
 
-    <div id="CoverPhoto" class="row" style="background-color:blue;">
-        <div class="col-lg-4">  
-            <img src="{% static "icons/profpic.jpg" %}" style="border-radius:50%;" alt="Postad icon not found" height="150" width="150">
+
+
+    <div class="row cover_image">
+        <div class="col-sm-4 profile_image">
             {% if profile.image %}
                 <div>{{ profile.image }}</div>
             {% else %}
-                <div>User {{ profile.name }} has not added any images!</div>
+                <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}"  alt="">
             {% endif %} 
         </div>
-        <div class="col-lg-4">
-            <h1>{{ profile.name }}</h1>
+        <div class="col-sm-8 ">
+            <h2>{{ profile.username }}</h2>
+            <h4>Desc</h4>
         </div>
     </div>
 
-    <div class="row"style="height:30px;"></div>
 
-    <div class="row">
+    <div class="row main_profile_body">
         <div class="col-xs-4">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong" style="width: 100%; margin-bottom: 20px;">Contact
+        </button>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <strong>Skills</strong>
+                    <br>
                     {% if profile.skills %}
-                        <div>{{ profile.skills }}</div>
+                    <span class="badge badge-secondary">{{ profile.skills }}</span>
                     {% else %}
                     <div>User {{ profile.name }} has not added in their 'Skills' section yet!</div>
                     {% endif %}
@@ -50,24 +53,41 @@
                     <br>
                     <hr class="style1">
                    <strong>Location</strong>
-                    <div id="googleMap" style="width:50%;height:150px;">
-                    <script>
-                        function myMap() {
-                        var mapProp = {center:new google.maps.LatLng(55.8740524,-4.2921628),zoom:11};
-                        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-                        }
-                    </script>
-                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUXtu62ki7o058ozMTIy5tmHbvyjdzymc&callback=myMap"></script>
-                    </div>
+        <div id="googleMap" style="width:100%;height:200px;">
+            <script>
+                function myMap() {
+                    var mapProp = {center:new google.maps.LatLng(55.8740524,-4.2921628),zoom:11};
+                    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                    var geocoder = new google.maps.Geocoder();
+                    var testLocation = "{{ service_ad.location }}";
+                    var test = "glasgow";
+                    geocodeAddress(geocoder, map);
+                }
+                function geocodeAddress(geocoder, resultsMap) {
+                    geocoder.geocode({'address' : "tenerife"}, function(results, status) {
+                        if (status === 'OK') {
+                            resultsMap.setCenter(results[0].geometry.location);
+                            var marker = new google.maps.Marker({
+                                map: resultsMap,
+                                position: results[0].geometry.location
+                                });
+                            } else {
+                            alert('geocode not found for: ' + status);
+                            }
+                        });
+                }
+            </script>
+        </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-xs-6">
+        <div class="col-xs-8">
             <div>
                 <div class="panel panel-default">
+                    <div class="panel-heading">About me</div>
                     <div class="panel-body">
-                        <strong>About me</strong>
+                       
                         {% if profile %}
                         {% if profile.aboutme %}
                             <div>{{ profile.aboutme }}</div>
@@ -80,16 +100,29 @@
 
             <div>
                 <div class="panel panel-default">
+                    <div class="panel-heading">Portfolio</div>
                     <div class="panel-body">
-                        <strong>Portfolio</strong>
+                       
+                        <div class="portfolio-items text-center">
+                            <div><img src="https://via.placeholder.com/150" alt=""></div>
+                            <div><img src="https://via.placeholder.com/150" alt=""></div>
+                            <div><img src="https://via.placeholder.com/150" alt=""></div>
+                            <div><img src="https://via.placeholder.com/150" alt=""></div>
+                            <div><img src="https://via.placeholder.com/150" alt=""></div>
+                            <div><img src="https://via.placeholder.com/150" alt=""></div>
+                            <div><img src="https://via.placeholder.com/150" alt=""></div>
+                            <div><img src="https://via.placeholder.com/150" alt=""></div>
+                            <div><img src="https://via.placeholder.com/150" alt=""></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div>
                 <div class="panel panel-default">
+                     <div class="panel-heading">Activity</div>
+
                     <div class="panel-body">
-                        <strong>Activity</strong>
 
                         {% if resultsLend %}
                             <strong>Here are John Smith's 'Lend and Sell' ads!</strong>
@@ -132,6 +165,65 @@
                     </div>
                 </div>
             </div>
+
+
+             <div class="panel panel-default">
+                    <div class="panel-heading">Reviews</div>
+                    <div class="panel-body">
+                        <div class="comment container">
+                            <div class="col-sm-2">
+                                <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}"  alt="">
+                            </div>
+                            <div class="col-sm-10">
+                                <p class='rating'>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem at voluptates nisi illo quibusdam consequatur veritatis quae, qui eius suscipit in, esse ullam ad libero, perferendis dolorum et, impedit incidunt corporis fuga sunt!</p>
+                                <p class="comment_peron"><strong>User 1</strong> <span></span></p>
+                            </div>
+                        </div>
+
+                          <div class="comment container">
+                            <div class="col-sm-2">
+                                <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}"  alt="">
+                            </div>
+                            <div class="col-sm-10">
+                                <p class='rating'>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem at voluptates nisi illo quibusdam consequatur veritatis quae, qui eius suscipit in, esse ullam ad libero, perferendis dolorum et, impedit incidunt corporis fuga sunt!</p>
+                                <p class="comment_peron"><strong>User 1</strong> <span></span></p>
+                            </div>
+                        </div>
+
+                         <div class="comment container">
+                            <div class="col-sm-2">
+                                <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}"  alt="">
+                            </div>
+                            <div class="col-sm-10">
+                                <p class='rating'>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem at voluptates nisi illo quibusdam consequatur veritatis quae, qui eius suscipit in, esse ullam ad libero, perferendis dolorum et, impedit incidunt corporis fuga sunt!</p>
+                                <p class="comment_peron"><strong>User 1</strong> <span></span></p>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+
         </div>
     </div>
         
@@ -146,4 +238,25 @@
     {% endif %}
 
 </div>
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Get in touch with {{ profile.username }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>do contact form </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

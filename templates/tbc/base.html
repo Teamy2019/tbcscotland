@@ -6,55 +6,69 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="http://kenwheeler.github.io/slick/slick/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/cssmain.css' %}">
     {% block extrahead %} {% endblock %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
     <title>
         TBCScotland
     </title>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="row">
-               <div class="navbar-header">
-                    <a class="navbar-brand" href="{% url 'home' %}">TBCScotland</a>
-                </div>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{% url 'about' %}">About</a></li>
-                    <li><a href="{% url 'getstarted' %}">Get Started</a></li>
-                    {% if user.is_authenticated %}
-                        <!-- <li><a
-                        href="{% url 'show_profile'
-                        this is a comment
-                        profile.slug %}"><span class="glyphicon glyphicon-user"></span>{{ profile.name }}</a></li>
-    -->
-                        <li><a href="{% url 'editprofile' %}"><span class="glyphicon glyphicon-user"></span>Edit Profile</a></li>
-                        <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
-                    {% else %}
-                        <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
-                        <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-            <div class="row grid-divider">
-                <div class="col-lg-3">
-                    <a id="catButton" href="{% url 'profiles' %}">Profiles</a>
-                </div>
-                <div class="col-lg-3">
-                    <a id="catButton" href="{% url 'projects' %}">Projects</a>
-                </div>
-                <div class="col-lg-3">
-                    <a id="catButton" href="{% url 'services' %}">Services</a>
-                </div>
-                <div class="col-lg-3">
-                    <a id="catButton" href="{% url 'lendandsell' %}">Lend & Sell</a>
-                </div>
-            </div>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'home' %}">TBCScotland</a>
         </div>
+        <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+          <ul class="nav navbar-nav navbar-right">
+           <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'getstarted' %}">Get Started</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'editprofile' %}"><span class="glyphicon glyphicon-user"></span>Edit Profile</a></li>
+                     <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+                    <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                {% endif %}
+          </ul>
+        </div>
+
+      </div>
     </nav>
+
+    <div class="container second_nav text-center">
+        <div class='col-sm-3'>
+            <a href="{% url 'profiles' %}">Profiles</a>
+        </div>
+        <div class='col-sm-3'>
+            <a id="catButton" href="{% url 'projects' %}">Projects</a>
+        </div>
+        <div class='col-sm-3'>
+            <a id="catButton" href="{% url 'services' %}">Services</a>
+        </div>
+         <div class='col-sm-3'>
+            <a id="" href="{% url 'lendandsell' %}">Lend & Sell</a>
+        </div>
+    </div>
+
+
     {% block body_block %}
     {% endblock %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUXtu62ki7o058ozMTIy5tmHbvyjdzymc&callback=myMap"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+ 
 </body>
 </html>
