@@ -2,8 +2,7 @@
 {% load staticfiles %}
 
 {% block body_block %}
-	<div class="row"style="height:250px;"></div>
-  <h1>Profiel Registration</h1>
+  <h1>Profile Registration</h1>
   <form methid="post" action="." enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
