@@ -1,0 +1,15 @@
+{% extends 'tbc/base.html' %}
+{% load staticfiles %}
+
+{% block body_block %}
+    {% if commented %}
+    <h1>Thank you for commenting on {{ profile.username }}'s profile</h1>
+    <a href="tbc/profiles/{{ profile.slug }}">Back to the profile</a>
+    {% else %}
+    <h1>New comment on {{ profileusername }}</h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Add Comment</button>
+    </form>
+    {% endif %}
+{% endblock %}

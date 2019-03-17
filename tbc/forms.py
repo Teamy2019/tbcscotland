@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from tbc.models import UserProfile, Profile
-from tbc.models import LendAndSell, Projects, Service
+from tbc.models import LendAndSell, Projects, Service, Comments
 from django.db.models import Q
 import operator
 
@@ -55,7 +55,7 @@ class LendAndSellForm(forms.ModelForm):
     class Meta:
         model = LendAndSell
 
-        fields = ('title', 'description', 'image', 'price', 'availability', 'keywords', 'profile')
+        fields = ('title', 'description', 'image', 'price', 'availability', 'keywords')
 
 class ProjectForm(forms.ModelForm):
   # profile should link atuomatically!!!  profile = forms.CharField(widget=forms.HiddenInput(), required=False)
@@ -71,7 +71,7 @@ class ProjectForm(forms.ModelForm):
 
     class Meta:
         model = Projects
-        fields = ('title', 'image', 'description', 'lookingFor', 'timeline', 'keywords', 'profile')
+        fields = ('title', 'image', 'description', 'lookingFor', 'timeline', 'keywords')
 
 class ServiceForm(forms.ModelForm):
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
@@ -87,4 +87,11 @@ class ServiceForm(forms.ModelForm):
 
     class Meta:
         model = Service
-        fields = ('title', 'image', 'description', 'price', 'availability', 'keywords', 'location', 'profile')
+        fields = ('title', 'image', 'description', 'price', 'availability', 'keywords', 'location')
+
+class CommentsForm(forms.ModelForm):
+    text = forms.CharField(max_length=256, required=True)
+    date_created = forms.DateField(widget=forms.HiddenInput())
+    class Meta:
+        model = Comments
+        fields = ('text', 'date_created')

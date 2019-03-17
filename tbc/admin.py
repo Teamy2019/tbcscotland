@@ -1,5 +1,5 @@
 from django.contrib import admin
-from tbc.models import Profile, Inbox, LendAndSell, Service, Projects, UserProfile
+from tbc.models import Profile, Inbox, LendAndSell, Service, Projects, UserProfile, Comments
 
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'aboutme')
@@ -20,3 +20,4 @@ admin.site.register(LendAndSell)
 admin.site.register(Service)
 admin.site.register(Projects)
 admin.site.register(UserProfile)
+admin.site.register(Comments)

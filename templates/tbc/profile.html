@@ -116,7 +116,7 @@
                     <div class="panel-heading">Activity</div>
                     <div class="panel-body">
                         {% if resultsLend %}
-                            <strong>Here are John Smith's 'Lend and Sell' ads!</strong>
+                            <strong>Here are {{ profile.username }}'s' 'Lend and Sell' ads!</strong>
                             {% for lend in resultsLend %}
                                 <div>{{ lend.title }}</div>
                                 <div>{{ lend.description }}
@@ -128,7 +128,7 @@
                         {% endif %}
 
                         {% if resultsProject %}
-                            <strong>Here are John Smith's 'Project' ads!</strong>
+                            <strong>Here are {{ profile.username }}'s 'Project' ads!</strong>
                             {% for project in resultsProject %}
                                 <div>{{ project.title }}</div>
                                 <div>{{ project.description }}
@@ -140,7 +140,7 @@
                         {% endif %}
 
                         {% if resultsService %}
-                            <strong>Here are John Smith's 'Service' ads!</strong>
+                            <strong>Here are {{ profile.username }}'s ads!</strong>
                             {% for service in resultsService %}
                                 <div>{{ service.title }}</div>
                                 <div>{{ service.description }}
@@ -156,6 +156,20 @@
                     </div>
                 </div>
             </div>
+            <a class="button" href="{% url 'add_comment' profile=profile %}">Add comment</a>
+
+            <hr>
+            {% for comment in profile.comments.all %}
+                <div class="comment">
+                    <div class="date">{{ comment.created_date }}</div>
+                        <strong>{{ comment.author }}</strong>
+                        <p>{{ comment.text|linebreaks }}</p>
+                    </div>
+                    {% empty %}
+                    <p>No comments here yet :(</p>
+            {% endfor %}
+
+
 
             <div class="panel panel-default">
                 <div class="panel-heading">Reviews</div>

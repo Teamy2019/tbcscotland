@@ -8,7 +8,7 @@ from tbc.models import LendAndSell
 from tbc.models import Projects
 from tbc.models import Service
 from tbc.models import Profile
-from tbc.forms import LendAndSellForm, ServiceForm, ProjectForm
+from tbc.forms import LendAndSellForm, ServiceForm, ProjectForm, CommentsForm
 from django.db.models import Q
 from datetime import datetime
 
@@ -87,6 +87,24 @@ def show_profile(request, profile_name_slug):
 
     return render(request, 'tbc/profile.html', context_dict)
 
+def add_comment(request, profile_username):
+    profile = Profile.objects.get(username=profile_username)
+    commented = False
+
+    if request.method == 'POST':
+
+        comment_form = CommentsForm(data=request.POST)
+        if comment_form.is_valid:
+            comment = comment_form.save(commit=False)
+            comment.author = Profile.objects.get(user=request.user)
+            comment.profile = profile
+            comment.save()
+            commented = True
+        else:
+            print(comment_form.errors)
+    else:
+        comment_form = CommentsForm()
+    return render(request, 'tbc/add_comment', {'comment_form': comment_form, 'commented': commented, 'profile': profile})
 
 def lendandsell(request):
 
@@ -158,7 +176,8 @@ def post_lendAndSell(request):
         # added for testing - <<retrieve type of form from request objectprint>> (request.POST)
 
         if lendAndSell_form.is_valid():
-            lendandsell = lendAndSell_form.save()
+            lendandsell = lendAndSell_form.save(commit=False)
+            lendandsell.profile = Profile.objects.get(user=request.user)
             lendandsell.save()
             context_dict = {'ad_slug': lendandsell.slug, 'category': "lendandsell"}
             return ad_posted(request, context_dict)
@@ -174,7 +193,8 @@ def post_project(request):
     if request.method == 'POST':
         project_form = ProjectForm(data=request.POST)
         if project_form.is_valid():
-            project = project_form.save()
+            project = project_form.save(commit=False)
+            project.profile = Profile.objects.get(user=request.user)            
             project.save()
             context_dict = {'ad_slug': project.slug, 'category': "projects"}
             return ad_posted(request, context_dict)
@@ -191,7 +211,8 @@ def post_service(request):
     if request.method == 'POST':
         service_form = ServiceForm(data=request.POST)
         if service_form.is_valid():
-            service = service_form.save()
+            service = service_form.save(commit=False)
+            service.profile = Profile.objects.get(user=request.user)
             service.save()
             context_dict = {'ad_slug': service.slug, 'category': "services"}
             return ad_posted(request, context_dict)
