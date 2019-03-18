@@ -95,16 +95,21 @@ class Projects(models.Model):
         return self.title
 
 class Comments(models.Model):
-    profile = models.ForeignKey(Profile, blank=True)
-    author = models.OneToOneField(User, blank=True)
+    author = models.ForeignKey(User, blank=True)
     comment = models.TextField(blank=True)
     date_created = models.DateTimeField(default=timezone.now)
+
+    profile = models.ForeignKey(Profile, null=True, blank=True)
+    lendandsell = models.ForeignKey(LendAndSell, null=True, blank=True)
+    service = models.ForeignKey(Service, null=True, blank=True)
+    project = models.ForeignKey(Projects, null=True, blank=True)
+
 
     def save(self, *args, **kwargs):
         super(Comments, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.profile + "'s comment"
+        return self.profile.username
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
