@@ -28,8 +28,8 @@
             </li>
             {% endfor %}
         </ul>
-        <!-- {% else %}
-            <strong>There are no results in 'Services'</strong> -->
+        {% else %}
+            <strong>There are no results in 'Services'</strong> 
         {% endif %}
         </div>
         <div>
@@ -43,8 +43,8 @@
             </li>
             {% endfor %}
         </ul>
-        <!-- {% else %}
-            <strong>There are no results in 'Projects'</strong> -->
+     {% else %}
+            <strong>There are no results in 'Projects'</strong> 
         {% endif %}
     </div>
 {% endblock %}

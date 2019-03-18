@@ -99,4 +99,21 @@
         {% endif %}
     </div>
 </div>
+<div class="pagination">
+        <span class="step-links">
+            {% if projects.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ projects.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ projects.number }} of {{ projects.paginator.num_pages }}.</span>
+            
+            {% if projects.has_next %}
+                <a href="?page={{ projects.next_page_number }}">next</a>
+                <a href="?page={{ projects.paginator.num_pages }}">last&raquo;</a>
+            {% endif %}        
+            </span>
+        </span>
+    </div>
 {% endblock %}

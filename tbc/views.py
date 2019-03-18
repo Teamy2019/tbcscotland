@@ -12,6 +12,7 @@ from tbc.models import Comments
 from tbc.forms import LendAndSellForm, ServiceForm, ProjectForm, CommentsForm
 from django.db.models import Q
 from datetime import datetime
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
@@ -19,9 +20,13 @@ from datetime import datetime
 def home(request):
     # Line added to test cookies.
     request.session.set_test_cookie()
+    profiles_list = Profile.objects.order_by('-views')[:6]
+    lends_list = LendAndSell.objects.order_by('-views')[:2]
+    project_list = Projects.objects.order_by('-views')[:2]
+    service_list = Service.objects.order_by('-views')[:2]
 
-    # context_dict = {}
-    return render(request, 'tbc/home.html')
+    context_dict = {'profiles_list': profiles_list, 'lends_list':lends_list, 'project_list': project_list, 'service_list': service_list}
+    return render(request, 'tbc/home.html', context_dict)
 
 
 def search(request):
@@ -33,6 +38,7 @@ def search(request):
     resultsProject = Projects.objects.filter(Q(title__icontains=query) | Q(keywords__icontains=query))
     resultsService = Service.objects.filter(Q(title__icontains=query) | Q(keywords__icontains=query))
     context_dict = {'resultsLend': resultsLend, 'resultsProject': resultsProject, 'resultsService': resultsService}
+
     return render(request, 'tbc/search.html', context_dict)
 
 
@@ -50,11 +56,15 @@ def getstarted(request):
 
 def profiles(request):
 
-    profiles_list = Profile.objects.order_by('-views')[:20]
+    profiles_list = Profile.objects.all().order_by('-views')
+    paginator = Paginator(profiles_list, 8)
 
-    context_dict = {'profiles': profiles_list}
+    page = request.GET.get('page', 1)
+    profiles = paginator.page(page)
 
-    return render(request, 'tbc/profiles.html', context=context_dict)
+    context_dict = {'profiles': profiles}
+
+    return render(request, 'tbc/profiles.html', context_dict)
 
 
 def show_profile(request, profile_name_slug):
@@ -102,8 +112,13 @@ def show_profile(request, profile_name_slug):
 
 def lendandsell(request):
 
-    lend_and_sell_list = LendAndSell.objects.order_by('views')[:20]
-    context_dict = {'lend_and_sell': lend_and_sell_list}
+    lend_and_sell_list = LendAndSell.objects.all().order_by('views')
+    paginator = Paginator(lend_and_sell_list, 8)
+
+    page = request.GET.get('page', 1)
+    lendandsell = paginator.page(page)
+
+    context_dict = {'lend_and_sell': lendandsell}
 
     return render(request, 'tbc/lendandsell.html', context_dict)
 
@@ -138,8 +153,13 @@ def show_lendandsell(request, lendandsell_name_slug):
 
 def projects(request):
 
-    projects_list = Projects.objects.order_by('views')[:20]
-    context_dict = {'projects': projects_list}
+    projects_list = Projects.objects.all().order_by('views')
+    paginator = Paginator(projects_list, 8)
+
+    page = request.GET.get('page', 1)
+    projects = paginator.page(page)
+
+    context_dict = {'projects': projects}
 
     return render(request, 'tbc/projects.html', context_dict)
 
@@ -150,8 +170,9 @@ def show_project(request, project_name_slug):
     try:
         project = Projects.objects.get(slug=project_name_slug)
         comments = Comments.objects.filter(project=project)
-        context_dict['comments']: comments
+        print(comments)
         context_dict['project_ad'] = project
+        context_dict['comments']= comments
         context_dict['comment_form'] = CommentsForm()
         if request.method == 'POST':
             comment_form = CommentsForm(data=request.POST)
@@ -171,7 +192,12 @@ def show_project(request, project_name_slug):
 
 def services(request):
 
-    service = Service.objects.order_by('views')[:20]
+    service_list = Service.objects.all().order_by('views')
+    paginator = Paginator(service_list, 8)
+
+    page = request.GET.get('page', 1)
+    service = paginator.page(page)
+
     context_dict ={'services': service}
 
     return render(request, 'tbc/services.html', context_dict)

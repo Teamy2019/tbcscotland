@@ -25,12 +25,15 @@
         {% else %}
         <strong>No Ad!</strong>
         {% endif %}
+
+        {% if user.is_authenticated %}
         <h2>Would you like to leave a comment?</h2>
         <form id="comment_form" method="POST" action="{% url 'show_project' project_ad.slug %}" enctypte="multipart/form-data">
         {% csrf_token %}
         {{ comment_form.as_p }}
         <input type="submit" name="submit" value"Comment" />
         </form>
+        {% endif %}
 
         <hr>
         {% if comments %}

@@ -99,4 +99,21 @@
         {% endif %}
     </div>
 </div>
+<div class="pagination">
+        <span class="step-links">
+            {% if services.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ services.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ services.number }} of {{ services.paginator.num_pages }}.</span>
+            
+            {% if lend_servicesand_sell.has_next %}
+                <a href="?page={{ services.next_page_number }}">next</a>
+                <a href="?page={{ services.paginator.num_pages }}">last&raquo;</a>
+            {% endif %}        
+            </span>
+        </span>
+    </div>
 {% endblock %}
