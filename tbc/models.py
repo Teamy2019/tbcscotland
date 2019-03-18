@@ -17,10 +17,6 @@ class Profile(models.Model):
     reviews = models.TextField()
     location = models.CharField(max_length=128, blank=True)
 
-    # location
-    # password = models.CharField(max_length=20)
-    # email = models.CharField(max_length=128)
-    # username = models.CharField(max_length=128)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.username)
@@ -47,7 +43,7 @@ class LendAndSell(models.Model):
     description = models.TextField()
     views = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
-    image = models.ImageField(upload_to='LendAndSell_images', blank=True)
+    image = models.ImageField(upload_to='LendAndSell_images', default='default_profile.jpg')
     price = models.CharField(max_length=128)
     availability = models.CharField(max_length=128)
     keywords = models.TextField()
@@ -65,7 +61,7 @@ class Service(models.Model):
     description = models.TextField()
     views = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
-    image = models.ImageField(upload_to='Service_images', blank=True)
+    image = models.ImageField(upload_to='Service_images', default='default_profile.jpg')
     price = models.CharField(max_length=128)
     availability = models.CharField(max_length=128)
     keywords = models.TextField()
@@ -85,7 +81,7 @@ class Projects(models.Model):
     lookingFor = models.TextField()
     views = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
-    image = models.ImageField(upload_to='Projects_images', blank=True)
+    image = models.ImageField(upload_to='Projects_images', default='default_profile.jpg')
     timeline = models.CharField(max_length=128)
     keywords = models.TextField()
 
@@ -113,10 +109,3 @@ class Comments(models.Model):
     def __str__(self):
         return self.author.username
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User)
-    website = models.URLField(blank=True)
-    picture = models.ImageField(upload_to='profile_images', blank=True)
-
-    def __str__(self):
-        return self.user.username

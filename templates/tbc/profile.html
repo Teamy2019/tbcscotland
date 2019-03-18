@@ -117,7 +117,8 @@
                 <div class="panel-body">
                     <div class="portfolio-items text-center">
                         {% for lend in resultsLend %}
-                        <div><img src="{{ lend.image }}">{{ lend.title }}</div>
+                        <div><img src="{{ lend.image.url }}" wdith="240">
+                            <a href="{% url 'show_lendandsell' lend.slug %}">{{ lend.title }}</a></div>
                         {% endfor %}
                     </div>
                 </div>
@@ -130,7 +131,8 @@
                 <div class="panel-body">
                     <div class="portfolio-items text-center">
                         {% for project in resultsProject %}
-                        <div><img src="{{ project.image }}">{{ project.title }}</div>
+                        <div><img src="{{ project.image.url }}" width="240">
+                            <a href="{% url 'show_project' project.slug %}">{{ project.title }}</a></div>
                         {% endfor %}
                     </div>
                 </div>
@@ -143,7 +145,8 @@
                 <div class="panel-body">
                     <div class="portfolio-items text-center">
                         {% for service in resultsService %}
-                        <div><img src="{{ service.image }}">{{ service.title }}</div>
+                        <div><img src="{{ service.image.url }}" width="240">
+                            <a href="{% url 'show_service' service.slug %}">{{ service.title }}</a></div>
                         {% endfor %}
                     </div>
                 </div>

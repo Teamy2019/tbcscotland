@@ -25,7 +25,7 @@
     						<ul>
     							{% for profile in profiles_list %}
                     			<li>
-                    				<a href="{% url 'show_profile' profile.slug %}">{{ profile.name }}</a>
+                    				<a href="{% url 'show_profile' profile.slug %}">{{ profile.username }}</a>
                     			</li>
                     			{% endfor %}
                 			</ul>
