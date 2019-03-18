@@ -11,8 +11,13 @@
             {{ service_ad.keywords }}
         </div>
         <div>
-            {% if service_ad.location %}\\
+            {% if service_ad.location %}
             {{ service_ad.location }}
+        <div>
+            {% if service_ad.image %}
+            <img src="{{ service_ad.image.url }}" width="240">
+            {% endif %}
+        </div>
             {% else %}
             <strong>No Location!</strong>
             {% endif %}
