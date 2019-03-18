@@ -15,44 +15,59 @@
 	   </div>
 
 	   <div class="row" style="height:30px;"></div>
+	   {% if profiles_list %}
 
     	<div class="row">
     		<div class="col-lg-4">
     			<div class="panel panel-default" style="width:400px;height:300px;border:4px solid black;border-radius:0px;">
     				<div class="panel-body">
-    					{% if profiles %}
     						<strong>Most popular Profiles!</strong>
     						<ul>
-    							{% for profile in profiles %}
+    							{% for profile in profiles_list %}
                     			<li>
                     				<a href="{% url 'show_profile' profile.slug %}">{{ profile.name }}</a>
                     			</li>
                     			{% endfor %}
                 			</ul>
-                		{% else %}
-                			<strong>No Profiles yet!</strong>
-                		{% endif %}
             		</div>
             	</div>
             </div>
+		{% endif %}
 
             <div class="col-lg-2"></div>
 
             <div class="col-lg-4">
             	<div class="panel panel-default" style="width:400px;height:300px;border:4px solid black;border-radius:0px;">
             		<div class="panel-body">
-            			{% if projects %}
             				<strong>Most popular Ads!</strong>
                 			<ul>
+								{% if project_list %}
+
                     			{% for project in projects %}
                     				<li>
                         				<a href="{% url 'show_project' project.slug %}">{{ project.title }}</a><i>- Ad posted by </i>{{ project.profile }}
                     				</li>
                     			{% endfor %}
                 			</ul>
-            			{% else %}
-                			<strong>No Ads yet!</strong>
-            			{% endif %}
+						{% endif %}
+						{% if service_list %}
+
+						{% for service in service_list %}
+							<li>
+								<a href="{% url 'show_service' service.slug %}">{{ service.title }}</a><i>- Ad posted by </i>{{ service.profile }}
+							</li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+				{% if lends_list %}
+
+				{% for lend in lends_list %}
+					<li>
+						<a href="{% url 'show_lendandsell' lend.slug %}">{{ lend.title }}</a><i>- Ad posted by </i>{{ lend.profile }}
+					</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
             		</div>
            		</div>
             </div>

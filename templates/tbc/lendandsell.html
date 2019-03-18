@@ -99,4 +99,22 @@
         {% endif %}
     </div>
 </div>
+
+<div class="pagination">
+        <span class="step-links">
+            {% if lend_and_sell.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ lend_and_sell.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ lend_and_sell.number }} of {{ lend_and_sell.paginator.num_pages }}.</span>
+            
+            {% if lend_and_sell.has_next %}
+                <a href="?page={{ lend_and_sell.next_page_number }}">next</a>
+                <a href="?page={{ lend_and_sell.paginator.num_pages }}">last&raquo;</a>
+            {% endif %}        
+            </span>
+        </span>
+    </div>
 {% endblock %}

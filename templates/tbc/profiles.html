@@ -12,69 +12,36 @@
 </style>
 {% endblock %}
 
-{%block body_block %}
-    <div class="container">
-        <h1>Find the most suitable freelancer for your project</h1>
-    <div class="row">
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="profileBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
+{% block body_block %}
 
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="profileBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
+    {% if profiles %}
+    <ul>
+        {% for profile in profiles %}
+        <li>
+            <a href="{% url 'show_profile' profile.slug %}">{{ profile.username }}</a>
+            <i>{{ profile.aboutme }}</i>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+<div class="pagination">
+    <span class="step-links">
+        {% if profiles.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ profiles.previous_page_number }}">previous</a>
+        {% endif %}
 
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-           <div id="profileBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
+        <span class="current">
+            Page {{ profiles.number }} of {{ profiles.paginator.num_pages }}.</span>
+        
+        {% if profiles.has_next %}
+            <a href="?page={{ profiles.next_page_number }}">next</a>
+            <a href="?page={{ profiles.paginator.num_pages }}">last&raquo;</a>
+        {% endif %}        
+        </span>
+    </span>
+</div>
 
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="profileBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="row" style="height:30px;"></div>
-
-    <div class="row">
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="profileBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="profileBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="profileBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="profileBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-    </div>
- </div>
+    
 {% endblock %}
