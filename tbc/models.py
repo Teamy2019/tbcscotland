@@ -109,7 +109,7 @@ class Comments(models.Model):
         super(Comments, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.profile.username
+        return self.author.username
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
