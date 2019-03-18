@@ -92,7 +92,7 @@
                 </div>
             </div>
 
-            <div>
+            <!-- <div>
                 <div class="panel panel-default">
                     <div class="panel-heading">Portfolio</div>
                     <div class="panel-body">
@@ -109,8 +109,45 @@
                         </div>
                     </div>
                 </div>
+            </div> -->
+            {% if resultsLend %}
+            <div class="panel panel-default">
+                <div class="panel-heading">Lend and Sell Adverts</div>
+                <div class="panel-body">
+                    <div class="portfolio-items text-center">
+                        {% for lend in resultsLend %}
+                        <div><img src="{{ lend.image }}">{{ lend.title }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
+            {% endif %}
 
+            {% if resultsProject %}
+            <div class="panel panel-default">
+                <div class="panel-heading">Project Adverts</div>
+                <div class="panel-body">
+                    <div class="portfolio-items text-center">
+                        {% for project in resultsProject %}
+                        <div><img src="{{ project.image }}">{{ project.title }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if resultsService %}
+            <div class="panel panel-default">
+                <div class="panel-heading">Service Adverts</div>
+                <div class="panel-body">
+                    <div class="portfolio-items text-center">
+                        {% for service in resultsService %}
+                        <div><img src="{{ service.image }}">{{ service.title }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
             <div>
                 <div class="panel panel-default">
                     <div class="panel-heading">Activity</div>
@@ -182,7 +219,7 @@
         </div>
     </div>
                             
-    {% if profile.views %}
+    <!-- {% if profile.views %}
         <div>
             Views: {{ visits }}
         </div>
@@ -190,7 +227,7 @@
         <div>
             {{ profile.name }} has had no visitors to their profile :(
         </div>
-    {% endif %}
+    {% endif %} -->
 </div>
 
     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">

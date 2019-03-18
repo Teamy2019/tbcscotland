@@ -13,92 +13,54 @@
 {% endblock %}
 
 {% block body_block %}
-<div class="container">
-    <h1>Find the most suitable project to work on</h1>
-
-    <div class="row">
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="projectBox" class="panel panel-default">
-                <div class="panel-body">
+{% if projects %}
+<ul>
+        {% for project in projects %}
+        <br>
+        <div class="row">
+        <div class="col-xs-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{ project.title }}</div>
+                    <div class="panel-body">
+                            <div class="col-sm-4 profile_image">
+                                    {% if project.image %}
+                                        <div>{{ project.image }}</div>
+                                    {% else %}
+                                        <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}"  alt="">
+                                    {% endif %} 
+                                </div>
+                                {% if project.keywords %}
+                                <strong>Keywords</strong>
+                                <br>
+                                <span class="badge badge-secondary">{{ project.keywords }}</span>
+                                <br>
+                                {% endif %}
+                                <br>
+                                <strong>Description</strong>
+    
+                            {% if project.description %}
+                            <div>{{ project.description }}</div>
+                                <br>
+                            {% else %}
+                                <div>{{ project.profile }} has not added in their 'Description' section yet!</div>
+                                <br>
+                        {% endif %}
+                        Ad posted by {{ project.profile }}
+                        <br>
+                        <a href="{% url 'show_project' project.slug %}">Visit the ad</a>
+                    </div>
                 </div>
-            </div>
         </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="projectBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
         </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-           <div id="projectBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="projectBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row" style="height:30px;"></div>
-
-    <div class="row">
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="projectBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="projectBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="projectBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="projectBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div>
-        {% if projects %}
-            <strong>Most popular Ads!</strong>
-            <ul>
-            {% for project in projects %}
-                <li>
-                    <a href="{% url 'show_project' project.slug %}">{{ project.title }}</a><i>- Ad posted by </i>{{ project.profile }}
-                </li>
-            {% endfor %}
-            </ul>
-        {% else %}
-            <strong>No Ads yet!</strong>
-        {% endif %}
-    </div>
-
+        {% endfor %}
+    </ul>
     <div>
         {% if user.is_authenticated %}
             <a href="/tbc/postproject/">Post your own ad here!</a>
         {% endif %}
     </div>
 </div>
+{% endif %}
 <div class="pagination">
         <span class="step-links">
             {% if projects.has_previous %}

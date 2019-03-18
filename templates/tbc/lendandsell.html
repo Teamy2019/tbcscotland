@@ -13,85 +13,49 @@
 {% endblock %}
 
 {% block body_block %}
-<div class="container">
-    <h1>Lend and Sell Ads</h1>
-
+{% if lend_and_sell %}
+<ul>
+    {% for lend in lend_and_sell %}
+    <br>
     <div class="row">
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="lendandsellBox" class="panel panel-default">
+    <div class="col-xs-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ lend.title }}</div>
                 <div class="panel-body">
-                </div>
-            </div>
-        </div>
+                        <div class="col-sm-4 profile_image">
+                                {% if lend.image %}
+                                    <div>{{ lend.image }}</div>
+                                {% else %}
+                                    <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}"  alt="">
+                                {% endif %} 
+                            </div>
+                            {% if lend.keywords %}
+                            <strong>Keywords</strong>
+                            <br>
+                            <span class="badge badge-secondary">{{ lend.keywords }}</span>
+                            <br>
+                            {% endif %}
+                            <br>
+                            <strong>Description</strong>
 
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="lendandsellBox" class="panel panel-default">
-                <div class="panel-body">
+                        {% if lend.description %}
+                        <div>{{ lend.description }}</div>
+                            <br>
+                        {% else %}
+                            <div>{{ lend.profile }} has not added in their 'Description' section yet!</div>
+                            <br>
+                    {% endif %}
+                    Ad posted by {{ lend.profile }}
+                    <br>
+                    <a href="{% url 'show_lendandsell' lend.slug %}">Visit the ad</a>
                 </div>
             </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-           <div id="lendandsellBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="lendandsellBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
     </div>
-
-    <div class="row" style="height:30px;"></div>
-
-    <div class="row">
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="lendandsellBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="lendandsellBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="lendandsellBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="lendandsellBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
     </div>
+    {% endfor %}
+</ul>
+{% endif %}
 
-    <div>
-        {% if lend_and_sell %}
-            <strong>Most popular Ads!</strong>
-            <ul>
-            {% for lends in lend_and_sell %}
-                <li>
-                   <a href="{% url 'show_lendandsell' lends.slug %}">{{ lends.title }}</a> <i>- Ad posted by </i>{{ lends.profile }}
-                </li>
-            {% endfor %}
-            </ul>
-        {% else %}
-            <strong>No Ads yet!</strong>
-        {% endif %}
-    </div>
 
     <div>
         {% if user.is_authenticated %}
