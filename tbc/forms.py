@@ -1,15 +1,12 @@
 from django import forms
 from django.contrib.auth.models import User
-from tbc.models import UserProfile, Profile
+from tbc.models import Profile
 from tbc.models import LendAndSell, Projects, Service, Comments
 from django.db.models import Q
 import operator
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
-    #firstname = forms.CharField(max_length=20)
-    #surname = forms.CharField(max_length=20)
-    #is_company = forms.BooleanField(required=False)
 
     class Meta:
         model = User
@@ -30,21 +27,7 @@ class ProfileForm(forms.ModelForm):
         fields = ('image', 'skills', 'education', 'aboutme', 'portfolio', 'activities', 'location')
 
 
-class UserProfileForm(forms.ModelForm):
-    username = forms.CharField(widget=forms.HiddenInput(), required=False)
-    aboutme = forms.CharField(widget=forms.HiddenInput(), required=False)
-    skills = forms.CharField(widget=forms.HiddenInput(), required=False)
-    education = forms.CharField(widget=forms.HiddenInput(), required=False)
-    picture = forms.ImageField(required=False)
-    slug = forms.CharField(widget=forms.HiddenInput(), required=False)
-    name = forms.CharField(widget=forms.HiddenInput(), required=False)
-
-    class Meta:
-        model = Profile
-        fields = ('picture', 'aboutme', 'skills')
-
 class LendAndSellForm(forms.ModelForm):
-    #profile = forms.CharField(widget=forms.HiddenInput(), required=False)
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
     image = forms.ImageField(required=False)
@@ -59,7 +42,6 @@ class LendAndSellForm(forms.ModelForm):
         fields = ('title', 'description', 'image', 'price', 'availability', 'keywords')
 
 class ProjectForm(forms.ModelForm):
-  # profile should link atuomatically!!!  profile = forms.CharField(widget=forms.HiddenInput(), required=False)
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
     image = forms.ImageField(required=False)

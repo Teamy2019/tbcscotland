@@ -24,7 +24,7 @@
                     <div class="panel-body">
                             <div class="col-sm-4 profile_image">
                                     {% if service.image %}
-                                        <div>{{ service.image }}</div>
+                                        <div><img src="{{ service.image.url }}" width = "240"></div>
                                     {% else %}
                                         <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}"  alt="">
                                     {% endif %} 
