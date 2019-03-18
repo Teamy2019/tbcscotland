@@ -10,6 +10,11 @@
         <div>
             {{ lend_ad.keywords }}
         </div>
+        <div>
+                {% if service_ad.image %}
+                <img src="{{ service_ad.image.url }}" width="240">
+                {% endif %}
+            </div>
         {% else %}
         <strong>No Ad!</strong>
         {% endif %}
