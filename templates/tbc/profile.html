@@ -116,7 +116,7 @@
                     <div class="panel-heading">Activity</div>
                     <div class="panel-body">
                         {% if resultsLend %}
-                            <strong>Here are John Smith's 'Lend and Sell' ads!</strong>
+                            <strong>Here are {{ profile.username }}'s' 'Lend and Sell' ads!</strong>
                             {% for lend in resultsLend %}
                                 <div>{{ lend.title }}</div>
                                 <div>{{ lend.description }}
@@ -128,7 +128,7 @@
                         {% endif %}
 
                         {% if resultsProject %}
-                            <strong>Here are John Smith's 'Project' ads!</strong>
+                            <strong>Here are {{ profile.username }}'s 'Project' ads!</strong>
                             {% for project in resultsProject %}
                                 <div>{{ project.title }}</div>
                                 <div>{{ project.description }}
@@ -140,7 +140,7 @@
                         {% endif %}
 
                         {% if resultsService %}
-                            <strong>Here are John Smith's 'Service' ads!</strong>
+                            <strong>Here are {{ profile.username }}'s ads!</strong>
                             {% for service in resultsService %}
                                 <div>{{ service.title }}</div>
                                 <div>{{ service.description }}
@@ -156,62 +156,26 @@
                     </div>
                 </div>
             </div>
+            <h2>Would you like to leave a comment?</h2>
+            <form id="comment_form" method="POST" action="{% url 'show_profile' profile.slug %}" enctypte="multipart/form-data">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <input type="submit" name="submit" value"Comment" />
+            </form>
 
-            <div class="panel panel-default">
-                <div class="panel-heading">Reviews</div>
-                <div class="panel-body">
-                    <div class="comment container">
-                        <div class="col-sm-2">
-                            <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}" alt="">
-                        </div>
-                        <div class="col-sm-10">
-                            <p class='rating'>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                            </p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem at voluptates nisi illo quibusdam consequatur veritatis quae, qui eius suscipit in, esse ullam ad libero, perferendis dolorum et, impedit incidunt corporis fuga sunt!</p>
-                            <p class="comment_peron"><strong>User 1</strong> <span></span></p>
-                        </div>
+            <hr>
+            {% if comments %}
+            {% for comment in comments %}
+                <div class="comment">
+                    <div class="date">{{ comment.created_date }}</div>
+                        <strong>{{ comment.author }}</strong>
+                        <p>{{ comment.comment }}</p>
                     </div>
+            {% endfor %} 
+            {% else %} 
+            <p>No comments here yet :(</p>
+            {% endif %}
 
-                    <div class="comment container">
-                        <div class="col-sm-2">
-                            <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}" alt="">
-                        </div>
-                        <div class="col-sm-10">
-                            <p class='rating'>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                            </p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem at voluptates nisi illo quibusdam consequatur veritatis quae, qui eius suscipit in, esse ullam ad libero, perferendis dolorum et, impedit incidunt corporis fuga sunt!</p>
-                            <p class="comment_peron"><strong>User 1</strong> <span></span></p>
-                        </div>
-                    </div>
-
-                    <div class="comment container">
-                        <div class="col-sm-2">
-                            <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}" alt="">
-                        </div>
-                        <div class="col-sm-10">
-                            <p class='rating'>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                            </p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem at voluptates nisi illo quibusdam consequatur veritatis quae, qui eius suscipit in, esse ullam ad libero, perferendis dolorum et, impedit incidunt corporis fuga sunt!</p>
-                            <p class="comment_peron"><strong>User 1</strong> <span></span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
                             

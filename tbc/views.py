@@ -8,7 +8,8 @@ from tbc.models import LendAndSell
 from tbc.models import Projects
 from tbc.models import Service
 from tbc.models import Profile
-from tbc.forms import LendAndSellForm, ServiceForm, ProjectForm
+from tbc.models import Comments
+from tbc.forms import LendAndSellForm, ServiceForm, ProjectForm, CommentsForm
 from django.db.models import Q
 from datetime import datetime
 
@@ -74,19 +75,30 @@ def show_profile(request, profile_name_slug):
 
         profile.views += 1
         profile.save()
-
+        comments = Comments.objects.filter(profile=profile)
         resultsLend = LendAndSell.objects.filter(profile=query)
         resultsProject = Projects.objects.filter(profile=query)
         resultsService = Service.objects.filter(profile=query)
         context_dict['resultsLend'] = resultsLend
         context_dict['resultsProject'] = resultsProject
         context_dict['resultsService'] = resultsService
+        context_dict['comments'] = comments
+        context_dict['comment_form'] = CommentsForm()
+
+        if request.method == 'POST':
+            comment_form = CommentsForm(data=request.POST)
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.author = request.user
+                comment.profile = profile
+                comment.save()
+            else:
+                print(comment_form.errors)
 
     except Profile.DoesNotExist:
         context_dict['profile'] = None
 
     return render(request, 'tbc/profile.html', context_dict)
-
 
 def lendandsell(request):
 
@@ -102,7 +114,22 @@ def show_lendandsell(request, lendandsell_name_slug):
 
     try:
         lendandsell = LendAndSell.objects.get(slug=lendandsell_name_slug)
+        comments = Comments.objects.filter(lendandsell=lendandsell)
         context_dict['lend_ad'] = lendandsell
+        context_dict['comments'] = comments
+        context_dict['comment_form'] = CommentsForm()
+
+        if request.method == 'POST':
+            comment_form = CommentsForm(data=request.POST)
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.author = request.user
+                comment.lendandsell = lendandsell
+                comment.save()
+            else:
+                print(comment_form.errors)
+
+
     except LendAndSell.DoesNotExist:
         context_dict['lend_ad'] = None
 
@@ -122,7 +149,20 @@ def show_project(request, project_name_slug):
 
     try:
         project = Projects.objects.get(slug=project_name_slug)
+        comments = Comments.objects.filter(project=project)
+        context_dict['comments']: comments
         context_dict['project_ad'] = project
+        context_dict['comment_form'] = CommentsForm()
+        if request.method == 'POST':
+            comment_form = CommentsForm(data=request.POST)
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.author = request.user
+                comment.project = project
+                comment.save()
+            else:
+                print(comment_form.errors)
+
     except Projects.DoesNotExist:
         context_dict['project_ad'] = None
 
@@ -142,7 +182,20 @@ def show_service(request, service_name_slug):
 
     try:
         service = Service.objects.get(slug=service_name_slug)
+        comments = Comments.objects.filter(service=service)
+        context_dict['comments'] = comments
         context_dict['service_ad'] = service
+        context_dict['comment_form'] = CommentsForm()
+        if request.method == 'POST':
+            comment_form = CommentsForm(data=request.POST)
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.author = request.user
+                comment.service = service
+                comment.save()
+            else:
+                print(comment_form.errors)
+
     except Service.DoesNotExist:
         context_dict['service_ad'] = None
 
@@ -158,7 +211,8 @@ def post_lendAndSell(request):
         # added for testing - <<retrieve type of form from request objectprint>> (request.POST)
 
         if lendAndSell_form.is_valid():
-            lendandsell = lendAndSell_form.save()
+            lendandsell = lendAndSell_form.save(commit=False)
+            lendandsell.profile = Profile.objects.get(user=request.user)
             lendandsell.save()
             context_dict = {'ad_slug': lendandsell.slug, 'category': "lendandsell"}
             return ad_posted(request, context_dict)
@@ -174,7 +228,8 @@ def post_project(request):
     if request.method == 'POST':
         project_form = ProjectForm(data=request.POST)
         if project_form.is_valid():
-            project = project_form.save()
+            project = project_form.save(commit=False)
+            project.profile = Profile.objects.get(user=request.user)            
             project.save()
             context_dict = {'ad_slug': project.slug, 'category': "projects"}
             return ad_posted(request, context_dict)
@@ -191,7 +246,8 @@ def post_service(request):
     if request.method == 'POST':
         service_form = ServiceForm(data=request.POST)
         if service_form.is_valid():
-            service = service_form.save()
+            service = service_form.save(commit=False)
+            service.profile = Profile.objects.get(user=request.user)
             service.save()
             context_dict = {'ad_slug': service.slug, 'category': "services"}
             return ad_posted(request, context_dict)
@@ -265,10 +321,6 @@ def editprofile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, instance=profile)
         if form.is_valid():
-            # profile = form.save(commit=False)
-            # profile.user = request.user 
-            # profile.username = request.user.username
-            # profile.skills = request.POST.get('skills')
             profile.save()
             edited = True
 

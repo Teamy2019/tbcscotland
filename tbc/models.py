@@ -1,6 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 class Profile(models.Model):
     user = models.OneToOneField(User, blank=True)
@@ -92,6 +93,23 @@ class Projects(models.Model):
 
     def __str__(self):
         return self.title
+
+class Comments(models.Model):
+    author = models.ForeignKey(User, blank=True)
+    comment = models.TextField(blank=True)
+    date_created = models.DateTimeField(default=timezone.now)
+
+    profile = models.ForeignKey(Profile, null=True, blank=True)
+    lendandsell = models.ForeignKey(LendAndSell, null=True, blank=True)
+    service = models.ForeignKey(Service, null=True, blank=True)
+    project = models.ForeignKey(Projects, null=True, blank=True)
+
+
+    def save(self, *args, **kwargs):
+        super(Comments, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.author.username
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)

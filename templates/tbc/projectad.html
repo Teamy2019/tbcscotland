@@ -25,4 +25,23 @@
         {% else %}
         <strong>No Ad!</strong>
         {% endif %}
+        <h2>Would you like to leave a comment?</h2>
+        <form id="comment_form" method="POST" action="{% url 'show_project' project_ad.slug %}" enctypte="multipart/form-data">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <input type="submit" name="submit" value"Comment" />
+        </form>
+
+        <hr>
+        {% if comments %}
+        {% for comment in comments %}
+            <div class="comment">
+                <div class="date">{{ comment.created_date }}</div>
+                    <strong>{{ comment.author }}</strong>
+                    <p>{{ comment.comment }}</p>
+                </div>
+        {% endfor %} 
+        {% else %} 
+        <p>No comments here yet :(</p>
+        {% endif %}
 {% endblock %}
