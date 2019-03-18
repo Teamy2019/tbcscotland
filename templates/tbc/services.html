@@ -13,85 +13,49 @@
 {% endblock %}
 
 {% block body_block %}
-<div class="container">
-    <h1>Popular Professional Services</h1>
-
-    <div class="row">
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="servicesBox" class="panel panel-default">
-                <div class="panel-body">
+{% if services %}
+<ul>
+        {% for service in services %}
+        <br>
+        <div class="row">
+        <div class="col-xs-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{ service.title }}</div>
+                    <div class="panel-body">
+                            <div class="col-sm-4 profile_image">
+                                    {% if service.image %}
+                                        <div>{{ service.image }}</div>
+                                    {% else %}
+                                        <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}"  alt="">
+                                    {% endif %} 
+                                </div>
+                                {% if service.keywords %}
+                                <strong>Keywords</strong>
+                                <br>
+                                <span class="badge badge-secondary">{{ service.keywords }}</span>
+                                <br>
+                                {% endif %}
+                                <br>
+                                <strong>Description</strong>
+    
+                            {% if service.description %}
+                            <div>{{ service.description }}</div>
+                                <br>
+                            {% else %}
+                                <div>{{ service.profile }} has not added in their 'Description' section yet!</div>
+                                <br>
+                        {% endif %}
+                        Ad posted by {{ service.profile }}
+                        <br>
+                        <a href="{% url 'show_service' service.slug %}">Visit the ad</a>
+                    </div>
                 </div>
-            </div>
         </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="servicesBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
         </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="servicesBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="servicesBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row" style="height:30px;"></div>
-
-    <div class="row">
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-           <div id="servicesBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="servicesBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="servicesBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-            <div id="servicesBox" class="panel panel-default">
-                <div class="panel-body">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div>
-        {% if services %}
-            <strong>Most popular Ads!</strong>
-            <ul>
-            {% for service in services %}
-                <li>
-                    <a href="{% url 'show_service' service.slug %}">{{ service.title }}</a><i>- Ad posted by </i>{{ service.profile }}
-                </li>
-            {% endfor %}
-            </ul>
-        {% else %}
-            <strong>No Ads yet!</strong>
-        {% endif %}
-    </div>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
 
     <div>
         {% if user.is_authenticated %}

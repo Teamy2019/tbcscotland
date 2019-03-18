@@ -17,13 +17,46 @@
     {% if profiles %}
     <ul>
         {% for profile in profiles %}
-        <li>
-            <a href="{% url 'show_profile' profile.slug %}">{{ profile.username }}</a>
-            <i>{{ profile.aboutme }}</i>
-        </li>
+        <br>
+        <div class="row">
+        <div class="col-xs-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{ profile.username }}</div>
+                    <div class="panel-body">
+                            <div class="col-sm-4 profile_image">
+                                    {% if profile.image %}
+                                        <div>{{ profile.image }}</div>
+                                    {% else %}
+                                        <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}"  alt="">
+                                    {% endif %} 
+                                </div>
+                                {% if profile.skills %}
+                                <strong>Skills</strong>
+                                <br>
+                                <span class="badge badge-secondary">{{ profile.skills }}</span>
+                                <br>
+                                {% endif %}
+                                <br>
+                                <strong>About Me</strong>
+
+                            {% if profile.aboutme %}
+                            <div>{{ profile.aboutme }}</div>
+                                <br>
+                            {% else %}
+                                <div>{{ profile.username }} has not added in their 'About Me' section yet!</div>
+                                <br>
+                        {% endif %}
+                        <a href="{% url 'show_profile' profile.slug %}">Visit {{ profile.username }}'s page</a>
+                    </div>
+                </div>
+        </div>
+        </div>
         {% endfor %}
     </ul>
     {% endif %}
+
+
+
 <div class="pagination">
     <span class="step-links">
         {% if profiles.has_previous %}
