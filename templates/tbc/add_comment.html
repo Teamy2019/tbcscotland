@@ -2,14 +2,27 @@
 {% load staticfiles %}
 
 {% block body_block %}
-    {% if commented %}
+    <!-- {% if commented %}
     <h1>Thank you for commenting on {{ profile.username }}'s profile</h1>
-    <a href="tbc/profiles/{{ profile.slug }}">Back to the profile</a>
+    <a href="{% url 'show_profile' profile.slug %}">Back to the profile</a>
     {% else %}
     <h1>New comment on {{ profileusername }}</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
+    <!-- <form method="POST" class="post-form">{% csrf_token %}
         {{ comment_form.as_p }}
         <button type="submit">Add Comment</button>
+    </form> -->
+
+    <!-- <form id="comment_form" method="POST" action="{% url 'add_comment' profile.username %}"
+      enctype="multipart/form-data"> -->
+
+      <!-- {% csrf_token %}
+
+      {{ form.as_p }}
+      <input type="submit" name="comment" value="Comment" />
     </form>
-    {% endif %}
+    {% endif %}   --> 
+    <h1>JUST WORK</h1>
+    <h1>JUST WORK</h1>
+    <h1>JUST WORK</h1>
+
 {% endblock %}

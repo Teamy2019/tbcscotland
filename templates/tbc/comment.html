@@ -1,0 +1,18 @@
+{% extends 'tbc/base.html' %}
+{% load staticfiles %}
+
+{% block body_block %}
+<h1>JUST WORK</h1>
+<h1>JUST WORK</h1>
+<h1>JUST WORK</h1>
+    {% if commented %}
+    <h1>Thank you for commenting!</h1>
+    {% else %}
+    <h1>Leave a comment</h1>
+    <form id="comment_form" method="POST" action="{% url 'comment' %}" enctypte="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" name="comment" value"Comment" />
+    </form>
+    {% endif %}
+{% endblock %}

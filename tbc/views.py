@@ -8,6 +8,7 @@ from tbc.models import LendAndSell
 from tbc.models import Projects
 from tbc.models import Service
 from tbc.models import Profile
+from tbc.models import Comments
 from tbc.forms import LendAndSellForm, ServiceForm, ProjectForm, CommentsForm
 from django.db.models import Q
 from datetime import datetime
@@ -74,37 +75,40 @@ def show_profile(request, profile_name_slug):
 
         profile.views += 1
         profile.save()
-
+        comments = Comments.objects.filter(profile=profile)
         resultsLend = LendAndSell.objects.filter(profile=query)
         resultsProject = Projects.objects.filter(profile=query)
         resultsService = Service.objects.filter(profile=query)
         context_dict['resultsLend'] = resultsLend
         context_dict['resultsProject'] = resultsProject
         context_dict['resultsService'] = resultsService
+        context_dict['comments'] = comments
 
     except Profile.DoesNotExist:
         context_dict['profile'] = None
 
     return render(request, 'tbc/profile.html', context_dict)
 
-def add_comment(request, profile_username):
-    profile = Profile.objects.get(username=profile_username)
+
+def comment(request):
     commented = False
+    comment_form = CommentsForm()
 
     if request.method == 'POST':
 
         comment_form = CommentsForm(data=request.POST)
-        if comment_form.is_valid:
+        if comment_form.is_valid():
             comment = comment_form.save(commit=False)
-            comment.author = Profile.objects.get(user=request.user)
-            comment.profile = profile
+            comment.author = request.user
+            comment.profile = Profile.objects.get(user=request.user)
             comment.save()
             commented = True
         else:
-            print(comment_form.errors)
+                print(comment_form.errors)
     else:
         comment_form = CommentsForm()
-    return render(request, 'tbc/add_comment', {'comment_form': comment_form, 'commented': commented, 'profile': profile})
+    return render(request, 'tbc/comment.html', {'form': comment_form, 'commented': commented})
+
 
 def lendandsell(request):
 

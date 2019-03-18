@@ -156,18 +156,20 @@
                     </div>
                 </div>
             </div>
-            <a class="button" href="{% url 'add_comment' profile=profile %}">Add comment</a>
+            <a href="{% url 'comment' %}">New comment link</a> 
 
             <hr>
-            {% for comment in profile.comments.all %}
+            {% if comments %}
+            {% for comment in comments %}
                 <div class="comment">
                     <div class="date">{{ comment.created_date }}</div>
                         <strong>{{ comment.author }}</strong>
-                        <p>{{ comment.text|linebreaks }}</p>
+                        <p>{{ comment.comment }}</p>
                     </div>
-                    {% empty %}
-                    <p>No comments here yet :(</p>
-            {% endfor %}
+            {% endfor %} 
+            {% else %} 
+            <p>No comments here yet :(</p>
+            {% endif %}
 
 
 

@@ -95,7 +95,7 @@ class Projects(models.Model):
         return self.title
 
 class Comments(models.Model):
-    profile = models.ForeignKey(Profile)
+    profile = models.ForeignKey(Profile, blank=True)
     author = models.OneToOneField(User, blank=True)
     comment = models.TextField(blank=True)
     date_created = models.DateTimeField(default=timezone.now)

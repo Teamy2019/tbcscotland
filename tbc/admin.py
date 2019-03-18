@@ -13,6 +13,9 @@ class ServiceAdmin(admin.ModelAdmin):
 class ProjectsAdmin(admin.ModelAdmin):
     list_display = ('title', 'description')
 
+class CommentsAdmin(admin.ModelAdmin):
+    list_display = ('profile', 'author')
+
 # Register your models here.
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Inbox)
