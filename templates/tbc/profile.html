@@ -7,7 +7,9 @@
     <div class="row cover_image">
         <div class="col-sm-4 profile_image">
             {% if profile.image %}
-                <div>{{ profile.image }}</div>
+                <div>
+                    <img src="{{ profile.image.url }}" width="240">
+                </div>
             {% else %}
                 <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}"  alt="">
             {% endif %} 
