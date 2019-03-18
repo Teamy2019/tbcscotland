@@ -15,6 +15,8 @@ class Profile(models.Model):
     activities = models.ImageField(upload_to='activities_images', blank=True)
     views = models.IntegerField(default=0)
     reviews = models.TextField()
+    location = models.CharField(max_length=128, blank=True)
+
     # location
     # password = models.CharField(max_length=20)
     # email = models.CharField(max_length=128)
