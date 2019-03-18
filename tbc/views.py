@@ -239,6 +239,8 @@ def post_lendAndSell(request):
         if lendAndSell_form.is_valid():
             lendandsell = lendAndSell_form.save(commit=False)
             lendandsell.profile = Profile.objects.get(user=request.user)
+            if 'image' in request.FILES:
+                lendAndSell.image = request.FILES['image']   
             lendandsell.save()
             context_dict = {'ad_slug': lendandsell.slug, 'category': "lendandsell"}
             return ad_posted(request, context_dict)
@@ -255,7 +257,9 @@ def post_project(request):
         project_form = ProjectForm(data=request.POST)
         if project_form.is_valid():
             project = project_form.save(commit=False)
-            project.profile = Profile.objects.get(user=request.user)            
+            project.profile = Profile.objects.get(user=request.user)    
+            if 'image' in request.FILES:
+                project.image = request.FILES['image']        
             project.save()
             context_dict = {'ad_slug': project.slug, 'category': "projects"}
             return ad_posted(request, context_dict)
@@ -274,6 +278,10 @@ def post_service(request):
         if service_form.is_valid():
             service = service_form.save(commit=False)
             service.profile = Profile.objects.get(user=request.user)
+                
+            if 'image' in request.FILES:
+                service.image = request.FILES['image']
+            
             service.save()
             context_dict = {'ad_slug': service.slug, 'category': "services"}
             return ad_posted(request, context_dict)
@@ -313,7 +321,7 @@ def signup(request):
             user = user_form.save()
             user.set_password(user.password)
             user.save()
- 
+
             profile = profile_form.save(commit=False)
             profile.user = user 
             profile.username = user.username
@@ -347,6 +355,10 @@ def editprofile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, instance=profile)
         if form.is_valid():
+
+            if 'image' in request.FILES:
+                profile.image = request.FILES['image']
+
             profile.save()
             edited = True
 

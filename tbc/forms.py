@@ -23,10 +23,11 @@ class ProfileForm(forms.ModelForm):
     aboutme = forms.CharField(widget=forms.Textarea, required=False)
     portfolio = forms.ImageField(required=False)
     activities = forms.ImageField(required=False)
+    location = forms.CharField(max_length=128, required=False)
 
     class Meta:
         model = Profile
-        fields = ('image', 'skills', 'education', 'aboutme', 'portfolio', 'activities')
+        fields = ('image', 'skills', 'education', 'aboutme', 'portfolio', 'activities', 'location')
 
 
 class UserProfileForm(forms.ModelForm):
