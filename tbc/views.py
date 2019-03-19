@@ -94,9 +94,11 @@ def show_profile(request, profile_name_slug):
         context_dict['resultsService'] = resultsService
         context_dict['comments'] = comments
         context_dict['comment_form'] = CommentsForm()
+        context_dict['contact_form'] = ContactForm()
 
         if request.method == 'POST':
             comment_form = CommentsForm(data=request.POST)
+
             if comment_form.is_valid():
                 comment = comment_form.save(commit=False)
                 comment.author = request.user
@@ -104,6 +106,23 @@ def show_profile(request, profile_name_slug):
                 comment.save()
             else:
                 print(comment_form.errors)
+
+            contact_form = ContactForm(request.POST)
+            if contact_form.is_valid():
+                #get user's email when logged in
+                from_email = contact_form.cleaned_data['from_email']
+                #get profile's email
+                to_email = [contact_form.cleaned_data['to_email']]
+                subject = contact_form.cleaned_data['subject']
+                message = contact_form.cleaned_data['message']
+                try:
+                    send_mail(subject, message, from_email, to_email)
+                except BadHeaderError:
+                    return HttpResponse('Invalid header found')
+                #popup message and close the window
+                return redirect('email_sent')
+        else:
+            contact_form = ContactForm()
 
     except Profile.DoesNotExist:
         context_dict['profile'] = None
@@ -420,10 +439,10 @@ def visitor_cookie_handler(request):
 
 def email(request):
     if request.method == 'GET':
-        form = ContactForm()
+        contact_form = ContactForm()
     else:
-        form = ContactForm(request.POST)
-        if form.is_valid():
+        contact_form = ContactForm(request.POST)
+        if contact_form.is_valid():
             from_email = form.cleaned_data['from_email']
             to_email = [form.cleaned_data['to_email']]
             subject = form.cleaned_data['subject']
@@ -433,7 +452,7 @@ def email(request):
             except BadHeaderError:
                 return HttpResponse('Invalid header found')
             return redirect('email_sent')
-    return render(request, 'tbc/email.html', {'form': form,})
+    return render(request, 'tbc/email.html', {'contact_form': contact_form,})
 
 def email_sent(request):
     return HttpResponse('Success! The email was sent.')
