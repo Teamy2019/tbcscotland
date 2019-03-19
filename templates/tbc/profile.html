@@ -117,7 +117,7 @@
                 <div class="panel-body">
                     <div class="portfolio-items text-center">
                         {% for lend in resultsLend %}
-                        <div><img src="{{ lend.image.url }}" wdith="240">
+                        <div><thumbnail_image src="{{ lend.image.url }}">
                             <a href="{% url 'show_lendandsell' lend.slug %}">{{ lend.title }}</a></div>
                         {% endfor %}
                     </div>

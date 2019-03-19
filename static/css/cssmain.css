@@ -88,6 +88,13 @@
 	padding: 25px;
 }
 
+.thumbnail_image{
+  	border: 1px solid #ddd;
+  	border-radius: 4px;
+  	padding: 5px;
+  	width: 150px;
+}
+
 .profile_details{
 	margin-top: 80px;
 	color: white;
@@ -117,4 +124,11 @@
 
 body {
     background-color: white;
+}
+
+.thumbnail_panel{
+	display: grid;
+	grid-template-columns: repeat(auto-fit);
+	grid-gap: 5px;
+	padding: 20px;
 }

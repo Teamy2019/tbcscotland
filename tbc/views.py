@@ -9,7 +9,7 @@ from tbc.models import Projects
 from tbc.models import Service
 from tbc.models import Profile
 from tbc.models import Comments
-from tbc.forms import LendAndSellForm, ServiceForm, ProjectForm, CommentsForm, ContactForm
+from tbc.forms import LendAndSellForm, ServiceForm, ProjectForm, CommentsForm, ContactForm, UserForm
 from django.db.models import Q
 from datetime import datetime
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -259,7 +259,7 @@ def post_lendAndSell(request):
             lendandsell = lendAndSell_form.save(commit=False)
             lendandsell.profile = Profile.objects.get(user=request.user)
             if 'image' in request.FILES:
-                lendAndSell.image = request.FILES['image']
+                lendandsell.image = request.FILES['image']
             lendandsell.save()
             context_dict = {'ad_slug': lendandsell.slug, 'category': "lendandsell"}
             return ad_posted(request, context_dict)

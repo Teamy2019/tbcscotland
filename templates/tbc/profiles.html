@@ -18,18 +18,26 @@
     <ul>
         {% for profile in profiles %}
         <br>
-        <div class="row">
-        <div class="col-xs-8">
+        <!-- <div class="row"> -->
+        <!-- <a href="{% url 'show_profile' profile.slug %}"> -->
+        <div class="thumbnail_panel" id="profilelink">
+        <div class="col-xs-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">{{ profile.username }}</div>
-                    <div class="panel-body">
-                            <div class="col-sm-4 profile_image">
+                    <div class="panel-body" style="min-height: 240px; max-height: 240px; overflow-y:hidden; text-overflow: ellipsis;">
+                             <div class="col-sm-4 profile_image">
                                     {% if profile.image %}
-                                    <div><img src="{{ profile.image.url }}" width="240"></div>
+                                    <div><img src="{{ profile.image.url }}" width="150"></div>
+                                    
                                     {% else %}
                                         <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}"  alt="">
                                     {% endif %} 
-                                </div>
+                                    <br>
+                                    <div class="row">
+                                        <a href="{% url 'show_profile' profile.slug %}">Visit {{ profile.username }}'s page</a>
+                                    </div>
+                                </div> 
+                                <div class="col-sm-8">
                                 {% if profile.skills %}
                                 <strong>Skills</strong>
                                 <br>
@@ -46,17 +54,21 @@
                                 <div>{{ profile.username }} has not added in their 'About Me' section yet!</div>
                                 <br>
                         {% endif %}
-                        <a href="{% url 'show_profile' profile.slug %}">Visit {{ profile.username }}'s page</a>
+                    </div>
+
                     </div>
                 </div>
         </div>
-        </div>
+    </div>
+<!-- </a> -->
+<!-- </div> -->
         {% endfor %}
     </ul>
     {% endif %}
+    
 
 
-
+<div class ="row">
 <div class="pagination">
     <span class="step-links">
         {% if profiles.has_previous %}
@@ -74,6 +86,8 @@
         </span>
     </span>
 </div>
+</div>
+
 
 
     
