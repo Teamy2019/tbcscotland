@@ -86,7 +86,6 @@
 .profile_image{
 	max-width: 200px;
 	padding: 25px;
-	border-radius: 50%;
 }
 
 .thumbnail_image{
@@ -132,4 +131,51 @@ body {
 	grid-template-columns: repeat(auto-fit);
 	grid-gap: 5px;
 	padding: 20px;
+}
+
+.thumbnailbody{
+	min-height: 200px; 
+	max-height: 200px; 
+	overflow-y:hidden; 
+	overflow-x: hidden;
+}
+.profile {
+  display: grid;
+  grid-template-cloumns: repeat(auto-fit);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  max-height: 600px;
+  text-align: center;
+}
+
+.skills {
+  color: grey;
+  font-size: 18px;
+}
+.textinthumbnail{
+  border: none;
+  outline: 0;
+  padding: 8px;
+  colour: black;
+  text-align: centre;
+  width: 100%;
+  font-size: 12px;
+  max-height: 100px;
+  overflow: hidden;
+}
+
+button {
+  border: none;
+  outline: 0;
+  padding: 0px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
 }
