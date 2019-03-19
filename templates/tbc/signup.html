@@ -7,7 +7,15 @@
   {% if registered %}
     <strong>You've sucessfully registered with TBC Scotland</strong>
     <a href="{% url 'home' %}">Return to the homepage</a><br/>
-    <a href="{% url 'editprofile' %}">Edit your profile</a><br/>
+    Edit your profile:
+    <form id="user_form" method="POST" action="{% url 'editprofile' %}"
+    enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    {{ profile_form.as_p }}
+    <input type="submit" name="submit" value="Edit" />
+    </form>
   {% else %}
     <strong>Sign up here</strong><br/>
     <form id="user_form" method="POST" action="{% url 'signup' %}"
@@ -16,7 +24,6 @@
       {% csrf_token %}
 
       {{ user_form.as_p }}
-      <!-- {{ profile_form.as_p }} -->
       <input type="submit" name="submit" value="Sign up" />
       </form>
     {% endif %}

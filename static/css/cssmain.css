@@ -86,6 +86,7 @@
 .profile_image{
 	max-width: 200px;
 	padding: 25px;
+	border-radius: 50%;
 }
 
 .thumbnail_image{
