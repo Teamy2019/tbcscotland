@@ -238,7 +238,9 @@
     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+			{% if user.is_authenticated %}
                 <div class="modal-header">
+				
                     <h5 class="modal-title" id="exampleModalLongTitle">Get in touch with {{ profile.username }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -246,19 +248,43 @@
                 </div>
                 <div class="modal-body">
 
-                      <form method="post">
+						<form method="post">
                           {% csrf_token %}
                           {{ contact_form.as_p }}
-                          <div class="form-actions">
-                            <button type="submit">Send</button>
-
-                          </div>
-                      </form>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-primary" data-target="#MySecondmodal" data-toggle="modal">Send</button>
+							<div class="modal fade" id="MySecondmodal">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button> 
+										<h4 class="modal-title">Success</h4>                                                             
+										</div> 
+									<div class="modal-body">
+									Your message to {{ profile.username }} has been sent!
+									</div>   
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                               
+										</div>
+									</div>                                                                       
+								</div>                                      
+							</div>
+						</div>
+						</form>
 
                 </div>
-                <div class="modal-footer">
+
+			{% else %}
+			<div class="modal-header">
+                <h5 class="modal-title" id="signin">Sign in to message {{ profile.username }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+			{% endif %}
+			                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Send</button>
+
                 </div>
             </div>
         </div>
