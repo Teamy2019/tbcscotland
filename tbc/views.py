@@ -9,7 +9,7 @@ from tbc.models import Projects
 from tbc.models import Service
 from tbc.models import Profile
 from tbc.models import Comments
-from tbc.forms import LendAndSellForm, ServiceForm, ProjectForm, CommentsForm, ContactForm
+from tbc.forms import LendAndSellForm, ServiceForm, ProjectForm, CommentsForm, ContactForm, UserForm
 from django.db.models import Q
 from datetime import datetime
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -110,9 +110,9 @@ def show_profile(request, profile_name_slug):
             contact_form = ContactForm(request.POST)
             if contact_form.is_valid():
                 #get user's email when logged in
-                from_email = contact_form.cleaned_data['from_email']
+                from_email = request.user.email
                 #get profile's email
-                to_email = [contact_form.cleaned_data['to_email']]
+                to_email = profile.email
                 subject = contact_form.cleaned_data['subject']
                 message = contact_form.cleaned_data['message']
                 try:
@@ -259,7 +259,7 @@ def post_lendAndSell(request):
             lendandsell = lendAndSell_form.save(commit=False)
             lendandsell.profile = Profile.objects.get(user=request.user)
             if 'image' in request.FILES:
-                lendAndSell.image = request.FILES['image']
+                lendandsell.image = request.FILES['image']
             lendandsell.save()
             context_dict = {'ad_slug': lendandsell.slug, 'category': "lendandsell"}
             return ad_posted(request, context_dict)
@@ -443,7 +443,7 @@ def email(request):
     else:
         contact_form = ContactForm(request.POST)
         if contact_form.is_valid():
-            from_email = form.cleaned_data['from_email']
+            from_email = contact_form.cleaned_data['from_email']
             to_email = [form.cleaned_data['to_email']]
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']

@@ -5,16 +5,16 @@ from django.utils import timezone
 
 class Profile(models.Model):
     user = models.OneToOneField(User, blank=True)
+    firstname = models.CharField(max_length=128, blank=True)
+    lastname = models.CharField(max_length=128, blank=True)
     username = models.CharField(max_length=128, unique=True)
+    profession = models.CharField(max_length=128, blank=True)
     image = models.ImageField(upload_to='profile_images', default='default_profile.jpg')
     skills = models.TextField(blank=True)
     education = models.TextField(blank=True)
     aboutme = models.TextField(blank=True)
     slug = models.SlugField(unique=True)
-    portfolio = models.ImageField(upload_to='portfolio_images', blank=True)
-    activities = models.ImageField(upload_to='activities_images', blank=True)
     views = models.IntegerField(default=0)
-    reviews = models.TextField()
     location = models.CharField(max_length=128, blank=True)
 
 
@@ -24,18 +24,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.username
-
-class Inbox(models.Model):
-    profile = models.ForeignKey(Profile)
-    messages = models.TextField()
-    slug = models.SlugField(unique=True)
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(Inbox, self).save(*args, **kwargs)
-
-    def __str__(self):
-        return self.name
 
 class LendAndSell(models.Model):
     profile = models.ForeignKey(Profile)
@@ -109,7 +97,3 @@ class Comments(models.Model):
     def __str__(self):
         return self.author.username
 
-#class Contact(models.Model):
-#        from_email = models.ForeignKey(blank=True)
-#        subject = forms.CharField(required=True)
-#        message = forms.CharField(widget=forms.Textarea, required=True)
