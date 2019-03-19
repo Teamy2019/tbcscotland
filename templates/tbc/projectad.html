@@ -2,49 +2,90 @@
 {% load staticfiles %}
 
 {% block body_block %}
-        {% if project_ad %}
-        <h1>{{ project_ad.title }}</h1>
-        <div>
-            {{ project_ad.description }}
-        </div>
-        <div>
-            {{ project_ad.keywords }}
-        </div>
-            {% if project_ad.image %}
-        <div>
-            {{ project_ad.image }}
-        </div>
-            {% else %}
-        <div>
-            {{ project_ad.profile }} has not uploaded an image yet. 
-        </div>
-            {% endif %}
-        <div>
-            <a href="{% url 'show_profile' project_ad.profile.slug %}">Visit {{ project_ad.profile }}'s Profile!</a>
-        </div>
-        {% else %}
-        <strong>No Ad!</strong>
-        {% endif %}
+<div class="container container_body">
+            <div class="col-xs-4">
+                {% if project_ad.image %}
+                    <div>
+                        <img src="{{ project_ad.image.url }}" style="width:100%">
+                    </div>
+                {% endif %}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <strong>Keywords</strong>
+                        <br>
+                        {% if project_ad.keywords %}
+                            <span class="badge badge-secondary">{{ project_ad.keywords }}</span>
+                        {% else %}
+                            <div>User {{ project_ad.profile }} has not added in their 'Keywords' section yet!</div>
+                        {% endif %}
+                            <br>
+                            <hr class="style1">
+                            <strong>Timeline</strong>
+                            {% if project_ad.timeline %}
+                                <div>{{ project_ad.timeline }}</div>
+                            {% else %}
+                                <div>User {{ project_ad.profile }} has not added in their 'Timeline' section yet!</div>
+                            {% endif %}
+                            <br>
 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-8">
+                            <div>
+                                <h1>{{ project_ad.title }}</h1>
+                                <h3>Project</h3>
+
+                                {% if profile.firstname and profile.lastname %}
+                                <a href="{% url 'show_profile' profile.slug %}"><div class="keywords">{{ profile.firstname }} {{ profile.lastname }}</div></a>
+                                {% else %}
+                                <a href="{% url 'show_profile' profile.slug %}"><div class="keywords">{{ profile.username }}</div></a>
+                                {% endif %}
+                            </div>
+                            <br>
+                        <div class="panel panel-default">
+                                <div class="panel-heading">Description</div>
+                                <div class="panel-body">
+                                    {% if project_ad.description %}
+                                            <div>{{ project_ad.description }}</div>
+                                        {% else %}
+                                            <div>User {{ project_ad.profile }} has not added in their 'Description' section yet!</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        
+                        <div class="panel panel-default">
+                                <div class="panel-heading">Looking For</div>
+                                <div class="panel-body">
+                                    {% if project_ad.lookingFor %}
+                                        <div>{{ project_ad.lookingFor }}</div>
+                                    {% else %}
+                                        <div>User {{ project_ad.profile }} has not added in their 'Looking For' section yet!</div>
+                                    {% endif %}
+                                </div>
+                                </div>
+
+<!-- Comments from below -->
+        <hr>
+        {% if comments %}
+        {% for comment in comments %}
+            <div class="comment" >
+                <div class="date">{{ comment.created_date }}</div>
+                    <strong>{{ comment.author }}</strong>
+                    <p>{{ comment.comment }}</p>
+                </div>
+        {% endfor %} 
+        {% endif %}
+<br>
         {% if user.is_authenticated %}
-        <h2>Would you like to leave a comment?</h2>
+        <h4>Would you like to leave a comment?</h4>
         <form id="comment_form" method="POST" action="{% url 'show_project' project_ad.slug %}" enctypte="multipart/form-data">
         {% csrf_token %}
         {{ comment_form.as_p }}
         <input type="submit" name="submit" value"Comment" />
         </form>
         {% endif %}
+</div>
+</div>
 
-        <hr>
-        {% if comments %}
-        {% for comment in comments %}
-            <div class="comment">
-                <div class="date">{{ comment.created_date }}</div>
-                    <strong>{{ comment.author }}</strong>
-                    <p>{{ comment.comment }}</p>
-                </div>
-        {% endfor %} 
-        {% else %} 
-        <p>No comments here yet :(</p>
-        {% endif %}
 {% endblock %}
