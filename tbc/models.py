@@ -110,6 +110,6 @@ class Comments(models.Model):
         return self.author.username
 
 #class Contact(models.Model):
-#        from_email = forms.EmailField(required=True)
+#        from_email = models.ForeignKey(blank=True)
 #        subject = forms.CharField(required=True)
 #        message = forms.CharField(widget=forms.Textarea, required=True)

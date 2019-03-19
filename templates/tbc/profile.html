@@ -12,7 +12,7 @@
                 </div>
             {% else %}
                 <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}"  alt="">
-            {% endif %} 
+            {% endif %}
             </div>
         <div class="col-sm-8 ">
             <h2>{{ profile.username }}</h2>
@@ -60,7 +60,7 @@
                                 var geocoder = new google.maps.Geocoder();
                                 geocodeAddress(geocoder, map);
                             }
-                            
+
                             function geocodeAddress(geocoder, resultsMap) {
                                 geocoder.geocode({'address' : "{{ profile.location }}"}, function(results, status) {
                                     if (status === 'OK') {
@@ -190,7 +190,7 @@
                             {% endfor %}
                         {% else %}
                             <div>No service ads detected</div>
-                        {% endif %} 
+                        {% endif %}
                         {% else %}
                             <strong>No Ad!</strong>
                         {% endif %}
@@ -215,14 +215,14 @@
                         <strong>{{ comment.author }}</strong>
                         <p>{{ comment.comment }}</p>
                     </div>
-            {% endfor %} 
-            {% else %} 
+            {% endfor %}
+            {% else %}
             <p>No comments here yet :(</p>
             {% endif %}
 
         </div>
     </div>
-                            
+
     <!-- {% if profile.views %}
         <div>
             Views: {{ visits }}
@@ -244,7 +244,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>do contact form </p>
+
+                      <form method="post">
+                          {% csrf_token %}
+                          {{ contact_form.as_p }}
+                          <div class="form-actions">
+                            <button type="submit">Send</button>
+
+                          </div>
+                      </form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
