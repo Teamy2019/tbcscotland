@@ -1,66 +1,23 @@
 {% extends 'tbc/base.html' %}
 {% load staticfiles %}
 
-{% block extrahead %}
-<style>
-    #projectBox {
-        width: 180px;
-        height: 200px;
-        border: 2px solid black;
-        border-radius: 0px;
-    } 
-</style>
-{% endblock %}
 
 {% block body_block %}
 {% if projects %}
 <ul>
         {% for project in projects %}
         <br>
-        <div class="row">
-        <div class="col-xs-8">
-                <div class="panel panel-default">
-                    <div class="panel-heading">{{ project.title }}</div>
-                    <div class="panel-body">
-                            <div class="col-sm-4 profile_image">
-                                    {% if project.image %}
-                                        <div><img src="{{ project.image.url }}" width="240"></div>
-                                    {% else %}
-                                        <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}"  alt="">
-                                    {% endif %} 
-                                </div>
-                                {% if project.keywords %}
-                                <strong>Keywords</strong>
-                                <br>
-                                <span class="badge badge-secondary">{{ project.keywords }}</span>
-                                <br>
-                                {% endif %}
-                                <br>
-                                <strong>Description</strong>
-    
-                            {% if project.description %}
-                            <div>{{ project.description }}</div>
-                                <br>
-                            {% else %}
-                                <div>{{ project.profile }} has not added in their 'Description' section yet!</div>
-                                <br>
-                        {% endif %}
-                        Ad posted by {{ project.profile }}
-                        <br>
-                        <a href="{% url 'show_project' project.slug %}">Visit the ad</a>
-                    </div>
-                </div>
-        </div>
-        </div>
+
+        <div class="thumbnail">
+                <img src="{{ project.image.url }}">
+                <h1>{{ project.title }}</h1>
+                <p class="keywords">{{ project.keywords }}</p>
+                <p class="textinthumbnail">{{ project.description }}</p>
+ 
+                <p><a href="{% url 'show_project' project.slug %}"><button>Visit Ad</button></a></p>
+              </div>
         {% endfor %}
-    </ul>
-    <div>
-        {% if user.is_authenticated %}
-            <a href="/tbc/postproject/">Post your own ad here!</a>
         {% endif %}
-    </div>
-</div>
-{% endif %}
 <div class="pagination">
         <span class="step-links">
             {% if projects.has_previous %}

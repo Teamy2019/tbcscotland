@@ -4,47 +4,55 @@
 {% block body_block %}
         <div>
         {% if resultsLend %}
-        <strong>Results in 'Lend and Sell':</strong>
+        <div class="container" style="text-align:center;"><h1>Results in 'Lend and Sell':</h1></div>
         <ul>
-            {% for result in resultsLend %}
-                <li>
-                <a href="/tbc/lendandsell/{{ result.slug }}/">{{ result.title }}</a>
-                - {{ result.description }}
-                </li>
+            {% for lend in resultsLend %}
+            <div class="thumbnail">
+                    <img src="{{ lend.image.url }}">
+                    <h1>{{ lend.title }}</h1>
+                    <p class="keywords">{{ lend.keywords }}</p>
+                    <p class="textinthumbnail">{{ lend.description }}</p>
+        
+                    <p><a href="{% url 'show_lendandsell' lend.slug %}"><button>Visit Ad</button></a></p>
+                  </div>
             {% endfor %}    
         </ul>
-        <!-- {% else %}
-            <strong>There are no results in 'Lend and Sell' </strong> -->
+
         {% endif %}
         </div>
         <div>
         {% if resultsService %}
-        <strong>Results in 'Services':</strong>
-        <ul>
-            {% for result in resultsService %}
-            <li>
-                <a href="/tbc/services/{{ result.slug }}/">{{ result.title }}</a>
-                - {{ result.description}}
-            </li>
+        <div class="container" style="text-align:center;"><h1>Results in 'Services':</strong></h1>        <ul>
+            {% for service in resultsService %}
+            <div class="thumbnail">
+                    <img src="{{ service.image.url }}">
+                    <h1>{{ service.title }}</h1>
+                    <p class="keywords">{{ service.keywords }}</p>
+                    <p class="textinthumbnail">{{ service.description }}</p>
+     
+                    <p><a href="{% url 'show_service' service.slug %}"><button>Visit Ad</button></a></p>
+                  </div>
             {% endfor %}
         </ul>
-        {% else %}
-            <strong>There are no results in 'Services'</strong> 
+
         {% endif %}
         </div>
         <div>
         {% if resultsProject %}
-        <strong>Results in 'Projects':</strong>
-        <ul>
-            {% for result in resultsProject %}
-            <li>
-                <a href="/tbc/projects/{{ result.slug }}/">{{ result.title }}</a>
-                - {{ result.description }}
-            </li>
+        <div class="container" style="text-align:center;"><h1>Results in 'Projects':</strong></h1>      
+          <ul>
+            {% for project in resultsProject %}
+            <div class="thumbnail">
+                    <img src="{{ project.image.url }}">
+                    <h1>{{ project.title }}</h1>
+                    <p class="keywords">{{ project.keywords }}</p>
+                    <p class="textinthumbnail">{{ project.description }}</p>
+     
+                    <p><a href="{% url 'show_project' project.slug %}"><button>Visit Ad</button></a></p>
+                  </div>
             {% endfor %}
         </ul>
-     {% else %}
-            <strong>There are no results in 'Projects'</strong> 
+
         {% endif %}
     </div>
 {% endblock %}

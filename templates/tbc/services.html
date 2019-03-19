@@ -17,41 +17,14 @@
 <ul>
         {% for service in services %}
         <br>
-        <div class="row">
-        <div class="col-xs-8">
-                <div class="panel panel-default">
-                    <div class="panel-heading">{{ service.title }}</div>
-                    <div class="panel-body">
-                            <div class="col-sm-4 profile_image">
-                                    {% if service.image %}
-                                        <div><img src="{{ service.image.url }}" width = "240"></div>
-                                    {% else %}
-                                        <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}"  alt="">
-                                    {% endif %} 
-                                </div>
-                                {% if service.keywords %}
-                                <strong>Keywords</strong>
-                                <br>
-                                <span class="badge badge-secondary">{{ service.keywords }}</span>
-                                <br>
-                                {% endif %}
-                                <br>
-                                <strong>Description</strong>
-    
-                            {% if service.description %}
-                            <div>{{ service.description }}</div>
-                                <br>
-                            {% else %}
-                                <div>{{ service.profile }} has not added in their 'Description' section yet!</div>
-                                <br>
-                        {% endif %}
-                        Ad posted by {{ service.profile }}
-                        <br>
-                        <a href="{% url 'show_service' service.slug %}">Visit the ad</a>
-                    </div>
-                </div>
-        </div>
-        </div>
+        <div class="thumbnail">
+                <img src="{{ service.image.url }}">
+                <h1>{{ service.title }}</h1>
+                <p class="keywords">{{ service.keywords }}</p>
+                <p class="textinthumbnail">{{ service.description }}</p>
+ 
+                <p><a href="{% url 'show_service' service.slug %}"><button>Visit Ad</button></a></p>
+              </div>
         {% endfor %}
     </ul>
 </div>

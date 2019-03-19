@@ -261,7 +261,7 @@ def post_lendAndSell(request):
             if 'image' in request.FILES:
                 lendandsell.image = request.FILES['image']
             lendandsell.save()
-            context_dict = {'ad_slug': lendandsell.slug, 'category': "lendandsell"}
+            context_dict = {'lendandsell': lendandsell}
             return ad_posted(request, context_dict)
         else:
             print(lendAndSell_form.errors)
@@ -280,7 +280,7 @@ def post_project(request):
             if 'image' in request.FILES:
                 project.image = request.FILES['image']
             project.save()
-            context_dict = {'ad_slug': project.slug, 'category': "projects"}
+            context_dict = {'project': project}
             return ad_posted(request, context_dict)
 
         else:
@@ -302,7 +302,7 @@ def post_service(request):
                 service.image = request.FILES['image']
 
             service.save()
-            context_dict = {'ad_slug': service.slug, 'category': "services"}
+            context_dict = {'service': service}
             return ad_posted(request, context_dict)
         else:
             print(service_form.errors)

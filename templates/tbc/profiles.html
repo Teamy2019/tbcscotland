@@ -14,56 +14,20 @@
 
 {% block body_block %}
 
+
     {% if profiles %}
-    <ul>
         {% for profile in profiles %}
         <br>
-        <!-- <div class="row"> -->
-        <!-- <a href="{% url 'show_profile' profile.slug %}"> -->
-        <div class="thumbnail_panel">
-        <div class="col-xs-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading"><a href="{% url 'show_profile' profile.slug %}">{{ profile.username }}</a></div>
-                    <div class="panel-body" style="min-height: 240px; max-height: 240px; overflow-y:hidden; overflow-x: hidden;">
+        <div class="thumbnail">
+                <img src="{{ profile.image.url }}" style="width:100%;">
+                <h1>{{ profile.username }}</h1>
+                <p class="keywords">{{ profile.profession }}</p>
+                <p class="textinthumbnail">{{ profile.aboutme }}</p>
+ 
+                <p><a href="{% url 'show_profile' profile.slug %}"><button>Visit Profile</button></a></p>
+              </div>
 
-                             <div class="col-sm-4 profile_image">
-                                    {% if profile.image %}
-                                    <div><img src="{{ profile.image.url }}" width="150"></div>
-                                    
-                                    {% else %}
-                                        <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}"  alt="">
-                                    {% endif %} 
-                                    <br>
-                                </div> 
-                                <div class="container">
-                                <!-- <div class="col-sm-6" text-align: centre; text-overflow: ellipses;> -->
-                                    <br>
-                                {% if profile.skills %}
-                                <strong>Skills</strong>
-                                <br>
-                                <span class="badge badge-secondary">{{ profile.skills }}</span>
-                                <br>
-                                {% endif %}
-                                <br>
-                                <strong>About Me</strong>
-
-                            {% if profile.aboutme %}
-                            <div>{{ profile.aboutme }}</div>
-                                <br>
-                            {% else %}
-                                <div>{{ profile.username }} has not added in their 'About Me' section yet!</div>
-                                <br>
-                        {% endif %}
-                    <!-- </div> -->
-                    </div>
-                    </div>
-                </div>
-        </div>
-    </div>
-<!-- </a> -->
-<!-- </div> -->
         {% endfor %}
-    </ul>
     {% endif %}
     
 
