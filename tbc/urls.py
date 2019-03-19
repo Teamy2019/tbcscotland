@@ -24,4 +24,6 @@ urlpatterns = [
     url(r'^postproject/$', views.post_project, name='post_project'),
     url(r'^postservice/$', views.post_service, name='post_service'),
     url(r'^adposted/$', views.ad_posted, name='ad_posted'),
+    url(r'^email/$', views.email, name='email'),
+    url(r'success/$', views.email_sent, name='email_sent'),
 ]
