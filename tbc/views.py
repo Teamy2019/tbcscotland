@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from tbc.forms import ProfileForm
 from django.contrib.auth import authenticate, login, logout
@@ -9,10 +9,11 @@ from tbc.models import Projects
 from tbc.models import Service
 from tbc.models import Profile
 from tbc.models import Comments
-from tbc.forms import LendAndSellForm, ServiceForm, ProjectForm, CommentsForm
+from tbc.forms import LendAndSellForm, ServiceForm, ProjectForm, CommentsForm, ContactForm
 from django.db.models import Q
 from datetime import datetime
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.mail import send_mail, BadHeaderError
 
 
 
@@ -239,7 +240,7 @@ def post_lendAndSell(request):
             lendandsell = lendAndSell_form.save(commit=False)
             lendandsell.profile = Profile.objects.get(user=request.user)
             if 'image' in request.FILES:
-                lendAndSell.image = request.FILES['image']   
+                lendAndSell.image = request.FILES['image']
             lendandsell.save()
             context_dict = {'ad_slug': lendandsell.slug, 'category': "lendandsell"}
             return ad_posted(request, context_dict)
@@ -256,9 +257,9 @@ def post_project(request):
         project_form = ProjectForm(data=request.POST)
         if project_form.is_valid():
             project = project_form.save(commit=False)
-            project.profile = Profile.objects.get(user=request.user)    
+            project.profile = Profile.objects.get(user=request.user)
             if 'image' in request.FILES:
-                project.image = request.FILES['image']        
+                project.image = request.FILES['image']
             project.save()
             context_dict = {'ad_slug': project.slug, 'category': "projects"}
             return ad_posted(request, context_dict)
@@ -277,10 +278,10 @@ def post_service(request):
         if service_form.is_valid():
             service = service_form.save(commit=False)
             service.profile = Profile.objects.get(user=request.user)
-                
+
             if 'image' in request.FILES:
                 service.image = request.FILES['image']
-            
+
             service.save()
             context_dict = {'ad_slug': service.slug, 'category': "services"}
             return ad_posted(request, context_dict)
@@ -322,7 +323,7 @@ def signup(request):
             user.save()
 
             profile = profile_form.save(commit=False)
-            profile.user = user 
+            profile.user = user
             profile.username = user.username
             profile.save()
             login(request, user)
@@ -335,8 +336,8 @@ def signup(request):
 
         user_form = UserForm()
         profile_form = ProfileForm()
-    
-    # Render the template depending on the context. 
+
+    # Render the template depending on the context.
     return render(request,'tbc/signup.html', {'user_form': user_form,'profile_form': profile_form,'registered': registered})
 
 
@@ -348,7 +349,7 @@ def editprofile(request):
     profile = Profile.objects.get(user=currUser)
     # print(profile.username)
     # print("The user name should be above me")
- 
+
     form = ProfileForm(instance=profile)
 
     if request.method == 'POST':
@@ -416,3 +417,23 @@ def visitor_cookie_handler(request):
 
     # Update/set the visits cookie
     request.session['visits'] = visits
+
+def email(request):
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            from_email = form.cleaned_data['from_email']
+            to_email = [form.cleaned_data['to_email']]
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            try:
+                send_mail(subject, message, from_email, to_email)
+            except BadHeaderError:
+                return HttpResponse('Invalid header found')
+            return redirect('email_sent')
+    return render(request, 'tbc/email.html', {'form': form,})
+
+def email_sent(request):
+    return HttpResponse('Success! The email was sent.')
