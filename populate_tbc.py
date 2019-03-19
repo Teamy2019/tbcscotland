@@ -51,6 +51,7 @@ def populate():
 
     for profiles in profile_list:
         profile = add_profile(profiles["name"])
+       
         for lends in sample_L_and_S:
             add_L_and_S(profile, lends["title"], lends["description"], lends["price"], lends["availability"], lends["keywords"])
         for service in sample_services:

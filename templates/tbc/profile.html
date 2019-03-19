@@ -84,7 +84,6 @@
             <div class="panel panel-default">
                 <div class="panel-heading">About me</div>
                 <div class="panel-body">
-                    {% if profile %}
                         {% if profile.aboutme %}
                             <div>{{ profile.aboutme }}</div>
                         {% else %}
@@ -153,51 +152,7 @@
                 </div>
             </div>
             {% endif %}
-            <div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">Activity</div>
-                    <div class="panel-body">
-                        {% if resultsLend %}
-                            <strong>Here are {{ profile.username }}'s' 'Lend and Sell' ads!</strong>
-                            {% for lend in resultsLend %}
-                                <div>{{ lend.title }}</div>
-                                <div>{{ lend.description }}
-                                <a href="{% url 'show_lendandsell' lend.slug %}">See the ad!</a>
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            <div>No lend ads detected</div>
-                        {% endif %}
-
-                        {% if resultsProject %}
-                            <strong>Here are {{ profile.username }}'s 'Project' ads!</strong>
-                            {% for project in resultsProject %}
-                                <div>{{ project.title }}</div>
-                                <div>{{ project.description }}
-                                <a href="{% url 'show_project' project.slug %}">See the ad!</a>
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            <div>No project ads detected</div>
-                        {% endif %}
-
-                        {% if resultsService %}
-                            <strong>Here are {{ profile.username }}'s ads!</strong>
-                            {% for service in resultsService %}
-                                <div>{{ service.title }}</div>
-                                <div>{{ service.description }}
-                                    <a href="{% url 'show_service' service.slug %}">See the ad!</a>
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            <div>No service ads detected</div>
-                        {% endif %}
-                        {% else %}
-                            <strong>No Ad!</strong>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
+ 
 
             {% if user.is_authenticated %}
             <h2>Would you like to leave a comment?</h2>
