@@ -15,8 +15,8 @@
             {% endif %}
             </div>
         <div class="col-sm-8 ">
-            <h2>{{ profile.username }}</h2>
-            <h4>Desc</h4>
+            <h2>{{ profile.firstname }} {{ profile.lastname }}</h2>
+            <h4>{{ profile.profession}}</h4>
         </div>
     </div>
 
@@ -93,32 +93,21 @@
                 </div>
             </div>
 
-            <!-- <div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">Portfolio</div>
-                    <div class="panel-body">
-                        <div class="portfolio-items text-center">
-                            <div><img src="https://via.placeholder.com/150" alt=""></div>
-                            <div><img src="https://via.placeholder.com/150" alt=""></div>
-                            <div><img src="https://via.placeholder.com/150" alt=""></div>
-                            <div><img src="https://via.placeholder.com/150" alt=""></div>
-                            <div><img src="https://via.placeholder.com/150" alt=""></div>
-                            <div><img src="https://via.placeholder.com/150" alt=""></div>
-                            <div><img src="https://via.placeholder.com/150" alt=""></div>
-                            <div><img src="https://via.placeholder.com/150" alt=""></div>
-                            <div><img src="https://via.placeholder.com/150" alt=""></div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+
             {% if resultsLend %}
             <div class="panel panel-default">
                 <div class="panel-heading">Lend and Sell Adverts</div>
                 <div class="panel-body">
                     <div class="portfolio-items text-center">
                         {% for lend in resultsLend %}
-                        <div><thumbnail_image src="{{ lend.image.url }}">
-                            <a href="{% url 'show_lendandsell' lend.slug %}">{{ lend.title }}</a></div>
+                        <div class="thumbnail">
+                                <img src="{{ lend.image.url }}">
+                                <h1>{{ lend.title }}</h1>
+                                <p class="keywords">{{ lend.keywords }}</p>
+                                <p class="textinthumbnail">{{ lend.description }}</p>
+                    
+                                <p><a href="{% url 'show_lendandsell' lend.slug %}"><button>Visit Ad</button></a></p>
+                              </div>
                         {% endfor %}
                     </div>
                 </div>
@@ -131,8 +120,14 @@
                 <div class="panel-body">
                     <div class="portfolio-items text-center">
                         {% for project in resultsProject %}
-                        <div><img src="{{ project.image.url }}" width="240">
-                            <a href="{% url 'show_project' project.slug %}">{{ project.title }}</a></div>
+                        <div class="thumbnail">
+                                <img src="{{ project.image.url }}">
+                                <h1>{{ project.title }}</h1>
+                                <p class="keywords">{{ project.keywords }}</p>
+                                <p class="textinthumbnail">{{ project.description }}</p>
+                 
+                                <p><a href="{% url 'show_project' project.slug %}"><button>Visit Ad</button></a></p>
+                              </div>
                         {% endfor %}
                     </div>
                 </div>
@@ -145,8 +140,14 @@
                 <div class="panel-body">
                     <div class="portfolio-items text-center">
                         {% for service in resultsService %}
-                        <div><img src="{{ service.image.url }}" width="240">
-                            <a href="{% url 'show_service' service.slug %}">{{ service.title }}</a></div>
+                        <div class="thumbnail">
+                                <img src="{{ service.image.url }}">
+                                <h1>{{ service.title }}</h1>
+                                <p class="keywords">{{ service.keywords }}</p>
+                                <p class="textinthumbnail">{{ service.description }}</p>
+                 
+                                <p><a href="{% url 'show_service' service.slug %}"><button>Visit Ad</button></a></p>
+                              </div>
                         {% endfor %}
                     </div>
                 </div>

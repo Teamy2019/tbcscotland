@@ -17,41 +17,14 @@
 <ul>
     {% for lend in lend_and_sell %}
     <br>
-    <div class="row">
-    <div class="col-xs-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">{{ lend.title }}</div>
-                <div class="panel-body">
-                        <div class="col-sm-4 profile_image">
-                                {% if lend.image %}
-                                    <div><img src="{{ lend.image.url }}" width="240"></div>
-                                {% else %}
-                                    <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}"  alt="">
-                                {% endif %} 
-                            </div>
-                            {% if lend.keywords %}
-                            <strong>Keywords</strong>
-                            <br>
-                            <span class="badge badge-secondary">{{ lend.keywords }}</span>
-                            <br>
-                            {% endif %}
-                            <br>
-                            <strong>Description</strong>
+    <div class="thumbnail">
+            <img src="{{ lend.image.url }}">
+            <h1>{{ lend.title }}</h1>
+            <p class="keywords">{{ lend.keywords }}</p>
+            <p class="textinthumbnail">{{ lend.description }}</p>
 
-                        {% if lend.description %}
-                        <div>{{ lend.description }}</div>
-                            <br>
-                        {% else %}
-                            <div>{{ lend.profile }} has not added in their 'Description' section yet!</div>
-                            <br>
-                    {% endif %}
-                    Ad posted by {{ lend.profile }}
-                    <br>
-                    <a href="{% url 'show_lendandsell' lend.slug %}">Visit the ad</a>
-                </div>
-            </div>
-    </div>
-    </div>
+            <p><a href="{% url 'show_lendandsell' lend.slug %}"><button>Visit Ad</button></a></p>
+          </div>
     {% endfor %}
 </ul>
 {% endif %}

@@ -139,19 +139,23 @@ body {
 	overflow-y:hidden; 
 	overflow-x: hidden;
 }
-.profile {
-  display: grid;
-  grid-template-cloumns: repeat(auto-fit);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  max-height: 600px;
-  text-align: center;
+
+.thumbnail {
+	display: grid;
+
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  	max-width: 400px;
+  	text-align: center;
+	margin: auto;
+
 }
 
-.skills {
+.keywords {
   color: grey;
   font-size: 18px;
 }
+.imageinthumbnail{}
+
 .textinthumbnail{
   border: none;
   outline: 0;
