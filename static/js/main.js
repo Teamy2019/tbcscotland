@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $('.portfolio-items').slick({
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 3,
     dots: true,
     centerMode: true,
