@@ -41,19 +41,19 @@ def populate():
     ]
 
     sample_L_and_S = [
-        {"title": "Guitar", "description": "7 stringed guitar for sale.", "price": "£75", "availability": "Now", "keywords" : "guitar, 7, strings, sale"},
-        {"title": "Effects Pedal", "description": "Cool effects pedal to borrow.", "price": "£0", "availability": "Weekends", "keywords" : "weekends, pedal, effects pedal, guitar, lend"}
+        {"username" : "encyclopediatax", "title": "Guitar", "description": "7 stringed guitar for sale.", "price": "£75", "availability": "Now", "keywords" : "guitar, 7, strings, sale"},
+        {"username" : "guillotinetv", "title": "Effects Pedal", "description": "Cool effects pedal to borrow.", "price": "£0", "availability": "Weekends", "keywords" : "weekends, pedal, effects pedal, guitar, lend"}
     ]
 
 
     sample_services = [
-        {"title": "Piano lessons", "description": "Fun and helpful piano tutor", "price": "£10 per hour", "availability": "Evenings only, once or twice per week", "keywords": "Piano, tutoring, weekly", "location": "Glasgow" },
-        {"title": "Sound technician", "description": "Experienced freelance technician looking for projects", "price": "Negotiable", "availability": "Evenings and weekends only", "keywords": "Technician, experienced, freelance", "location": "Edinburgh"}
+        {"username" : "encyclopediatax", "title": "Piano lessons", "description": "Fun and helpful piano tutor", "price": "£10 per hour", "availability": "Evenings only, once or twice per week", "keywords": "Piano, tutoring, weekly", "location": "Glasgow" },
+        {"username" : "guillotinetv", "title": "Sound technician", "description": "Experienced freelance technician looking for projects", "price": "Negotiable", "availability": "Evenings and weekends only", "keywords": "Technician, experienced, freelance", "location": "Edinburgh"}
     ]
     
     sample_projects = [
-        {"title": "Sound art festival", "description": "A new and exciting sound art festival looking for participants", "lookingFor": "Artists and experimental musicians", "timeline": "Accepting proposals throughout May", "keywords": "Sound art, festival"},
-        {"title": "Short film - drama", "description": "Recent RCS graduate looking for volunteers to help complete a short film", "lookingFor": "Looking for actors and editors", "timeline": "Looking to finish cast before commencing principle shoots next month, editing timeline a bit more flexible", "keywords": "Film, actors, editors"}
+        {"username" : "encyclopediatax", "title": "Sound art festival", "description": "A new and exciting sound art festival looking for participants", "lookingfor": "Artists and experimental musicians", "timeline": "Accepting proposals throughout May", "keywords": "Sound art, festival"},
+        {"username" : "guillotinetv", "title": "Short film - drama", "description": "Recent RCS graduate looking for volunteers to help complete a short film", "lookingfor": "Looking for actors and editors", "timeline": "Looking to finish cast before commencing principle shoots next month, editing timeline a bit more flexible", "keywords": "Film, actors, editors"}
     ]
 
 
@@ -61,8 +61,18 @@ def populate():
         user = add_user(u['username'], u['password'], u['email'])
         for p in profile_list:
             if user.username == p['username']: 
-                add_profile(user, p["username"], p["firstname"], p["lastname"], p["profession"], p["skills"], p["education"], p["aboutme"], p["location"])
+                profile = add_profile(user, p["username"], p["firstname"], p["lastname"], p["profession"], p["skills"], p["education"], p["aboutme"], p["location"])
+                for l in sample_L_and_S:
+                    if user.username == l['username']:
+                        add_L_and_S(profile, l['title'], l['description'], l['price'], l['availability'], l['keywords'])
 
+                for s in sample_services:
+                    if user.username == s['username']:
+                        add_services(profile, s['title'], s['description'], s['price'], s['availability'], s['keywords'], s['location'])
+
+                for pr in sample_projects:
+                    if user.username == pr['username']:
+                        add_project(profile, pr['title'], pr['description'], pr['lookingfor'], pr['timeline'], pr['keywords'])
 
 
         # for p in profile_list:
@@ -75,7 +85,7 @@ def populate():
         # for service in sample_services:
         #     add_services(profile, service["title"], service["description"], service["price"], service["availability"], service["keywords"], service["location"])
         # for projects in sample_projects:
-        #     add_project(profile, projects["title"], projects["description"], projects["lookingFor"], projects["timeline"], projects["keywords"])
+        #     add_project(profile, projects["title"], projects["description"], projects["lookingfor"], projects["timeline"], projects["keywords"])
         
 def add_L_and_S(profile, title, description, price, availability, keywords):
     l = LendAndSell.objects.get_or_create(
@@ -102,14 +112,14 @@ def add_services(profile, title, description, price, availability, keywords, loc
     s.save()
     return s
 
-def add_project(profile, title, description, lookingFor, timeline, keywords):
+def add_project(profile, title, description, lookingfor, timeline, keywords):
     p = Projects.objects.get_or_create(
                                     title=title,
                                     profile=profile
                                     )[0]
     p.title=title
     p.description=description
-    p.lookingFor=lookingFor
+    p.lookingfor=lookingfor
     p.timeline=timeline
     p.keywords=keywords
     p.save()
