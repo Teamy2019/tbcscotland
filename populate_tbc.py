@@ -42,18 +42,30 @@ def populate():
 
     sample_L_and_S = [
         {"title": "Guitar", "description": "7 stringed guitar for sale.", "price": "£75", "availability": "Now", "keywords" : "guitar, 7, strings, sale"},
-        {"title": "Effects Pedal", "description": "Cool effects pedal to borrow.", "price": "£0", "availability": "Weekends", "keywords" : "weekends, pedal, effects pedal, guitar, lend"}
+        {"title": "Effects Pedal", "description": "Cool effects pedal to borrow.", "price": "£0", "availability": "Weekends", "keywords" : "weekends, pedal, effects pedal, guitar, lend"},
+        {"title": "In Search of Lost Books?", "description": "I'm moving house and don't have anywhere to put my full collection of Proust's 'In Search of Lost Time', would anyone like to take it of my hands? It's a really great book.", "price": "Negotiable", "availability": "Before Tuesday 3rd March", "keywords": "Proust books giveaway"},
+        {"title": "Amp", "description": "I have an amp that I rarely use anymore, would anyone like to borrow it? I'm only really using it for band practice twice a week and at the occasional gig, so it's available for short loans quite often." "price": "free to hire", "availability": "Short loans only", "keywords": "Amp Free Short Loans"},
+        {"title": "Spare Paint Suppies", "description": "I'm moving house and need to offload some painting supplies I've gathered over the years! I've got brushes, canvas, and thinner. Get in touch if you'd like to know more!" "price": "Depends on item", "availability": "Until May", "keywords": "paint supplies"},
+        {"title": "Father Time", "description": "Selling my painting 'Father Time', part of my series 'The Fathers Of Us All'.", "price": "£200 or next best offer", "availability": "Available now", "keywords": "Painting Father Time"},
+        {"title": "Marrow", "description": "My sculpture 'Marrow' is now for sale after working on it for ten years. It features actual bone marrow, don't ask how I got it!", "price": "£10000", "availability": "Now until forever", "keywords": "Scultpure metal rods Marrow marrow art"},
+        {"title": "Space Between Plates", "description": "Here is an example of my work, the sculpture 'Space Between Plates'. This piece is for sale. Please contact me if you'd like ot purchase, or view my other work.", "price": "£350", "availability": "Now", "keywords": "sculpture spaces plates"},
     ]
 
 
     sample_services = [
         {"title": "Piano lessons", "description": "Fun and helpful piano tutor", "price": "£10 per hour", "availability": "Evenings only, once or twice per week", "keywords": "Piano, tutoring, weekly", "location": "Glasgow" },
-        {"title": "Sound technician", "description": "Experienced freelance technician looking for projects", "price": "Negotiable", "availability": "Evenings and weekends only", "keywords": "Technician, experienced, freelance", "location": "Edinburgh"}
+        {"title": "Sound technician", "description": "Experienced freelance technician looking for projects", "price": "Negotiable", "availability": "Evenings and weekends only", "keywords": "Technician, experienced, freelance", "location": "Edinburgh"},
+        {"title": "Editor", "description": "Experinced manuscript editor seeking clients. I am very flexible with timelines and have managed lots of projects before. I edited Paradise Lost. Contact me to find out how it ends.", "price": "Negotiable", "availability": "Part time hours only", "keywords": "Editor writing", "location": "Edinburgh"},
+        {"title": "Set Designer": "description": "I have designed many sets in my time and I would love nothing more than to design yours. I live to design sets.", "availability": "All the time", "keywords": "Set Design", "location": "Partick"},
+        {"title": "Muse", "description": "I have seven years experence as an artist's muse, currently seeking a new opportunity. I can provide a sultry escape from your life and the promise of something better yet ultimately deliciously unattainable. Find out more today!", "availability": "When I choose", "keywords": "What are you waiting for?"},
     ]
     
     sample_projects = [
         {"title": "Sound art festival", "description": "A new and exciting sound art festival looking for participants", "lookingFor": "Artists and experimental musicians", "timeline": "Accepting proposals throughout May", "keywords": "Sound art, festival"},
-        {"title": "Short film - drama", "description": "Recent RCS graduate looking for volunteers to help complete a short film", "lookingFor": "Looking for actors and editors", "timeline": "Looking to finish cast before commencing principle shoots next month, editing timeline a bit more flexible", "keywords": "Film, actors, editors"}
+        {"title": "Short film - drama", "description": "Recent RCS graduate looking for volunteers to help complete a short film", "lookingFor": "Looking for actors and editors", "timeline": "Looking to finish cast before commencing principle shoots next month, editing timeline a bit more flexible", "keywords": "Film, actors, editors"},
+        {"title": "City-wide festival", "description": "Glasgow-based music festival. YOu probably haven't heard of us, but we've been going for years. We only put on cool tunes, don't make requests. We will change your fucking life.", "lookingFor": "punters and musicians", "timeline": "We will surprise you", "keywords": "cool sound festival"},
+        {"title": "Experimental Theatre Production", "description": "I lost a bet and now I have to put on a play next week. I though it would be funnier to make it crazy and weird, anyone into that?", "lookingFor": "Fellow collaborators - HAHAHA", "keywords": "theatre experimental play"},
+        {"title": "Twelfth Night", "description": "AmDram production of The Bard's Best Play (I'll fight anyone who says otherwise!) We're looking for Malvolio, have you seen him?", "lookingFor": "Actor capable of conveying Malvolio's characteristics", "timeline": "Sometime this week would be preferable!", "keywords": "art culture Shakespeare Twelfth Night Malvolio"},
     ]
 
 
