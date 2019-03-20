@@ -2,30 +2,104 @@
 {% load staticfiles %}
 
 {% block body_block %}
-        {% if service_ad %}
-        <h1>{{ service_ad.title }}</h1>
-        <div>
-            {{ service_ad.description }}
-        </div>
-        <div>
-            {{ service_ad.keywords }}
-        </div>
-        <div>
-            {% if service_ad.location %}
-            {{ service_ad.location }}
-        <div>
-            {% if service_ad.image %}
-            <img src="{{ service_ad.image.url }}" width="240">
-            {% endif %}
-        </div>
-            {% else %}
-            <strong>No Location!</strong>
-            {% endif %}
-        </div>
-        {% else %}
-        <strong>No Ad!</strong>
-        {% endif %}
+<div class="container container_body">
+
+            <div class="col-xs-4">
+                    {% if service_ad.image %}
+                        <div>
+                            <img src="{{ service_ad.image.url }}" width="100%">
+                        </div>
+                    {% endif %}
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <strong>Keywords</strong>
+                            <br>
+                            {% if service_ad.keywords %}
+                            <span class="badge badge-secondary">{{ service_ad.keywords }}</span>
+                            {% else %}
+                            <div>User {{ service_ad.profile }} has not added in their 'Keywords' section yet!</div>
+                            {% endif %}
+                            <br>
+                            <hr class="style1">
+                            <strong>Availability</strong>
+                            {% if service_ad.availability %}
+                                <div>{{ service_ad.availability }}</div>
+                            {% else %}
+                                <div>User {{ service_ad.profile }} has not added in their 'Availability' section yet!</div>
+                            {% endif %}
+                            {% if lend_ad.price %}
+
+                            <hr class="style1">
+                            <strong>Price</strong>
+                                <div>{{ lend_ad.price }}</div>
+                            {% endif %}
+                            <br>
+                            <hr class="style1">
+                            <strong>Location</strong>
+                            <div id="googleMap" style="width:100%;height:200px;">
+                                <script>
+                                    function myMap() {
+                                        var mapProp = {center:new google.maps.LatLng(55.8740524,-4.2921628),zoom:11};
+                                        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                                        var geocoder = new google.maps.Geocoder();
+                                        geocodeAddress(geocoder, map);
+                                    }
         
+                                    function geocodeAddress(geocoder, resultsMap) {
+                                        geocoder.geocode({'address' : "{{ service_ad.location }}"}, function(results, status) {
+                                            if (status === 'OK') {
+                                                resultsMap.setCenter(results[0].geometry.location);
+                                                var marker = new google.maps.Marker({
+                                                map: resultsMap,
+                                                position: results[0].geometry.location
+                                                });
+                                            } else {
+                                                alert('geocode not found for: ' + status);
+                                            }
+                                        });
+                                    }
+                                </script>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-8">
+                    <div>
+                            <h2>{{ service_ad.title }}</h2>
+                            <h3>Service</h3>
+                            {% if profile.firstname and profile.lastname %}
+                            <a href="{% url 'show_profile' profile.slug %}"><div class="keywords">{{ profile.firstname }} {{ profile.lastname }}</div></a>
+                            {% else %}
+                            <a href="{% url 'show_profile' profile.slug %}"><div class="keywords">{{ profile.username }}</div></a>
+                            {% endif %}
+
+                    </div>
+                        <div class="panel panel-default">
+                                <div class="panel-heading">Description</div>
+                                <div class="panel-body">
+                                    {% if lend_ad.description %}
+                                            <div>{{ lend_ad.description }}</div>
+                                        {% else %}
+                                            <div>User {{ lend_ad.profile }} has not added in their 'Description' section yet!</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        
+
+<!-- Comments from below -->
+        <hr>
+        {% if comments %}
+        {% for comment in comments %}
+            <div class="comment" >
+                <div class="date">{{ comment.created_date }}</div>
+                    <strong>{{ comment.author }}</strong>
+                    <p>{{ comment.comment }}</p>
+                </div>
+        {% endfor %} 
+        {% endif %}
+
         {% if user.is_authenticated %}
         <h2>Would you like to leave a comment?</h2>
         <form id="comment_form" method="POST" action="{% url 'show_service' service_ad.slug %}" enctypte="multipart/form-data">
@@ -34,17 +108,7 @@
         <input type="submit" name="submit" value"Comment" />
         </form>
         {% endif %}
+</div>
+</div>
 
-        <hr>
-        {% if comments %}
-        {% for comment in comments %}
-            <div class="comment">
-                <div class="date">{{ comment.created_date }}</div>
-                    <strong>{{ comment.author }}</strong>
-                    <p>{{ comment.comment }}</p>
-                </div>
-        {% endfor %} 
-        {% else %} 
-        <p>No comments here yet :(</p>
-        {% endif %}
 {% endblock %}

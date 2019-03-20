@@ -262,7 +262,7 @@ def post_lendAndSell(request):
             if 'image' in request.FILES:
                 lendandsell.image = request.FILES['image']
             lendandsell.save()
-            context_dict = {'lendandsell': lendandsell}
+            context_dict = {'ad_slug': lendandsell.slug, 'category': "lendandsell"}
             return ad_posted(request, context_dict)
         else:
             print(lendAndSell_form.errors)
@@ -281,7 +281,7 @@ def post_project(request):
             if 'image' in request.FILES:
                 project.image = request.FILES['image']
             project.save()
-            context_dict = {'project': project}
+            context_dict = {'ad_slug': project.slug, 'category': "projects"}
             return ad_posted(request, context_dict)
 
         else:
@@ -303,7 +303,7 @@ def post_service(request):
                 service.image = request.FILES['image']
 
             service.save()
-            context_dict = {'service': service}
+            context_dict = {'ad_slug': service.slug, 'category': "services"}
             return ad_posted(request, context_dict)
         else:
             print(service_form.errors)
@@ -373,17 +373,21 @@ def editprofile(request):
     form = ProfileForm(instance=profile)
 
     if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=profile)
-        if form.is_valid():
 
-            if 'image' in request.FILES:
-                profile.image = request.FILES['image']
+        profile.firstname = request.POST.get('firstname')
+        profile.lastname = request.POST.get('lastname')
+        profile.profession = request.POST.get('profession')
+        profile.location = request.POST.get('location')
+        profile.skills = request.POST.get('skillsSection')
+        profile.education = request.POST.get('educationSection')
+        profile.aboutme = request.POST.get('aboutSection')
 
-            profile.save()
-            edited = True
+        if 'image' in request.FILES:
+            profile.image = request.FILES['uploadprofilepicture']
 
-        else:
-            print(form.errors)
+        profile.save()
+        edited = True
+
     context_dict = {'form': form, 'profile': profile, 'edited': edited}
 
     return render(request, 'tbc/editprofile.html', context_dict)

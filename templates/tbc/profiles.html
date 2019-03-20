@@ -1,31 +1,31 @@
 {% extends 'tbc/base.html' %}
 {% load staticfiles %}
 
-{% block extrahead %}
-<style>
-    #profileBox {
-        width: 180px;
-        height: 200px;
-        border: 2px solid black;
-        border-radius: 0px;
-    } 
-</style>
-{% endblock %}
 
 {% block body_block %}
 
 
     {% if profiles %}
+
+    <div class="row">
+
         {% for profile in profiles %}
-        <br>
-        <div class="thumbnail">
-                <img src="{{ profile.image.url }}" style="width:100%;">
-                <h1>{{ profile.username }}</h1>
-                <p class="keywords">{{ profile.profession }}</p>
-                <p class="textinthumbnail">{{ profile.aboutme }}</p>
- 
-                <p><a href="{% url 'show_profile' profile.slug %}"><button>Visit Profile</button></a></p>
-              </div>
+        <div class="col-md-3">
+                <br>
+                <div class="thumbnail">
+                        <img src="{{ profile.image.url }}" style="width:100%; height:50%;">
+                        <h1>{{ profile.username }}</h1>
+                        <p class="keywords">{{ profile.profession }}</p>
+                        <p class="textinthumbnail">{{ profile.aboutme }}</p>
+         
+                        <p><a href="{% url 'show_profile' profile.slug %}"><button>Visit Profile</button></a></p>
+                      </div>
+                      </div>
+                    {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+                      </div><div class="row">
+                    {% endif %}
+        </div>
+       
 
         {% endfor %}
     {% endif %}

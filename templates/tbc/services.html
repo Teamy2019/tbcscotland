@@ -1,41 +1,38 @@
 {% extends 'tbc/base.html' %}
 {% load staticfiles %}
 
-{% block extrahead %}
-<style>
-    #servicesBox {
-        width: 180px;
-        height: 200px;
-        border: 2px solid black;
-        border-radius: 0px;
-    } 
-</style>
-{% endblock %}
 
 {% block body_block %}
-{% if services %}
-<ul>
+
+<div class="row">
+
         {% for service in services %}
-        <br>
-        <div class="thumbnail">
-                <img src="{{ service.image.url }}">
-                <h1>{{ service.title }}</h1>
-                <p class="keywords">{{ service.keywords }}</p>
-                <p class="textinthumbnail">{{ service.description }}</p>
- 
-                <p><a href="{% url 'show_service' service.slug %}"><button>Visit Ad</button></a></p>
-              </div>
+        <div class="col-md-3">
+                <br>
+                <div class="thumbnail">
+                        <img src="{{ service.image.url }}" style="width:100%; max-height:50%;">
+                        <h1>{{ service.title }}</h1>
+                        <p class="keywords">{{ service.keywords }}</p>
+                        <p class="textinthumbnail">{{ service.description }}</p>
+         
+                        <p><a href="{% url 'show_service' service.slug %}"><button>Visit Ad</button></a></p>
+                      </div>
+                      </div>
+                    {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+                      </div><div class="row">
+                    {% endif %}
+        </div>
+       
+
         {% endfor %}
-    </ul>
-</div>
-{% endif %}
+
 
     <div>
         {% if user.is_authenticated %}
-        <a href="/tbc/postservice/">Post your own ad here!</a>
+        <a href="{% url 'post_service' %}"><div class="keywords">Post your own ad here!</div></a>
         {% endif %}
     </div>
-</div>
+<div class="row">
 <div class="pagination">
         <span class="step-links">
             {% if services.has_previous %}
@@ -53,4 +50,5 @@
             </span>
         </span>
     </div>
+</div>
 {% endblock %}

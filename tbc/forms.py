@@ -74,7 +74,7 @@ class ServiceForm(forms.ModelForm):
         fields = ('title', 'image', 'description', 'price', 'availability', 'keywords', 'location')
 
 class CommentsForm(forms.ModelForm):
-    comment = forms.CharField(widget=forms.Textarea, required=True)
+    comment = forms.CharField(max_length=256, required=True)
     # date_created = forms.DateField(widget=forms.HiddenInput(), required=False)
     class Meta:
         model = Comments
