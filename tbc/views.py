@@ -150,7 +150,6 @@ def show_lendandsell(request, lendandsell_name_slug):
         lendandsell = LendAndSell.objects.get(slug=lendandsell_name_slug)
         comments = Comments.objects.filter(lendandsell=lendandsell)
         context_dict['lend_ad'] = lendandsell
-        context_dict['profile'] = Profile.objects.get(username=lendandsell.profile)
         context_dict['comments'] = comments
         context_dict['comment_form'] = CommentsForm()
 
@@ -192,7 +191,6 @@ def show_project(request, project_name_slug):
         comments = Comments.objects.filter(project=project)
         print(comments)
         context_dict['project_ad'] = project
-        context_dict['profile'] = Profile.objects.get(username=project.profile)
         context_dict['comments']= comments
         context_dict['comment_form'] = CommentsForm()
         if request.method == 'POST':
@@ -232,7 +230,6 @@ def show_service(request, service_name_slug):
         comments = Comments.objects.filter(service=service)
         context_dict['comments'] = comments
         context_dict['service_ad'] = service
-        context_dict['profile'] = Profile.objects.get(username=service.profile)
         context_dict['comment_form'] = CommentsForm()
         if request.method == 'POST':
             comment_form = CommentsForm(data=request.POST)
@@ -264,7 +261,7 @@ def post_lendAndSell(request):
             if 'image' in request.FILES:
                 lendandsell.image = request.FILES['image']
             lendandsell.save()
-            context_dict = {'lendandsell': lendandsell}
+            context_dict = {'ad_slug': lendandsell.slug, 'category': "lendandsell"}
             return ad_posted(request, context_dict)
         else:
             print(lendAndSell_form.errors)
@@ -283,7 +280,7 @@ def post_project(request):
             if 'image' in request.FILES:
                 project.image = request.FILES['image']
             project.save()
-            context_dict = {'project': project}
+            context_dict = {'ad_slug': project.slug, 'category': "projects"}
             return ad_posted(request, context_dict)
 
         else:
@@ -305,7 +302,7 @@ def post_service(request):
                 service.image = request.FILES['image']
 
             service.save()
-            context_dict = {'service': service}
+            context_dict = {'ad_slug': service.slug, 'category': "services"}
             return ad_posted(request, context_dict)
         else:
             print(service_form.errors)
@@ -375,17 +372,21 @@ def editprofile(request):
     form = ProfileForm(instance=profile)
 
     if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=profile)
-        if form.is_valid():
 
-            if 'image' in request.FILES:
-                profile.image = request.FILES['image']
+        profile.firstname = request.POST.get('firstname')
+        profile.lastname = request.POST.get('lastname')
+        profile.profession = request.POST.get('profession')
+        profile.location = request.POST.get('location')
+        profile.skills = request.POST.get('skillsSection')
+        profile.education = request.POST.get('educationSection')
+        profile.aboutme = request.POST.get('aboutSection')
 
-            profile.save()
-            edited = True
+        if 'image' in request.FILES:
+            profile.image = request.FILES['uploadprofilepicture']
 
-        else:
-            print(form.errors)
+        profile.save()
+        edited = True
+
     context_dict = {'form': form, 'profile': profile, 'edited': edited}
 
     return render(request, 'tbc/editprofile.html', context_dict)
