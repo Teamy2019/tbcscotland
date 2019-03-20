@@ -149,9 +149,11 @@ def show_lendandsell(request, lendandsell_name_slug):
     try:
         lendandsell = LendAndSell.objects.get(slug=lendandsell_name_slug)
         comments = Comments.objects.filter(lendandsell=lendandsell)
+        profile = Profile.objects.get(username=lendandsell.profile)
         context_dict['lend_ad'] = lendandsell
         context_dict['comments'] = comments
         context_dict['comment_form'] = CommentsForm()
+        context_dict['profile'] = profile
 
         if request.method == 'POST':
             comment_form = CommentsForm(data=request.POST)
@@ -189,10 +191,11 @@ def show_project(request, project_name_slug):
     try:
         project = Projects.objects.get(slug=project_name_slug)
         comments = Comments.objects.filter(project=project)
-        print(comments)
+        profile = Profile.objects.get(username=project.profile)
         context_dict['project_ad'] = project
         context_dict['comments']= comments
         context_dict['comment_form'] = CommentsForm()
+        context_dict['profile'] = profile
         if request.method == 'POST':
             comment_form = CommentsForm(data=request.POST)
             if comment_form.is_valid():
@@ -228,9 +231,11 @@ def show_service(request, service_name_slug):
     try:
         service = Service.objects.get(slug=service_name_slug)
         comments = Comments.objects.filter(service=service)
+        profile = Profile.objects.get(username=service.profile)
         context_dict['comments'] = comments
         context_dict['service_ad'] = service
         context_dict['comment_form'] = CommentsForm()
+        context_dict['profile'] = profile
         if request.method == 'POST':
             comment_form = CommentsForm(data=request.POST)
             if comment_form.is_valid():
