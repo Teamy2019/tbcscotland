@@ -41,40 +41,56 @@ def populate():
     ]
 
     sample_L_and_S = [
-        {"title": "Guitar", "description": "7 stringed guitar for sale.", "price": "£75", "availability": "Now", "keywords" : "guitar, 7, strings, sale"},
-        {"title": "Effects Pedal", "description": "Cool effects pedal to borrow.", "price": "£0", "availability": "Weekends", "keywords" : "weekends, pedal, effects pedal, guitar, lend"},
-        {"title": "In Search of Lost Books?", "description": "I'm moving house and don't have anywhere to put my full collection of Proust's 'In Search of Lost Time', would anyone like to take it of my hands? It's a really great book.", "price": "Negotiable", "availability": "Before Tuesday 3rd March", "keywords": "Proust books giveaway"},
-        {"title": "Amp", "description": "I have an amp that I rarely use anymore, would anyone like to borrow it? I'm only really using it for band practice twice a week and at the occasional gig, so it's available for short loans quite often." "price": "free to hire", "availability": "Short loans only", "keywords": "Amp Free Short Loans"},
-        {"title": "Spare Paint Suppies", "description": "I'm moving house and need to offload some painting supplies I've gathered over the years! I've got brushes, canvas, and thinner. Get in touch if you'd like to know more!" "price": "Depends on item", "availability": "Until May", "keywords": "paint supplies"},
-        {"title": "Father Time", "description": "Selling my painting 'Father Time', part of my series 'The Fathers Of Us All'.", "price": "£200 or next best offer", "availability": "Available now", "keywords": "Painting Father Time"},
-        {"title": "Marrow", "description": "My sculpture 'Marrow' is now for sale after working on it for ten years. It features actual bone marrow, don't ask how I got it!", "price": "£10000", "availability": "Now until forever", "keywords": "Scultpure metal rods Marrow marrow art"},
-        {"title": "Space Between Plates", "description": "Here is an example of my work, the sculpture 'Space Between Plates'. This piece is for sale. Please contact me if you'd like ot purchase, or view my other work.", "price": "£350", "availability": "Now", "keywords": "sculpture spaces plates"},
+<<<<<<< heard
+        {"username" : "encyclopediatax", "title": "Guitar", "description": "7 stringed guitar for sale.", "price": "£75", "availability": "Now", "keywords" : "guitar, 7, strings, sale"},
+        {"username" : "guillotinetv", "title": "Effects Pedal", "description": "Cool effects pedal to borrow.", "price": "£0", "availability": "Weekends", "keywords" : "weekends, pedal, effects pedal, guitar, lend"}
+        {"username" : "duskcreen", "title": "In Search of Lost Books?", "description": "I'm moving house and don't have anywhere to put my full collection of Proust's 'In Search of Lost Time', would anyone like to take it of my hands? It's a really great book.", "price": "Negotiable", "availability": "Before Tuesday 3rd March", "keywords": "Proust books giveaway"},
+        {"username" : "unifrormsalon", "title": "Amp", "description": "I have an amp that I rarely use anymore, would anyone like to borrow it? I'm only really using it for band practice twice a week and at the occasional gig, so it's available for short loans quite often." "price": "free to hire", "availability": "Short loans only", "keywords": "Amp Free Short Loans"},
+        {"username" : "uniformsalon", "title": "Spare Paint Suppies", "description": "I'm moving house and need to offload some painting supplies I've gathered over the years! I've got brushes, canvas, and thinner. Get in touch if you'd like to know more!" "price": "Depends on item", "availability": "Until May", "keywords": "paint supplies"},
+        {"username" : "beachseed", "title": "Father Time", "description": "Selling my painting 'Father Time', part of my series 'The Fathers Of Us All'.", "price": "£200 or next best offer", "availability": "Available now", "keywords": "Painting Father Time"},
+        {"username" : "flowerpothail", "title": "Marrow", "description": "My sculpture 'Marrow' is now for sale after working on it for ten years. It features actual bone marrow, don't ask how I got it!", "price": "£10000", "availability": "Now until forever", "keywords": "Scultpure metal rods Marrow marrow art"},
+        {"username" : "robotbreath", "title": "Space Between Plates", "description": "Here is an example of my work, the sculpture 'Space Between Plates'. This piece is for sale. Please contact me if you'd like ot purchase, or view my other work.", "price": "£350", "availability": "Now", "keywords": "sculpture spaces plates"},
     ]
 
 
     sample_services = [
-        {"title": "Piano lessons", "description": "Fun and helpful piano tutor", "price": "£10 per hour", "availability": "Evenings only, once or twice per week", "keywords": "Piano, tutoring, weekly", "location": "Glasgow" },
-        {"title": "Sound technician", "description": "Experienced freelance technician looking for projects", "price": "Negotiable", "availability": "Evenings and weekends only", "keywords": "Technician, experienced, freelance", "location": "Edinburgh"},
-        {"title": "Editor", "description": "Experinced manuscript editor seeking clients. I am very flexible with timelines and have managed lots of projects before. I edited Paradise Lost. Contact me to find out how it ends.", "price": "Negotiable", "availability": "Part time hours only", "keywords": "Editor writing", "location": "Edinburgh"},
-        {"title": "Set Designer": "description": "I have designed many sets in my time and I would love nothing more than to design yours. I live to design sets.", "availability": "All the time", "keywords": "Set Design", "location": "Partick"},
-        {"title": "Muse", "description": "I have seven years experence as an artist's muse, currently seeking a new opportunity. I can provide a sultry escape from your life and the promise of something better yet ultimately deliciously unattainable. Find out more today!", "availability": "When I choose", "keywords": "What are you waiting for?"},
+        {"username" : "encyclopediatax", "title": "Piano lessons", "description": "Fun and helpful piano tutor", "price": "£10 per hour", "availability": "Evenings only, once or twice per week", "keywords": "Piano, tutoring, weekly", "location": "Glasgow" },
+        {"username" : "guillotinetv", "title": "Sound technician services", "description": "Experienced freelance technician looking for projects", "price": "Negotiable", "availability": "Evenings and weekends only", "keywords": "Technician, experienced, freelance", "location": "Aberdeen"},
+        {"username" : "duskscreen", "title": "Camera work", "description": "Experienced freelance cameraperson looking to help YOU make a movie!", "price": "Negotiable", "availability": "Evenings only", "keywords": "cool, cameraperson, strong, experienced, freelance", "location": "Montrose"},
+        {"username" : "tunnelenzyme", "title": "Stuntperson", "description": "Amazing stunts NO TIMEWASTERS. CALL NOW FOR a freelance stuntperson looking cool action movie projects", "price": "£100 per hour", "availability": "Anytime", "keywords": "stunt, stunts, cool, movies, experienced, freelance", "location": "Townhead"},
+        {"username" : "uniformsalon", "title": "Kiln for hire", "description": "Make pottery with me and my kiln!", "price": "£1 a pot", "availability": "Anytime", "keywords": "potter, pottery, freelance", "location": "Moffat"}
+        {"username" : "rosesthunder", "title": "Editor", "description": "Experinced manuscript editor seeking clients. I am very flexible with timelines and have managed lots of projects before. I edited Paradise Lost. Contact me to find out how it ends.", "price": "Negotiable", "availability": "Part time hours only", "keywords": "Editor writing", "location": "Edinburgh"},
+        {"username" : "loompromotion", "title": "Set Designer": "description": "I have designed many sets in my time and I would love nothing more than to design yours. I live to design sets.", "availability": "All the time", "keywords": "Set Design", "location": "Partick"},
+        {"username" : "balconyrain", "title": "Muse", "description": "I have seven years experence as an artist's muse, currently seeking a new opportunity. I can provide a sultry escape from your life and the promise of something better yet ultimately deliciously unattainable. Find out more today!", "availability": "When I choose", "keywords": "What are you waiting for?"},
     ]
     
     sample_projects = [
-        {"title": "Sound art festival", "description": "A new and exciting sound art festival looking for participants", "lookingFor": "Artists and experimental musicians", "timeline": "Accepting proposals throughout May", "keywords": "Sound art, festival"},
-        {"title": "Short film - drama", "description": "Recent RCS graduate looking for volunteers to help complete a short film", "lookingFor": "Looking for actors and editors", "timeline": "Looking to finish cast before commencing principle shoots next month, editing timeline a bit more flexible", "keywords": "Film, actors, editors"},
-        {"title": "City-wide festival", "description": "Glasgow-based music festival. YOu probably haven't heard of us, but we've been going for years. We only put on cool tunes, don't make requests. We will change your fucking life.", "lookingFor": "punters and musicians", "timeline": "We will surprise you", "keywords": "cool sound festival"},
-        {"title": "Experimental Theatre Production", "description": "I lost a bet and now I have to put on a play next week. I though it would be funnier to make it crazy and weird, anyone into that?", "lookingFor": "Fellow collaborators - HAHAHA", "keywords": "theatre experimental play"},
-        {"title": "Twelfth Night", "description": "AmDram production of The Bard's Best Play (I'll fight anyone who says otherwise!) We're looking for Malvolio, have you seen him?", "lookingFor": "Actor capable of conveying Malvolio's characteristics", "timeline": "Sometime this week would be preferable!", "keywords": "art culture Shakespeare Twelfth Night Malvolio"},
+        {"username" : "encyclopediatax", "title": "Sound art festival", "description": "A new and exciting sound art festival looking for participants", "lookingfor": "Artists and experimental musicians", "timeline": "Accepting proposals throughout May", "keywords": "Sound art, festival"},
+        {"username" : "guillotinetv", "title": "Short film - drama", "description": "Recent RCS graduate looking for volunteers to help complete a short film", "lookingfor": "Looking for actors and editors", "timeline": "Looking to finish cast before commencing principle shoots next month, editing timeline a bit more flexible", "keywords": "Film, actors, editors"}
+        {"username" : "duskcreen", "title": "City-wide festival", "description": "Glasgow-based music festival. YOu probably haven't heard of us, but we've been going for years. We only put on cool tunes, don't make requests. We will change your fucking life.", "lookingFor": "punters and musicians", "timeline": "We will surprise you", "keywords": "cool sound festival"},
+        {"username" : "duskcreen", "title": "Experimental Theatre Production", "description": "I lost a bet and now I have to put on a play next week. I though it would be funnier to make it crazy and weird, anyone into that?", "lookingFor": "Fellow collaborators - HAHAHA", "keywords": "theatre experimental play"},
+        {"username" : "loompromotion", "title": "Twelfth Night", "description": "AmDram production of The Bard's Best Play (I'll fight anyone who says otherwise!) We're looking for Malvolio, have you seen him?", "lookingFor": "Actor capable of conveying Malvolio's characteristics", "timeline": "Sometime this week would be preferable!", "keywords": "art culture Shakespeare Twelfth Night Malvolio"},
+
     ]
+
 
 
     for u in user_list:
         user = add_user(u['username'], u['password'], u['email'])
         for p in profile_list:
             if user.username == p['username']: 
-                add_profile(user, p["username"], p["firstname"], p["lastname"], p["profession"], p["skills"], p["education"], p["aboutme"], p["location"])
+                profile = add_profile(user, p["username"], p["firstname"], p["lastname"], p["profession"], p["skills"], p["education"], p["aboutme"], p["location"])
+                for l in sample_L_and_S:
+                    if user.username == l['username']:
+                        add_L_and_S(profile, l['title'], l['description'], l['price'], l['availability'], l['keywords'])
 
+                for s in sample_services:
+                    if user.username == s['username']:
+                        add_services(profile, s['title'], s['description'], s['price'], s['availability'], s['keywords'], s['location'])
+
+                for pr in sample_projects:
+                    if user.username == pr['username']:
+                        add_project(profile, pr['title'], pr['description'], pr['lookingfor'], pr['timeline'], pr['keywords'])
 
 
         # for p in profile_list:
@@ -87,7 +103,7 @@ def populate():
         # for service in sample_services:
         #     add_services(profile, service["title"], service["description"], service["price"], service["availability"], service["keywords"], service["location"])
         # for projects in sample_projects:
-        #     add_project(profile, projects["title"], projects["description"], projects["lookingFor"], projects["timeline"], projects["keywords"])
+        #     add_project(profile, projects["title"], projects["description"], projects["lookingfor"], projects["timeline"], projects["keywords"])
         
 def add_L_and_S(profile, title, description, price, availability, keywords):
     l = LendAndSell.objects.get_or_create(
@@ -114,14 +130,14 @@ def add_services(profile, title, description, price, availability, keywords, loc
     s.save()
     return s
 
-def add_project(profile, title, description, lookingFor, timeline, keywords):
+def add_project(profile, title, description, lookingfor, timeline, keywords):
     p = Projects.objects.get_or_create(
                                     title=title,
                                     profile=profile
                                     )[0]
     p.title=title
     p.description=description
-    p.lookingFor=lookingFor
+    p.lookingfor=lookingfor
     p.timeline=timeline
     p.keywords=keywords
     p.save()
