@@ -70,7 +70,9 @@ def populate():
         {"username" : "duskcreen", "title": "City-wide festival", "description": "Glasgow-based music festival. YOu probably haven't heard of us, but we've been going for years. We only put on cool tunes, don't make requests. We will change your fucking life.", "lookingFor": "punters and musicians", "timeline": "We will surprise you", "keywords": "cool sound festival"},
         {"username" : "duskcreen", "title": "Experimental Theatre Production", "description": "I lost a bet and now I have to put on a play next week. I though it would be funnier to make it crazy and weird, anyone into that?", "lookingFor": "Fellow collaborators - HAHAHA", "keywords": "theatre experimental play"},
         {"username" : "loompromotion", "title": "Twelfth Night", "description": "AmDram production of The Bard's Best Play (I'll fight anyone who says otherwise!) We're looking for Malvolio, have you seen him?", "lookingFor": "Actor capable of conveying Malvolio's characteristics", "timeline": "Sometime this week would be preferable!", "keywords": "art culture Shakespeare Twelfth Night Malvolio"},
-
+        {"username" : "duskscreen", "title": "Guiness World Record Attempt", "description": "Looking for people to take part in a human pyramid", "lookingfor": "Anyone <90kg", "timeline": "Accepting proposals throughout May", "keywords": "guinness, world, record, human, pyramid"},
+        {"username" : "flowerpothail", "title": "SHOOTING A MOVIE", "description": "My wife and I need a cameraperson for our movie project", "lookingfor": "Experienced cameraperson, over 3 years experience", "timeline": "This weekend", "keywords": "movie, film, art"},
+        {"username" : "robotbreath", "title": "BAKE OFF", "description": "Come and see if you can beat me in a BAKE OFF", "lookingfor": "Real bakers.", "timeline": "May", "keywords": "bake, off, bake off, cakes"}
     ]
 
 
