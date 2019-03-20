@@ -9,15 +9,51 @@
     <a href="{% url 'home' %}">Return to the homepage</a><br/>
     <a href="{% url 'show_profile' profile.slug %}">See your profile</a><br/>
   {% else %}
-    <strong>Sign up here</strong><br/>
-
     <form id="user_form" method="POST" action="{% url 'editprofile' %}"
       enctype="multipart/form-data">
+    {% csrf_token %}
 
-      {% csrf_token %}
+      <div class="row">
+        <div class="form-group col-lg-3">
+          <label for="Firstname">First Name:</label>
+          <input class="form-control" type="text" name="firstname" value="" id="Firstname" placeholder="e.g. 'John'">
+        </div>
+        <div class="form-group col-lg-3">
+          <label for="Lastname">Surname:</label>
+          <input class="form-control" type="text" name="lastname" value="" id="Lastname" placeholder="e.g. 'Smith'">
+        </div>
+        <div class="form-group col-lg-3">
+          <label for="Profession">Profession:</label>
+          <input class="form-control" type="text" name="profession" value="" id="Profession" placeholder="e.g. 'Sound Engineer'">
+        </div>
+        <div class="form-group col-lg-3">
+          <label for="Location">Location:</label>
+          <input class="form-control" type="text" name="location" value="" id="Location" placeholder="e.g. 'Glasgow'">
+        </div>
+      </div>
+        
+      <div class="row">
+        <div class="form-group col-lg-4">
+          <label for="Skills">Skills:</label>
+          <textarea class="form-control rounded-0" id="Skills" name="skillsSection" value="" rows="10" placeholder="e.g. 'John'"></textarea>
+        </div>
+        <div class="form-group col-lg-4">
+          <label for="Education">Education:</label>
+          <textarea class="form-control rounded-0" id="Education" name="educationSection" value="" rows="10" placeholder="e.g. 'John'"></textarea>
+        </div>
+        <div class="form-group col-lg-4">
+          <label for="AboutMe">About me:</label>
+          <textarea class="form-control rounded-0" id="AboutMe" name="aboutSection" value=""  rows="10" placeholder="e.g. 'John'"></textarea>
+        </div>
+      </div>
 
-      {{ form.as_p }}
-      <input type="submit" name="submit" value="Edit" />
+      <div class="row">
+        <div class="form-group col-lg-3">
+          <label for="ProfilePictureUpload">Upload a profile picture:</label>
+          <input type="file" class="form-control-file" name="uploadprofilepicture" value="" id="ProfilePictureUpload">
+        </div>
+        <button class="btn btn-primary" type="submit" name="edited" value="Edit">Edit</button>
+      </div>
     </form>
     {% endif %}
   </div>
