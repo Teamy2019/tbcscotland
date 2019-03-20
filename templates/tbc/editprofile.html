@@ -49,10 +49,9 @@
       <div class="row">
         <div class="form-group col-lg-3">
           <label for="ProfilePictureUpload">Upload a profile picture:</label>
-          <!-- <input type="file" class="form-control-file" name="uploadprofilepicture" value="{{ profile.image.url }}" id="ProfilePictureUpload"> -->
-        {{ csrf_tokent }}
-        {{ form.as_p }}
-        </div>
+          <input type="file" class="form-control-file" name="uploadprofilepicture" value="{{ profile.image.url }}" id="ProfilePictureUpload"> 
+
+        </div> 
         <button class="btn btn-primary" type="submit" name="edited" value="Edit">Edit</button>
       </div>
     </form>

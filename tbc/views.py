@@ -17,6 +17,7 @@ from django.core.mail import send_mail, BadHeaderError
 
 
 
+
 def home(request):
     # Line added to test cookies.
     request.session.set_test_cookie()
@@ -143,7 +144,6 @@ def lendandsell(request):
     return render(request, 'tbc/lendandsell.html', context_dict)
 
 
-#One instance of an ad here:
 def show_lendandsell(request, lendandsell_name_slug):
     context_dict = {}
 
@@ -252,25 +252,23 @@ def show_service(request, service_name_slug):
 
     return render(request, 'tbc/servicead.html', context_dict)
 
-
 @login_required
 def post_lendAndSell(request):
 
     if request.method == 'POST':
+        profile = Profile.objects.get(user=request.user)
+        lend = LendAndSell.objects.get_or_create(title=request.POST.get('title'), profile=profile)[0]
+        lend.description = request.POST.get('description')
+        lend.price = request.POST.get('price')
+        lend.availability = request.POST.get('availability')
+        lend.keywords = request.POST.get('keywords')
 
-        lendAndSell_form = LendAndSellForm(data=request.POST)
-        # added for testing - <<retrieve type of form from request objectprint>> (request.POST)
+        if 'uploadpicture' in request.FILES:
+            lend.image = request.FILES['uploadpicture']
+        lend.save()
+        context_dict = {'ad_slug': lend.slug, 'category': "lendandsell"}
+        return ad_posted(request, context_dict)
 
-        if lendAndSell_form.is_valid():
-            lendandsell = lendAndSell_form.save(commit=False)
-            lendandsell.profile = Profile.objects.get(user=request.user)
-            if 'image' in request.FILES:
-                lendandsell.image = request.FILES['image']
-            lendandsell.save()
-            context_dict = {'ad_slug': lendandsell.slug, 'category': "lendandsell"}
-            return ad_posted(request, context_dict)
-        else:
-            print(lendAndSell_form.errors)
     else:
         lendAndSell_form = LendAndSellForm()
 
@@ -279,39 +277,46 @@ def post_lendAndSell(request):
 @login_required
 def post_project(request):
     if request.method == 'POST':
-        project_form = ProjectForm(data=request.POST)
-        if project_form.is_valid():
-            project = project_form.save(commit=False)
-            project.profile = Profile.objects.get(user=request.user)
-            if 'image' in request.FILES:
-                project.image = request.FILES['image']
-            project.save()
-            context_dict = {'ad_slug': project.slug, 'category': "projects"}
-            return ad_posted(request, context_dict)
+        profile = Profile.objects.get(user=request.user)
+        project = Projects.objects.get_or_create(title=request.POST.get('title'), profile=profile)[0]
+        project.description = request.POST.get('description')
+        project.lookingFor = request.POST.get('lookingfor')
+        project.timeline = request.POST.get('timeline')
+        project.keywords = request.POST.get('keywords')
+        if 'pictureupload' in request.FILES:
+            project.image = request.FILES['pictureupload']
+        project.save()
+        context_dict = {'ad_slug': project.slug, 'category': "projects"}
+        return ad_posted(request, context_dict)
 
-        else:
-            print(project_form.errors)
     else:
         project_form = ProjectForm()
 
     return render(request, 'tbc/postproject.html', {'project_form': project_form})
-
+    
 @login_required
 def post_service(request):
     if request.method == 'POST':
-        service_form = ServiceForm(data=request.POST)
-        if service_form.is_valid():
-            service = service_form.save(commit=False)
-            service.profile = Profile.objects.get(user=request.user)
+        desc = request.POST.get('description')
+        print(desc)
+        profile = Profile.objects.get(user=request.user)
+        service = Service.objects.get_or_create(title=request.POST.get('title'), profile=profile, description=desc)[0]
+        #service.description = request.POST.get('description')
+        print(request.POST.get('description'))
 
-            if 'image' in request.FILES:
-                service.image = request.FILES['image']
+        service.price = request.POST.get('price')
+        service.keywords = request.POST.get('keywords')
+        service.location = request.POST.get('location')
+        service.availability = request.POST.get('availability')
 
-            service.save()
-            context_dict = {'ad_slug': service.slug, 'category': "services"}
-            return ad_posted(request, context_dict)
-        else:
-            print(service_form.errors)
+
+        if 'pictureupload' in request.FILES:
+            service.image = request.FILES['pictureupload']
+
+        service.save()
+        context_dict = {'ad_slug': service.slug, 'category': "services"}
+        return ad_posted(request, context_dict)
+
     else:
         service_form = ServiceForm()
     return render(request, 'tbc/postservice.html', {'service_form': service_form})
@@ -319,13 +324,9 @@ def post_service(request):
 @login_required
 def post_ad(request):
 
-    if request.method == 'POST':
-        print("Hello world")
-        #Do some stuff
-    else:
-        lendAndSell_form = LendAndSellForm()
-        project_form = ProjectForm()
-        service_form = ServiceForm()
+    lendAndSell_form = LendAndSellForm()
+    project_form = ProjectForm()
+    service_form = ServiceForm()
 
     return render(request, 'tbc/postad.html', {'lendAndSell_form': lendAndSell_form, 'project_form': project_form, 'service_form': service_form})
 
@@ -362,7 +363,6 @@ def signup(request):
         user_form = UserForm()
         profile_form = ProfileForm()
 
-    # Render the template depending on the context.
     return render(request,'tbc/signup.html', {'user_form': user_form,'profile_form': profile_form,'registered': registered})
 
 
@@ -373,8 +373,6 @@ def editprofile(request):
     # print(currUser.username)
     profile = Profile.objects.get(user=currUser)
     print(profile.skills)
-    # print(profile.username)
-    # print("The user name should be above me")
 
     form = ProfileForm(instance=profile)
 
@@ -388,14 +386,9 @@ def editprofile(request):
         profile.skills = request.POST.get('skills')
         profile.education = request.POST.get('education')
         profile.aboutme = request.POST.get('aboutme')
-        print(profile.skills)
-
-        if form.is_valid:
-                form = ProfileForm(data=request.POST)
-
-                if 'image' in request.FILES:
-                    profile.image = request.FILES['image']
-
+        if 'uploadprofilepicture' in request.FILES:
+            profile.image = request.FILES['uploadprofilepicture']
+ 
         profile.save()
         edited = True
 
