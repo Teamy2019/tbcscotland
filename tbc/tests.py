@@ -2,10 +2,10 @@ from django.contrib.staticfiles import finders
 from django.test import TestCase
 from tbc.models import Profile, LendAndSell
 from tbc.forms import CommentsForm
+from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 
 # Create your tests here.
-
 
 class ViewsCountTest(TestCase):
 
@@ -18,6 +18,14 @@ class ViewsCountTest(TestCase):
         user_profile.save()
 
         self.assertFalse((user_profile.views >= 0), True)
+
+
+class AnotherTest(TestCase):
+
+    def test_another_test(self):
+        response = self.client.get(reverse('post_project'))
+        # should equal 302 as this would be a redirect to login page
+        self.assertEqual(response.status_code, 302)
 
 
 class ProfileTest(TestCase):
