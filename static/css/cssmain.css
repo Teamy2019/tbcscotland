@@ -183,3 +183,8 @@ button {
 button:hover, a:hover {
   opacity: 0.7;
 }
+
+textarea  {
+	resize: vertical;
+    overflow: auto;
+}
