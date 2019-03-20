@@ -379,8 +379,7 @@ def editprofile(request):
     form = ProfileForm(instance=profile)
 
     if request.method == 'POST':
-
-
+        
         profile.firstname = request.POST.get('firstname')
         profile.lastname = request.POST.get('lastname')
         profile.profession = request.POST.get('profession')
@@ -388,11 +387,9 @@ def editprofile(request):
         profile.skills = request.POST.get('skills')
         profile.education = request.POST.get('education')
         profile.aboutme = request.POST.get('aboutme')
-        print(profile.skills)
 
         if form.is_valid:
-                form = ProfileForm(data=request.POST)
-
+            form = ProfileForm(data=request.POST)
                 if 'image' in request.FILES:
                     profile.image = request.FILES['image']
 
