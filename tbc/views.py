@@ -371,6 +371,7 @@ def editprofile(request):
     currUser = request.user
     # print(currUser.username)
     profile = Profile.objects.get(user=currUser)
+    print(profile.skills)
     # print(profile.username)
     # print("The user name should be above me")
 
@@ -378,16 +379,21 @@ def editprofile(request):
 
     if request.method == 'POST':
 
+
         profile.firstname = request.POST.get('firstname')
         profile.lastname = request.POST.get('lastname')
         profile.profession = request.POST.get('profession')
         profile.location = request.POST.get('location')
-        profile.skills = request.POST.get('skillsSection')
-        profile.education = request.POST.get('educationSection')
-        profile.aboutme = request.POST.get('aboutSection')
+        profile.skills = request.POST.get('skills')
+        profile.education = request.POST.get('education')
+        profile.aboutme = request.POST.get('aboutme')
+        print(profile.skills)
 
-        if 'image' in request.FILES:
-            profile.image = request.FILES['uploadprofilepicture']
+        if form.is_valid:
+                form = ProfileForm(data=request.POST)
+
+                if 'image' in request.FILES:
+                    profile.image = request.FILES['image']
 
         profile.save()
         edited = True
