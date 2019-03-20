@@ -112,7 +112,8 @@ def show_profile(request, profile_name_slug):
                 #get user's email when logged in
                 from_email = request.user.email
                 #get profile's email
-                to_email = profile.email
+                to_email = profile.user.email
+                #to_email = recipient.email
                 subject = contact_form.cleaned_data['subject']
                 message = contact_form.cleaned_data['message']
                 try:
@@ -120,7 +121,7 @@ def show_profile(request, profile_name_slug):
                 except BadHeaderError:
                     return HttpResponse('Invalid header found')
                 #popup message and close the window
-                return redirect('email_sent')
+                #return redirect('email_sent')
         else:
             contact_form = ContactForm()
 
