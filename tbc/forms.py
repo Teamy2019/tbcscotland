@@ -13,19 +13,19 @@ class UserForm(forms.ModelForm):
         fields = ('username', 'password')
 
 class ProfileForm(forms.ModelForm):
-    firstname = forms.CharField(max_length=128, required=False)
-    lastname = forms.CharField(max_length=128, required=False)
-    profession = forms.CharField(max_length=128, required=False)
+    firstname = forms.CharField(widget=forms.HiddenInput(), required=False)
+    lastname = forms.CharField(widget=forms.HiddenInput(), required=False)
+    profession = forms.CharField(widget=forms.HiddenInput(), required=False)
     image = forms.ImageField(required=False)
-    skills = forms.CharField(widget=forms.Textarea, required=False)
-    education = forms.CharField(widget=forms.Textarea(attrs={'rows': 2, 'cols': 40}), required=False)
+    skills = forms.CharField(widget=forms.HiddenInput(), required=False)
+    education = forms.CharField(widget=forms.HiddenInput(), required=False)
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
-    aboutme = forms.CharField(widget=forms.Textarea, required=False)
-    location = forms.CharField(max_length=128, required=False)
+    aboutme = forms.CharField(widget=forms.HiddenInput(), required=False)
+    location = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     class Meta:
         model = Profile
-        fields = ('firstname', 'lastname', 'profession', 'image', 'skills', 'education', 'aboutme', 'location')
+        fields = ('image',)
 
 
 class LendAndSellForm(forms.ModelForm):
