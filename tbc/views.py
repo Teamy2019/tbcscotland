@@ -97,33 +97,39 @@ def show_profile(request, profile_name_slug):
         context_dict['contact_form'] = ContactForm()
 
         if request.method == 'POST':
-            comment_form = CommentsForm(data=request.POST)
+            if request.POST.get('action', 'Comment'):
+                comment_form = CommentsForm(data=request.POST)
 
-            if comment_form.is_valid():
-                comment = comment_form.save(commit=False)
-                comment.author = request.user
-                comment.profile = profile
-                comment.save()
-            else:
-                print(comment_form.errors)
+                if comment_form.is_valid():
+                    comment = comment_form.save(commit=False)
+                    comment.author = request.user
+                    comment.profile = profile
+                    comment.save()
+                else:
+                    print(comment_form.errors)
 
-            contact_form = ContactForm(request.POST)
-            if contact_form.is_valid():
-                #get user's email when logged in
-                from_email = request.user.email
-                #get profile's email
-                to_email = profile.user.email
-                #to_email = recipient.email
-                subject = contact_form.cleaned_data['subject']
-                message = contact_form.cleaned_data['message']
-                try:
-                    send_mail(subject, message, from_email, to_email)
-                except BadHeaderError:
-                    return HttpResponse('Invalid header found')
+            elif request.POST.get('action', 'Contact'):
+                contact_form = ContactForm(request.POST)
+                if contact_form.is_valid():
+                    #get user's email when logged in
+                    from_email = request.user.email
+                    #from_email = 'sfdefs@fdsf.com'
+                    #get profile's email
+                    to_email = profile.user.email
+                    #to_email = 'sdfa@dsf.com'
+                    #to_email = recipient.email
+                    subject = contact_form.cleaned_data['subject']
+                    message = contact_form.cleaned_data['message']
+                    try:
+                        send_mail(subject, message, from_email, [to_email])
+                    except BadHeaderError:
+                        return HttpResponse('Invalid header found')
                 #popup message and close the window
                 #return redirect('email_sent')
-        else:
-            contact_form = ContactForm()
+
+            else:
+                contact_form = ContactForm()
+            #Sreturn HttpResponse('Thanks for contacting us!')
 
     except Profile.DoesNotExist:
         context_dict['profile'] = None
@@ -379,7 +385,7 @@ def editprofile(request):
     form = ProfileForm(instance=profile)
 
     if request.method == 'POST':
-        
+
         profile.firstname = request.POST.get('firstname')
         profile.lastname = request.POST.get('lastname')
         profile.profession = request.POST.get('profession')
@@ -457,10 +463,12 @@ def email(request):
     else:
         contact_form = ContactForm(request.POST)
         if contact_form.is_valid():
-            from_email = contact_form.cleaned_data['from_email']
-            to_email = [form.cleaned_data['to_email']]
-            subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
+            #from_email = contact_form.cleaned_data['from_email']
+            from_email = ['sender@mail.com']
+            #to_email = [form.cleaned_data['to_email']]
+            to_email = ['recipient@mail.com']
+            subject = contact_form.cleaned_data['subject']
+            message = contact_form.cleaned_data['message']
             try:
                 send_mail(subject, message, from_email, to_email)
             except BadHeaderError:
