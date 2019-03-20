@@ -4,24 +4,14 @@
 {% block body_block %}
 <div class="container container_body">
 
-    <div class="row cover_image">
-        <div class="col-sm-4 profile_image">
-            {% if profile.image %}
-                <div>
-                    <img src="{{ profile.image.url }}" width="240">
-                </div>
-            {% else %}
-                <img class='img-responsive' src="{% static "icons/noprofilepicture.png" %}"  alt="">
-            {% endif %}
-            </div>
-        <div class="col-sm-8 ">
-            <h2>{{ profile.firstname }} {{ profile.lastname }}</h2>
-            <h4>{{ profile.profession}}</h4>
-        </div>
-    </div>
-
     <div class="row main_profile_body">
         <div class="col-xs-4">
+                {% if profile.image %}
+                <div>
+                    <img src="{{ profile.image.url }}" width="100%">
+                </div>
+                {% endif %}
+                <br>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong" style="width: 100%; margin-bottom: 20px;">Contact
             </button>
             <div class="panel panel-default">
@@ -81,6 +71,16 @@
         </div>
 
         <div class="col-xs-8">
+            <div>
+                {% if profile.firstname and profile.lastname %}
+                        <h2>{{ profile.firstname }} {{ profile.lastname }}</h2>
+                {% else %}
+                        <h2>{{ profile.username }}</h2>
+                {% endif %}
+                        <br>
+                        <h4>{{ profile.profession}}</h4>
+                        <br>
+                    </div>
             <div class="panel panel-default">
                 <div class="panel-heading">About me</div>
                 <div class="panel-body">
@@ -94,60 +94,81 @@
 
 
             {% if resultsLend %}
-            <div class="panel panel-default">
-                <div class="panel-heading">Lend and Sell Adverts</div>
-                <div class="panel-body">
-                    <div class="portfolio-items text-center">
-                        {% for lend in resultsLend %}
-                        <div class="thumbnail">
-                                <img src="{{ lend.image.url }}">
-                                <h1>{{ lend.title }}</h1>
-                                <p class="keywords">{{ lend.keywords }}</p>
-                                <p class="textinthumbnail">{{ lend.description }}</p>
-                    
-                                <p><a href="{% url 'show_lendandsell' lend.slug %}"><button>Visit Ad</button></a></p>
-                              </div>
-                        {% endfor %}
+            <div class="panel panel-default" style="width:100%;">
+                    <div class="panel-heading">Lend and Sell Adverts</div>
+                    <div class="panel-body" style="width:100%;">
+                        <div class="carousel slide" data-ride="carousel">
+                                <div class="portfolio-items text-center">
+    
+                            {% for lend in resultsLend %}
+                            <div class="carousel-inner" role="listbox";>
+    
+                                <div class="item active">
+                                    <img src="{{ lend.image.url }}" style="height:100%; margin:auto;">
+                                    <div class="carousel-caption" style="margin:auto;">
+                                    <a href="{% url 'show_lendandsell' lend.slug %}"><button>{{ lend.title }}</button></a>
+                                    <p class="keywords">{{ lend.keywords }}</p>
+                                </div> 
+                            </div>
+                        </div>
+    
+                            {% endfor %}
+                    </div>
+    
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endif %}
 
             {% if resultsProject %}
-            <div class="panel panel-default">
-                <div class="panel-heading">Project Adverts</div>
-                <div class="panel-body">
-                    <div class="portfolio-items text-center">
-                        {% for project in resultsProject %}
-                        <div class="thumbnail">
-                                <img src="{{ project.image.url }}">
-                                <h1>{{ project.title }}</h1>
-                                <p class="keywords">{{ project.keywords }}</p>
-                                <p class="textinthumbnail">{{ project.description }}</p>
-                 
-                                <p><a href="{% url 'show_project' project.slug %}"><button>Visit Ad</button></a></p>
-                              </div>
-                        {% endfor %}
+            <div class="panel panel-default" style="width:100%;">
+                    <div class="panel-heading">Project Adverts</div>
+                    <div class="panel-body" style="width:100%;">
+                        <div class="carousel slide" data-ride="carousel">
+                                <div class="portfolio-items text-center">
+    
+                            {% for project in resultsProject %}
+                            <div class="carousel-inner" role="listbox";>
+    
+                                <div class="item active">
+                                    <img src="{{ project.image.url }}" style="height:100%; margin:auto;">
+                                    <div class="carousel-caption" style="margin:auto;">
+                                    <a href="{% url 'show_project' project.slug %}"><button>{{ project.title }}</button></a>
+                                    <p class="keywords">{{ project.keywords }}</p>
+                                </div> 
+                            </div>
+                        </div>
+    
+                            {% endfor %}
+                    </div>
+    
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endif %}
 
             {% if resultsService %}
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="width:100%;">
                 <div class="panel-heading">Service Adverts</div>
-                <div class="panel-body">
-                    <div class="portfolio-items text-center">
+                <div class="panel-body" style="width:100%;">
+                    <div class="carousel slide" data-ride="carousel">
+                            <div class="portfolio-items text-center">
+
                         {% for service in resultsService %}
-                        <div class="thumbnail">
-                                <img src="{{ service.image.url }}">
-                                <h1>{{ service.title }}</h1>
+                        <div class="carousel-inner" role="listbox";>
+
+                            <div class="item active">
+                                <img src="{{ service.image.url }}" style="height:100%; margin:auto;">
+                                <div class="carousel-caption" style="margin:auto;">
+                                <a href="{% url 'show_service' service.slug %}"><button>{{ service.title }}</button></a>
                                 <p class="keywords">{{ service.keywords }}</p>
-                                <p class="textinthumbnail">{{ service.description }}</p>
-                 
-                                <p><a href="{% url 'show_service' service.slug %}"><button>Visit Ad</button></a></p>
-                              </div>
+                            </div> 
+                        </div>
+                    </div>
+
                         {% endfor %}
+                </div>
+
                     </div>
                 </div>
             </div>
@@ -172,22 +193,12 @@
                         <p>{{ comment.comment }}</p>
                     </div>
             {% endfor %}
-            {% else %}
-            <p>No comments here yet :(</p>
+
             {% endif %}
 
         </div>
     </div>
 
-    <!-- {% if profile.views %}
-        <div>
-            Views: {{ visits }}
-        </div>
-    {% else %}
-        <div>
-            {{ profile.name }} has had no visitors to their profile :(
-        </div>
-    {% endif %} -->
 </div>
 
     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
