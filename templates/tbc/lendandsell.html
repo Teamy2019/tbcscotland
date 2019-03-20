@@ -1,38 +1,33 @@
 {% extends 'tbc/base.html' %}
 {% load staticfiles %}
 
-{% block extrahead %}
-<style>
-    #lendandsellBox {
-        width: 180px;
-        height: 200px;
-        border: 2px solid black;
-        border-radius: 0px;
-    } 
-</style>
-{% endblock %}
-
 {% block body_block %}
-{% if lend_and_sell %}
-<ul>
-    {% for lend in lend_and_sell %}
-    <br>
-    <div class="thumbnail">
-            <img src="{{ lend.image.url }}">
-            <h1>{{ lend.title }}</h1>
-            <p class="keywords">{{ lend.keywords }}</p>
-            <p class="textinthumbnail">{{ lend.description }}</p>
+<div class="row">
 
-            <p><a href="{% url 'show_lendandsell' lend.slug %}"><button>Visit Ad</button></a></p>
-          </div>
-    {% endfor %}
-</ul>
-{% endif %}
+        {% for lend in lend_and_sell %}
+        <div class="col-md-3">
+                <br>
+                <div class="thumbnail">
+                        <img src="{{ lend.image.url }}" style="width:100%; max-height:50%;">
+                        <h1>{{ lend.title }}</h1>
+                        <p class="keywords">{{ lend.keywords }}</p>
+                        <p class="textinthumbnail">{{ lend.description }}</p>
+         
+                        <p><a href="{% url 'show_lendandsell' lend.slug %}"><button>Visit Ad</button></a></p>
+                      </div>
+                      </div>
+                    {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+                      </div><div class="row">
+                    {% endif %}
+        </div>
+       
+
+        {% endfor %}
 
 
     <div>
         {% if user.is_authenticated %}
-            <a href="/tbc/postlendandsell/">Post your own ad here!</a>
+            <a href="{% url 'post_lendandsell' %}"><div class="keywords">Post your own ad here!</div></a>
         {% endif %}
     </div>
 </div>

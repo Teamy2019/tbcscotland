@@ -141,20 +141,19 @@ body {
 }
 
 .thumbnail {
-	display: grid;
-
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  	max-width: 400px;
-  	text-align: center;
+	width: 90%;
+  text-align: center;
 	margin: auto;
-
 }
-
+.imgthumbnail{
+	width:100%; 
+	height:50%;
+}
 .keywords {
   color: grey;
   font-size: 18px;
 }
-.imageinthumbnail{}
 
 .textinthumbnail{
   border: none;
