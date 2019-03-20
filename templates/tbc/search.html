@@ -2,57 +2,74 @@
 {% load staticfiles %}
 
 {% block body_block %}
-        <div>
         {% if resultsLend %}
-        <div class="container" style="text-align:center;"><h1>Results in 'Lend and Sell':</h1></div>
+        <div class="row">
+        <div class="container"><h1>Results in 'Lend and Sell':</h1></div>
         <ul>
+
             {% for lend in resultsLend %}
+            <div class="col-md-3">
+
             <div class="thumbnail">
-                    <img src="{{ lend.image.url }}">
+                    <img src="{{ lend.image.url }}" style="width:100%; height:auto;">
                     <h1>{{ lend.title }}</h1>
                     <p class="keywords">{{ lend.keywords }}</p>
                     <p class="textinthumbnail">{{ lend.description }}</p>
         
                     <p><a href="{% url 'show_lendandsell' lend.slug %}"><button>Visit Ad</button></a></p>
                   </div>
+                  </div>
+                  {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+                </div><div class="row">
+              {% endif %}
             {% endfor %}    
         </ul>
-
+    </div>
         {% endif %}
-        </div>
-        <div>
         {% if resultsService %}
-        <div class="container" style="text-align:center;"><h1>Results in 'Services':</strong></h1>        <ul>
+        <div class="row">
+        <div class="container"><h1>Results in 'Services':</strong></h1>        <ul>
             {% for service in resultsService %}
+            <ul>
+                <div class="col-md-3">
+
             <div class="thumbnail">
-                    <img src="{{ service.image.url }}">
+                    <img src="{{ service.image.url }}" style="width:100%; height:50%;">
                     <h1>{{ service.title }}</h1>
                     <p class="keywords">{{ service.keywords }}</p>
                     <p class="textinthumbnail">{{ service.description }}</p>
      
                     <p><a href="{% url 'show_service' service.slug %}"><button>Visit Ad</button></a></p>
                   </div>
+                </div>
+                {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+              </div><div class="row">
+            {% endif %}
             {% endfor %}
         </ul>
-
+      </div>
         {% endif %}
-        </div>
-        <div>
         {% if resultsProject %}
-        <div class="container" style="text-align:center;"><h1>Results in 'Projects':</strong></h1>      
+        <div class="row">
+        <div class="container"><h1>Results in 'Projects':</strong></h1>      
           <ul>
             {% for project in resultsProject %}
+            <div class="col-md-3">
+
             <div class="thumbnail">
-                    <img src="{{ project.image.url }}">
+                    <img src="{{ project.image.url }}" style="width:100%; height:50%;">
                     <h1>{{ project.title }}</h1>
                     <p class="keywords">{{ project.keywords }}</p>
                     <p class="textinthumbnail">{{ project.description }}</p>
      
                     <p><a href="{% url 'show_project' project.slug %}"><button>Visit Ad</button></a></p>
                   </div>
+            </div>
+            {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+          </div><div class="row">
+        {% endif %}
             {% endfor %}
         </ul>
-
+      </div>
         {% endif %}
-    </div>
 {% endblock %}

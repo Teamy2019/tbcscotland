@@ -31,14 +31,7 @@
                     {% else %}
                         <div>User {{ profile.name }} has not added in their 'Education' section yet!</div>
                     {% endif %}
-                    <br>
-                    <hr class="style1">
-                    <strong>Equipment</strong>
-                    {% if profile.education %}
-                        <div>{{ profile.education }}</div>
-                    {% else %}
-                        <div>User {{ profile.name }} has not added in their 'Education' section yet!</div>
-                    {% endif %}
+
                     <br>
                     <hr class="style1">
                     <strong>Location</strong>
@@ -103,7 +96,7 @@
                             {% for lend in resultsLend %}
                             <div class="carousel-inner" role="listbox";>
     
-                                <div class="item active">
+                                <div class="item active" style="height: 400px">
                                     <img src="{{ lend.image.url }}" style="height:100%; margin:auto;">
                                     <div class="carousel-caption" style="margin:auto;">
                                     <a href="{% url 'show_lendandsell' lend.slug %}"><button>{{ lend.title }}</button></a>
@@ -130,7 +123,7 @@
                             {% for project in resultsProject %}
                             <div class="carousel-inner" role="listbox";>
     
-                                <div class="item active">
+                                <div class="item active" style="height: 400px">
                                     <img src="{{ project.image.url }}" style="height:100%; margin:auto;">
                                     <div class="carousel-caption" style="margin:auto;">
                                     <a href="{% url 'show_project' project.slug %}"><button>{{ project.title }}</button></a>
@@ -157,7 +150,7 @@
                         {% for service in resultsService %}
                         <div class="carousel-inner" role="listbox";>
 
-                            <div class="item active">
+                            <div class="item active" style="height: 400px">
                                 <img src="{{ service.image.url }}" style="height:100%; margin:auto;">
                                 <div class="carousel-caption" style="margin:auto;">
                                 <a href="{% url 'show_service' service.slug %}"><button>{{ service.title }}</button></a>
