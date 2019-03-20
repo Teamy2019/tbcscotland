@@ -48,7 +48,11 @@ def populate():
 
     sample_services = [
         {"username" : "encyclopediatax", "title": "Piano lessons", "description": "Fun and helpful piano tutor", "price": "£10 per hour", "availability": "Evenings only, once or twice per week", "keywords": "Piano, tutoring, weekly", "location": "Glasgow" },
-        {"username" : "guillotinetv", "title": "Sound technician", "description": "Experienced freelance technician looking for projects", "price": "Negotiable", "availability": "Evenings and weekends only", "keywords": "Technician, experienced, freelance", "location": "Edinburgh"}
+        {"username" : "guillotinetv", "title": "Sound technician services", "description": "Experienced freelance technician looking for projects", "price": "Negotiable", "availability": "Evenings and weekends only", "keywords": "Technician, experienced, freelance", "location": "Aberdeen"},
+        {"username" : "duskscreen", "title": "Camera work", "description": "Experienced freelance cameraperson looking to help YOU make a movie!", "price": "Negotiable", "availability": "Evenings only", "keywords": "cool, cameraperson, strong, experienced, freelance", "location": "Montrose"},
+        {"username" : "tunnelenzyme", "title": "Stuntperson", "description": "Amazing stunts NO TIMEWASTERS. CALL NOW FOR a freelance stuntperson looking cool action movie projects", "price": "£100 per hour", "availability": "Anytime", "keywords": "stunt, stunts, cool, movies, experienced, freelance", "location": "Townhead"},
+        {"username" : "uniformsalon", "title": "Kiln for hire", "description": "Make pottery with me and my kiln!", "price": "£1 a pot", "availability": "Anytime", "keywords": "potter, pottery, freelance", "location": "Moffat"}
+
     ]
     
     sample_projects = [
