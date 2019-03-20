@@ -75,50 +75,51 @@
 	padding-left: 100px;
 }
 
-.cover_image{
+.cover_image {
 	background-image: url("../icons/defaultcoverpicture.jpeg");
 	background-size: cover;
 }
-.container_body{
+.container_body {
 	margin-top: 50px;
 }
 
-.profile_image{
+.profile_image {
 	max-width: 200px;
 	padding: 25px;
 }
 
-.thumbnail_image{
+.thumbnail_image {
   	border: 1px solid #ddd;
   	border-radius: 4px;
   	padding: 5px;
   	width: 150px;
 }
 
-.profile_details{
+.profile_details {
 	margin-top: 80px;
 	color: white;
 }
 
-.main_profile_body{
+.main_profile_body {
 	margin-top: 30px;
 }
 
-.second_nav{
+.second_nav {
 	margin-top: 60px;
 }
 .slick-prev:before, .slick-next:before{
 	color: black;
 }
 
-.comment{
+.comment {
 	background-color: lightgrey;
 	padding: 20px;
 	border-radius: 20px;
 	width: 100%;
 	margin-bottom: 20px;
 }
-.glyphicon-star{
+
+.glyphicon-star {
 	color: yellow;
 }
 
@@ -126,14 +127,14 @@ body {
     background-color: white;
 }
 
-.thumbnail_panel{
+.thumbnail_panel {
 	display: grid;
 	grid-template-columns: repeat(auto-fit);
 	grid-gap: 5px;
 	padding: 20px;
 }
 
-.thumbnailbody{
+.thumbnailbody {
 	min-height: 200px; 
 	max-height: 200px; 
 	overflow-y:hidden; 
@@ -142,20 +143,21 @@ body {
 
 .thumbnail {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-	width: 90%;
-  text-align: center;
+  	text-align: center;
 	margin: auto;
 }
-.imgthumbnail{
+
+.imgthumbnail {
 	width:100%; 
 	height:50%;
 }
+
 .keywords {
   color: grey;
-  font-size: 18px;
+  font-size: 15px;
 }
 
-.textinthumbnail{
+.textinthumbnail {
   border: none;
   outline: 0;
   padding: 8px;
@@ -183,7 +185,7 @@ button:hover, a:hover {
   opacity: 0.7;
 }
 
-textarea  {
+textarea {
 	resize: vertical;
     overflow: auto;
 }

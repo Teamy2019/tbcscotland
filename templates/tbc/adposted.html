@@ -2,45 +2,37 @@
 {% load staticfiles %}
 
 {%block body_block %}
-        <div> 
-        <h2>You posted an ad!</h2>
-        </div>
-        {% if lendandsell %}
-        <div class="thumbnail">
-                <img src="{{ lendandsell.image.url }}" style="width:100%; height:50%;">
-                <h1>{{ lendandsell.title }}</h1>
-                <p class="keywords">{{ lendansell.keywords }}</p>
-                <p class="textinthumbnail">{{ lendansell.description }}</p>
-    
-                <p><a href="{% url 'show_lendandsell' lendandsell.slug %}"><button>Visit Ad</button></a></p>
-              </div>
-        {% endif %}
+<div><h2>You posted an ad!</h2></div>
 
-        {% if service %}
-        <div class="thumbnail">
-                <img src="{{ project.image.url }}" style="width:100%; height:50%;">
-                <h1>{{ project.title }}</h1>
-                <p class="keywords">{{ project.keywords }}</p>
-                <p class="textinthumbnail">{{ project.description }}</p>
- 
-                <p><a href="{% url 'show_project' project.slug %}"><button>Visit Ad</button></a></p>
-              </div>
-        {% endif %}
+{% if lendandsell %}
+<div class="thumbnail">
+    <img src="{{ lendandsell.image.url }}" style="width:100%; height:50%;">
+    <h1>{{ lendandsell.title }}</h1>
+    <p class="keywords">{{ lendansell.keywords }}</p>
+    <p class="textinthumbnail">{{ lendansell.description }}</p>
+    <p><a href="{% url 'show_lendandsell' lendandsell.slug %}"><button>Visit Ad</button></a></p>
+</div>
+{% endif %}
 
-        {% if project %}
-        <div class="thumbnail">
-                <img src="{{ project.image.url }}" style="width:100%; height:50%;">
-                <h1>{{ project.title }}</h1>
-                <p class="keywords">{{ project.keywords }}</p>
-                <p class="textinthumbnail">{{ project.description }}</p>
- 
-                <p><a href="{% url 'show_project' project.slug %}"><button>Visit Ad</button></a></p>
-              </div>
-        {% endif %}
+{% if service %}
+<div class="thumbnail">
+    <img src="{{ project.image.url }}" style="width:100%; height:50%;">
+    <h1>{{ project.title }}</h1>
+    <p class="keywords">{{ project.keywords }}</p>
+    <p class="textinthumbnail">{{ project.description }}</p>
+    <p><a href="{% url 'show_project' project.slug %}"><button>Visit Ad</button></a></p>
+</div>
+{% endif %}
 
-
-
-
-        <a href="/tbc/{{ category }}/{{ ad_slug }}/">view the ad!</a>
-        <a href="/tbc/">Back to home</a>
+{% if project %}
+<div class="thumbnail">
+    <img src="{{ project.image.url }}" style="width:100%; height:50%;">
+    <h1>{{ project.title }}</h1>
+    <p class="keywords">{{ project.keywords }}</p>
+    <p class="textinthumbnail">{{ project.description }}</p>
+    <p><a href="{% url 'show_project' project.slug %}"><button>Visit Ad</button></a></p>
+</div>
+{% endif %}
+<a href="/tbc/{{ category }}/{{ ad_slug }}/">view the ad!</a>
+<a href="/tbc/">Back to home</a>
 {% endblock %}

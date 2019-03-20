@@ -1,54 +1,48 @@
 {% extends 'tbc/base.html' %}
 {% load staticfiles %}
 
-
 {% block body_block %}
-<div class="row">
-
+    <div class="row">
         {% for project in projects %}
-        <div class="col-md-3">
-                <br>
-                <div class="thumbnail">
-                        <img src="{{ project.image.url }}" style="width:100%; height:50%;">
-                        <h1>{{ project.title }}</h1>
-                        <p class="keywords">{{ project.keywords }}</p>
-                        <p class="textinthumbnail">{{ project.description }}</p>
-         
-                        <p><a href="{% url 'show_project' project.slug %}"><button>Visit Ad</button></a></p>
-                      </div>
-                      </div>
-                      <br>
-                    {% if forloop.counter|divisibleby:"4" and not forloop.last %}
-                      </div><div class="row">
-                    {% endif %}
-        </div>
-       
-
-        {% endfor %}
-
-        
-    <div>
-            {% if user.is_authenticated %}
+            <div class="col-lg-3">
             <br>
-                <a href="{% url 'post_project' %}"><div class="keywords">Post your own ad here!</div></a>
-            {% endif %}
-        </div>
+                <div class="thumbnail">
+                    <img src="{{ project.image.url }}" style="max-width:50%;max-height:50%;">
+                    <h1>{{ project.title }}</h1>
+                    <p class="keywords">{{ project.keywords }}</p>
+                    <p class="textinthumbnail">{{ project.description }}</p>
+                    <p><a href="{% url 'show_project' project.slug %}"><button>Visit Ad</button></a></p>
+                </div>
+            </div>
+    {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+    </div>
+    {% endif %}
+    {% endfor %}
+  
+    <div>
+        {% if user.is_authenticated %}
+            <br>
+            <a href="{% url 'post_project' %}"><div class="keywords">Post your own ad here!</div></a>
+        {% endif %}
+    </div>
 
-<div class="pagination">
-        <span class="step-links">
-            {% if projects.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ projects.previous_page_number }}">previous</a>
-            {% endif %}
-    
-            <span class="current">
-                Page {{ projects.number }} of {{ projects.paginator.num_pages }}.</span>
+    <div class ="row">
+        <div class="col-lg-3">
+            <div class="pagination">
+                <span class="step-links">
+                    {% if projects.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ projects.previous_page_number }}">previous</a>
+                    {% endif %}
             
-            {% if projects.has_next %}
-                <a href="?page={{ projects.next_page_number }}">next</a>
-                <a href="?page={{ projects.paginator.num_pages }}">last&raquo;</a>
-            {% endif %}        
-            </span>
-        </span>
+                    <span class="current">Page {{ projects.number }} of {{ projects.paginator.num_pages }}.</span>
+                    
+                    {% if projects.has_next %}
+                        <a href="?page={{ projects.next_page_number }}">next</a>
+                        <a href="?page={{ projects.paginator.num_pages }}">last&raquo;</a>
+                    {% endif %}        
+                </span>
+            </div>
+        </div>
     </div>
 {% endblock %}
