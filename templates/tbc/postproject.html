@@ -2,14 +2,45 @@
 {% load staticfiles %}
 
 {% block body_block %}
+<div class="container">
     <h1>Post a 'Project' ad</h1>
     <form id="project_form" method="post" action="{% url 'post_project' %}"
     enctype="multipart/form-data">
-
     {% csrf_token %}
+    <div class="row">
+        <div class="form-group col-lg-3">
+            <label for="title">Title:</label>
+            <input class="form-control" type="text" name="title" value="" id="title" placeholder="e.g. Guitar for Sale">
+            </div>
+        <div class="form-group col-lg-3">
+            <label for="title">Keywords:</label>
+            <input class="form-control" type="text" name="keywords" value="" id="keywords" placeholder="e.g. Guitar Sale">
+            </div>
+        <div class="form-group col-lg-3">
+            <label for="title">Timeline:</label>
+            <input class="form-control" type="text" name="timeline" value="" id="timeline" placeholder="e.g. Next two weeks">
+            </div>
+        </div>
+    <div class="row">
+        <div class ="form-group col-lg-4">
+            <label for="Skills">Description:</label>
+            <textarea class="form-control rounded-0" id="description" type="text" name="description" value="" rows="10" placeholder="e.g. 'Short film I'm developing"></textarea>
+        </div>
+        <div class ="form-group col-lg-4">
+            <label for="Skills">Looking For:</label>
+            <textarea class="form-control rounded-0" id="lookingfor" type="text" name="lookingfor" value="" rows="10" placeholder="e.g. 'Looking for an editor'"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-lg-3">
+          <label for="PictureUpload">Upload a picture:</label>
+          <input type="file" class="form-control-file" name="pictureupload" value="" id="pictureupload"> 
 
-    {{ project_form.as_p }}
-
+        </div> 
+    </div>
+    <div class="row">
     <input type="submit" name="submit" value="Post your ad!" />
-    </form>
+</div>
+</form>
+</div>
 {% endblock %}
