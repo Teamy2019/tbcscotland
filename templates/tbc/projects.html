@@ -3,6 +3,7 @@
 
 {% block body_block %}
 <div class="container">
+
 <div class="row" style="height:20px;"></div>
 <header>
   <h1 style="font-size:50px">Projects</h1>
@@ -10,13 +11,14 @@
 <div class="row" style="height:10px;"></div>
 <div style="font-size:140%;">Discover what our users are working on right now</div>
 <div class="row" style="height:40px;"></div>
+
     <div class="row">
         {% for project in projects %}
             <div class="col-lg-3">
             <br>
                 <div class="thumbnail">
-                    <img src="{{ project.image.url }}" style="max-width:50%;max-height:50%;">
-                    <h1>{{ project.title }}</h1>
+                    <img class="thumbnail_image" src="{{ project.image.url }}">
+                    <h class="headerinthumbnail">{{ project.title }}</h>
                     <p class="keywords">{{ project.keywords }}</p>
                     <p class="textinthumbnail">{{ project.description }}</p>
                     <p><a href="{% url 'show_project' project.slug %}"><button>Visit Ad</button></a></p>
@@ -26,16 +28,13 @@
     </div>
     {% endif %}
     {% endfor %}
-</div>
-<div class="container">
-<div class="row">
+  
     <div>
         {% if user.is_authenticated %}
             <br>
             <a href="{% url 'post_project' %}"><div class="keywords">Post your own ad here!</div></a>
         {% endif %}
     </div>
-</div>
 
     <div class ="row">
         <div class="col-lg-3">
@@ -45,13 +44,13 @@
                         <a href="?page=1">&laquo; first</a>
                         <a href="?page={{ projects.previous_page_number }}">previous</a>
                     {% endif %}
-
+            
                     <span class="current">Page {{ projects.number }} of {{ projects.paginator.num_pages }}.</span>
-
+                    
                     {% if projects.has_next %}
                         <a href="?page={{ projects.next_page_number }}">next</a>
                         <a href="?page={{ projects.paginator.num_pages }}">last&raquo;</a>
-                    {% endif %}
+                    {% endif %}        
                 </span>
             </div>
         </div>
