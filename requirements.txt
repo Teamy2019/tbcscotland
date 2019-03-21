@@ -1,5 +1,0 @@
-certifi==2018.11.29
-Django==1.11.17
-Pillow==5.4.1
-pytz==2018.9
-wincertstore==0.2

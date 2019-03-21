@@ -98,12 +98,14 @@
                     <div class="panel-heading">Lend and Sell Adverts</div>
                     <div class="panel-body">
                         <div class="portfolio-items text-center">
-                             {% for lend in resultsLend %}
-                                <div class="thumbnail">
+                            {% for lend in resultsLend %}
+                            <div class="panel panel-default">
+                                <div class="panel-body">
                                     <img class="thumbnail_image" src="{{ lend.image.url }}">
-                                    <a href="{% url 'show_lendandsell' lend.slug %}"><button>{{ lend.title }}</button></a>
                                     <p class="keywords">{{ lend.keywords }}</p>
-                                </div> 
+                                    <a href="{% url 'show_lendandsell' lend.slug %}"><button type="button" class="btn btn-default">{{ lend.title }}</button></a>
+                                </div>
+                            </div> 
                             {% endfor %}
                         </div>
                     </div>
@@ -117,11 +119,13 @@
                     <div class="panel-body">
                         <div class="portfolio-items text-center">
                             {% for project in resultsProject %}
-                                <div class="thumbnail">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
                                     <img class="thumbnail_image"  src="{{ project.image.url }}">
-                                    <a href="{% url 'show_project' project.slug %}"><button>{{ project.title }}</button></a>
                                     <p class="keywords">{{ project.keywords }}</p>
+                                    <a href="{% url 'show_project' project.slug %}"><button type="button" class="btn btn-default">{{ project.title }}</button></a>
                                 </div>
+                            </div>
                             {% endfor %}
                         </div>
                     </div>
@@ -135,61 +139,19 @@
                     <div class="panel-body">
                         <div class="portfolio-items text-center">
                             {% for service in resultsService %}
-                                <div class="thumbnail">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
                                     <img class="thumbnail_image" src="{{ service.image.url }}">
-                                    <a href="{% url 'show_service' service.slug %}"><button>{{ service.title }}</button></a>
                                     <p class="keywords">{{ service.keywords }}</p>
+                                    <a href="{% url 'show_service' service.slug %}"><button type="button" class="btn btn-default">{{ service.title }}</button></a>
                                 </div>
+                            </div>
                             {% endfor %}
                         </div>
                     </div>
                 </div>
             </div>
             {% endif %}
-            <div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">Activity</div>
-                    <div class="panel-body">
-                        {% if resultsLend %}
-                            <strong>Here are John Smith's 'Lend and Sell' ads!</strong>
-                            {% for lend in resultsLend %}
-                                <div>{{ lend.title }}</div>
-                                <div>{{ lend.description }}
-                                <a href="{% url 'show_lendandsell' lend.slug %}">See the ad!</a>
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            <div>No lend ads detected</div>
-                        {% endif %}
-                        {% if resultsProject %}
-                            <strong>Here are John Smith's 'Project' ads!</strong>
-                            {% for project in resultsProject %}
-                                <div>{{ project.title }}</div>
-                                <div>{{ project.description }}
-                                <a href="{% url 'show_project' project.slug %}">See the ad!</a>
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            <div>No project ads detected</div>
-                        {% endif %}
-                        {% if resultsService %}
-                            <strong>Here are John Smith's 'Service' ads!</strong>
-                            {% for service in resultsService %}
-                                <div>{{ service.title }}</div>
-                                <div>{{ service.description }}
-                                <a href="{% url 'show_service' service.slug %}">See the ad!</a>
-                                /div>
-                            {% endfor %}
-                        {% else %}
-                            <div>No service ads detected</div>
-                        {% endif %} 
-                        {% else %}
-                            <strong>No Ad!</strong>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
         <div>
             {% if user.is_authenticated %}
             <h2>Would you like to leave a comment?</h2>
@@ -276,4 +238,5 @@
 </div>
 </div>
 </div>
+{% endif %}
 {% endblock %}

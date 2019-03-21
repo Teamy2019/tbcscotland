@@ -5,6 +5,8 @@ $(document).ready(function(){
     slidesToScroll: 3,
     dots: true,
     centerMode: true,
+    variableWidth: true,
+    draggable: true,
     focusOnSelect: true
       });
 });

@@ -5,9 +5,7 @@
 <div class="container container_body">
     <div class="col-lg-4">
         {% if lend_ad.image %}
-        <div>
-            <img src="{{ lend_ad.image.url }}" width="100%">
-        </div>
+        <div><img src="{{ lend_ad.image.url }}" width="100%"></div>
         {% endif %}
         <div class="panel panel-default">
             <div class="panel-body">
@@ -31,31 +29,6 @@
                 <strong>Price</strong>
                     <div>{{ lend_ad.price }}</div>
                 {% endif %}
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <strong>Keywords</strong>
-                            <br>
-                            {% if lend_ad.keywords %}
-                            <span class="badge badge-secondary">{{ lend_ad.keywords }}</span>
-                            {% else %}
-                            <div>User {{ lend_ad.profile }} has not added in their 'Keywords' section yet!</div>
-                            {% endif %}
-                            <br>
-                            <hr class="style1">
-                            <strong>Availability</strong>
-                            {% if lend_ad.availability %}
-                                <div>{{ lend_ad.availability }}</div>
-                            {% else %}
-                                <div>User {{ lend_ad.profile }} has not added in their 'Availability' section yet!</div>
-                            {% endif %}
-                            {% if lend_ad.price %}
-                            <hr class="style1">
-                            <strong>Price</strong>
-                                <div>{{ lend_ad.price }}</div>
-                            {% endif %}
-                            <br>
-                
-
             </div>
         </div>
     </div>
@@ -64,9 +37,9 @@
             <h2>{{ lend_ad.title }}</h2>
             <h3>Lend and Sell</h3>
             {% if profile.firstname and profile.lastname %}
-            <a href="{% url 'show_profile' profile.slug %}"><div class="keywords">{{ profile.firstname }} {{ profile.lastname }}</div></a>
+                <a href="{% url 'show_profile' profile.slug %}"><div class="ad_author">{{ profile.firstname }} {{ profile.lastname }}</div></a>
             {% else %}
-            <a href="{% url 'show_profile' profile.slug %}"><div class="keywords">{{ profile.username }}</div></a>
+                <a href="{% url 'show_profile' profile.slug %}"><div class="ad_author"> {{ profile.username }}</div></a>
             {% endif %}
         </div>
         <div class="panel panel-default">
@@ -95,12 +68,11 @@
         {% if user.is_authenticated %}
         <h2>Would you like to leave a comment?</h2>
         <form id="comment_form" method="POST" action="{% url 'show_lendandsell' lend_ad.slug %}" enctypte="multipart/form-data">
-        {% csrf_token %}
-        {{ comment_form.as_p }}
-        <input type="submit" name="submit" value"Comment" />
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <input type="submit" name="submit" value"Comment" />
         </form>
         {% endif %}
     </div>
 </div>
-
 {% endblock %}

@@ -8,18 +8,20 @@
     {% for profile in profiles %}
     <div class="col-lg-3">
         <br>
-        <div class="thumbnail">
+        <div class="panel panel-default text-center">
+        <div class="panel-body">
             <img class="thumbnail_image" src="{{ profile.image.url }}">
-            <h class="headerinthumbnail">{{ profile.username }}</h>
+            <h3 class="thumbnail_header">{{ profile.username }}</h3>
             <p class="keywords">{{ profile.profession }}</p>
             <p class="textinthumbnail">{{ profile.aboutme }}</p>
-            <p><a href="{% url 'show_profile' profile.slug %}"><button>Visit Profile</button></a></p>
+            <p><a href="{% url 'show_profile' profile.slug %}"><button type="button" class="btn btn-default">Visit Profile</button></a></p>
         </div>
     </div>
+    </div>
     {% if forloop.counter|divisibleby:"4" and not forloop.last %}
-</div>
 {% endif %}
 {% endfor %}
+</div>
 {% endif %}
 
 <div class ="row">

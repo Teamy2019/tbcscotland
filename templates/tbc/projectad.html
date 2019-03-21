@@ -36,9 +36,9 @@
             <h3>Project</h3>
 
             {% if profile.firstname and profile.lastname %}
-            <a href="{% url 'show_profile' profile.slug %}"><div class="keywords">{{ profile.firstname }} {{ profile.lastname }}</div></a>
+            <a href="{% url 'show_profile' profile.slug %}"><div class="ad_author">{{ profile.firstname }} {{ profile.lastname }}</div></a>
             {% else %}
-            <a href="{% url 'show_profile' profile.slug %}"><div class="keywords">{{ profile.username }}</div></a>
+            <a href="{% url 'show_profile' profile.slug %}"><div class="ad_author">{{ profile.username }}</div></a>
             {% endif %}
         </div>
         <br>

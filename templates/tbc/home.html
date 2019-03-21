@@ -17,20 +17,22 @@
 	<div class="row" style="height:30px;"></div>
 
 	<div class="row">
-		<div class="col-lg-4">
+		<div class="col-lg-6">
 			<div>
 				{% if profiles_list %}
-				<div class="panel panel-default">
+				<div class="panel panel-default" style="width:500px;">
 					<div class="panel-heading">Most popular Profiles!</div>
 					<div class="panel-body">
 						<div class="portfolio-items text-center">
 							{% for profile in profiles_list %}
-							<div class="thumbnail">
-								<img class="thumbnail_image" src="{{ profile.image.url }}">
-								<h3>{{ profile.username }}</h3>
-								<p class="keywords">{{ profile.profession }}</p>
-								<p class="textinthumbnail">{{ profile.aboutme }}</p>
-								<p><a href="{% url 'show_profile' profile.slug %}"><button>Visit Profile</button></a></p>
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<img class="thumbnail_image" src="{{ profile.image.url }}">
+									<h3 class="thumbnail_header">{{ profile.username }}</h3>
+									<p class="keywords">{{ profile.profession }}</p>
+									<p class="textinthumbnail">{{ profile.aboutme }}</p>
+									<p><a href="{% url 'show_profile' profile.slug %}"><button type="button" class="btn btn-default">Visit Profile</button></a></p>
+								</div>
 							</div>
 							{% endfor %}
 						</div>
@@ -40,46 +42,50 @@
 			</div>
 		</div>
 
-		<div class="col-lg-4"></div>
-
-		<div class="col-lg-4">
+		<div class="col-lg-6">
 			<div>
-				<div class="panel panel-default">
+				<div class="panel panel-default" style="width:500px;">
 					<div class="panel-heading">Most popular Ads!</div>
 					<div class="panel-body">
 						<div class="portfolio-items text-center">
 							{% if project_list %}
 							{% for project in project_list %}
-							<div class="thumbnail">
-								<img class="thumbnail_image" src="{{ project.image.url }}">
-								<h3>{{ project.title }}</h3>
-								<p class="keywords">{{ project.keywords }}</p>
-								<p class="textinthumbnail">{{ project.description }}</p>
-								<p><a href="{% url 'show_project' project.slug %}"><button>Visit Ad</button></a></p>
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<img class="thumbnail_image" src="{{ project.image.url }}">
+									<h3 class="thumbnail_header">{{ project.title }}</h3>
+									<p class="keywords">{{ project.keywords }}</p>
+									<p class="textinthumbnail">{{ project.description }}</p>
+									<p><a href="{% url 'show_project' project.slug %}"><button type="button" class="btn btn-default">Visit Ad</button></a></p>
+								</div>
 							</div>
 							{% endfor %}
 							{% endif %}
 
 							{% if service_list %}
 							{% for service in service_list %}
-							<div class="thumbnail">
-								<img class="thumbnail_image" src="{{ service.image.url }}">
-								<h3>{{ service.title }}</h3>
-								<p class="keywords">{{ service.keywords }}</p>
-								<p class="textinthumbnail">{{ service.description }}</p>
-								<p><a href="{% url 'show_service' service.slug %}"><button>Visit Ad</button></a></p>
+							<div class="panel panel-body">
+								<div class="panel-body">
+									<img class="thumbnail_image" src="{{ service.image.url }}">
+									<h3 class="thumbnail_header">{{ service.title }}</h3>
+									<p class="keywords">{{ service.keywords }}</p>
+									<p class="textinthumbnail">{{ service.description }}</p>
+									<p><a href="{% url 'show_service' service.slug %}"><button type="button" class="btn btn-default">Visit Ad</button></a></p>
+								</div>
 							</div>
 							{% endfor %}
 							{% endif %}
 
 							{% if lends_list %}
 							{% for lend in lends_list %}
-							<div class="thumbnail">
-								<img class="thumbnail_image" src="{{ lend.image.url }}">
-								<h3>{{ lend.title }}</h3>
-								<p class="keywords">{{ lend.keywords }}</p>
-								<p class="textinthumbnail">{{ lend.description }}</p>
-								<p><a href="{% url 'show_lendandsell' lend.slug %}"><button>Visit Ad</button></a></p>
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<img class="thumbnail_image" src="{{ lend.image.url }}">
+									<h3 class="thumbnail_header">{{ lend.title }}</h3>
+									<p class="keywords">{{ lend.keywords }}</p>
+									<p class="textinthumbnail">{{ lend.description }}</p>
+									<p><a href="{% url 'show_lendandsell' lend.slug %}"><button type="button" class="btn btn-default">Visit Ad</button></a></p>
+								</div>
 							</div>
 							{% endfor %}
 							{% endif %}

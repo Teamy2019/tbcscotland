@@ -7,18 +7,20 @@
         {% for project in projects %}
             <div class="col-lg-3">
             <br>
-                <div class="thumbnail">
+            <div class="panel panel-default text-center">
+                <div class="panel-body">
                     <img class="thumbnail_image" src="{{ project.image.url }}">
-                    <h class="headerinthumbnail">{{ project.title }}</h>
+                    <h3 class="thumbnail_header">{{ project.title }}</h3>
                     <p class="keywords">{{ project.keywords }}</p>
                     <p class="textinthumbnail">{{ project.description }}</p>
-                    <p><a href="{% url 'show_project' project.slug %}"><button>Visit Ad</button></a></p>
+                    <p><a href="{% url 'show_project' project.slug %}"><button type="button" class="btn btn-default">Visit Ad</button></a></p>
                 </div>
             </div>
-    {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+            </div>
+        {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+        {% endif %}
+        {% endfor %}
     </div>
-    {% endif %}
-    {% endfor %}
   
     <div>
         {% if user.is_authenticated %}
