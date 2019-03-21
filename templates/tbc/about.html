@@ -15,15 +15,16 @@
 			<p style="font-size:140%;">Want to teach someone how to play piano? Need your headshots taken?
 				Want to get rid of your old speakers? Looking for a new exciting project to join?
 			<strong>You can do it all here!</strong></p></br></br></br>
-
-			<p style="font-size:120%;" align="center">Browse through profiles of creatives here:</p>
-			<p><a href="{% url 'profiles' %}"><button>Profiles</button></a></p></br>
-			<p style="font-size:120%;" align="center">Find out about the ongoing projects here:</p>
-			<p><a href="{% url 'projects' %}"><button>Projects</button></a></p></br>
-			<p style="font-size:120%;" align="center">Get a service that you need here:</p>
-			<p><a href="{% url 'services' %}"><button>Services</button></a></p></br>
-			<p style="font-size:120%;" align="center">Lend or sell items here:</p>
-			<p><a href="{% url 'lendandsell' %}"><button>Lend and Sell</button></a></p></br>
+				<div class="container text-center">
+			<p style="font-size:120%;">Browse through profiles of creatives here:</p>
+			<p><a href="{% url 'profiles' %}"><button type="button" class="btn btn-default">Profiles</button></a></p></br>
+			<p style="font-size:120%;">Find out about the ongoing projects here:</p>
+			<p><a href="{% url 'projects' %}"><button type="button" class="btn btn-default">Projects</button></a></p></br>
+			<p style="font-size:120%;">Get a service that you need here:</p>
+			<p><a href="{% url 'services' %}"><button type="button" class="btn btn-default">Services</button></a></p></br>
+			<p style="font-size:120%;">Lend or sell items here:</p>
+			<p><a href="{% url 'lendandsell' %}"><button type="button" class="btn btn-default">Lend and Sell</button></a></p></br>
+		</div> 
     </div>
 </div>
 {% endblock %}
