@@ -148,11 +148,14 @@
             {% endif %}
           <div>
             {% if user.is_authenticated %}
+            <div class="row" style="height:10px;"></div>
             <h2>Would you like to leave a comment?</h2>
                 <form id="comment_form" method="POST" action="{% url 'show_profile' profile.slug %}" enctypte="multipart/form-data">
                     {% csrf_token %}
-                    {{ comment_form.as_p }}
-                    <input type="submit" name="submit" value"Comment" />
+                    <div class="form-group">
+                        <textarea class="form-control rounded-0" id="Comment" type="text" name="comment" value="Comment" rows="5" placeholder="Enter your comment here"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             {% endif %}
             <hr>
