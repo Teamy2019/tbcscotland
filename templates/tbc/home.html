@@ -3,11 +3,9 @@
 
 {%block body_block %}
 <div class="container">
-	<div class="row" style="height:20px;"></div>
 	<div class="row">
 		<h1 style="font-size:40px">Find The Perfect Freelance Services</h1>
 		<h2 style="font-size:40px">In Scotland</h2>
-		<div class="row" style="height:20px;"></div>
 		<div class="input-group">
 			<form class="form-inline" method="GET" action="{% url 'search' %}">
 				<input class="form-control" style="width:550px;height:70px;" name ="q" placeholder="Try 'video production'" value="{{request.GET.q}}">
@@ -19,81 +17,74 @@
 	<div class="row" style="height:30px;"></div>
 
 	<div class="row">
-		{% if profiles_list %}
 		<div class="col-lg-4">
-			<div class="panel panel-default" style="width:350px;">
-				<div class="panel-body">
-					<strong style="text-align:center;">Most popular Profiles!</strong>
-					<br>
-					<ul>
-						{% for profile in profiles_list %}
-						<br>
-						<div class="thumbnail">
-							<img src="{{ profile.image.url }}" style="width:50%;height:auto;">
-							<h3>{{ profile.username }}</h3>
-							<p class="keywords">{{ profile.profession }}</p>
-							<p class="textinthumbnail">{{ profile.aboutme }}</p>
-							<p><a href="{% url 'show_profile' profile.slug %}"><button>Visit Profile</button></a></p>
+			<div>
+				{% if profiles_list %}
+				<div class="panel panel-default">
+					<div class="panel-heading">Most popular Profiles!</div>
+					<div class="panel-body">
+						<div class="portfolio-items text-center">
+							{% for profile in profiles_list %}
+							<div class="thumbnail">
+								<img class="thumbnail_image" src="{{ profile.image.url }}">
+								<h3>{{ profile.username }}</h3>
+								<p class="keywords">{{ profile.profession }}</p>
+								<p class="textinthumbnail">{{ profile.aboutme }}</p>
+								<p><a href="{% url 'show_profile' profile.slug %}"><button>Visit Profile</button></a></p>
+							</div>
+							{% endfor %}
 						</div>
-						<br>
-						{% endfor %}
-					</ul>
+					</div>
 				</div>
+				{% endif %}
 			</div>
 		</div>
-		{% endif %}
 
 		<div class="col-lg-4"></div>
 
 		<div class="col-lg-4">
-			<div class="panel panel-default" style="width:350px;">
-				<div class="panel-body">
-					<strong>Most popular Ads!</strong>
-					<ul>
-						{% if project_list %}
-						{% for project in project_list %}
-						<br>
-						<div class="thumbnail">
-							<img src="{{ project.image.url }}" style="width:50%;height:auto;">
-							<h3>{{ project.title }}</h3>
-							<p class="keywords">{{ project.keywords }}</p>
-							<p class="textinthumbnail">{{ project.description }}</p>
-							<p><a href="{% url 'show_project' project.slug %}"><button>Visit Ad</button></a></p>
+			<div>
+				<div class="panel panel-default">
+					<div class="panel-heading">Most popular Ads!</div>
+					<div class="panel-body">
+						<div class="portfolio-items text-center">
+							{% if project_list %}
+							{% for project in project_list %}
+							<div class="thumbnail">
+								<img class="thumbnail_image" src="{{ project.image.url }}">
+								<h3>{{ project.title }}</h3>
+								<p class="keywords">{{ project.keywords }}</p>
+								<p class="textinthumbnail">{{ project.description }}</p>
+								<p><a href="{% url 'show_project' project.slug %}"><button>Visit Ad</button></a></p>
+							</div>
+							{% endfor %}
+							{% endif %}
+
+							{% if service_list %}
+							{% for service in service_list %}
+							<div class="thumbnail">
+								<img class="thumbnail_image" src="{{ service.image.url }}">
+								<h3>{{ service.title }}</h3>
+								<p class="keywords">{{ service.keywords }}</p>
+								<p class="textinthumbnail">{{ service.description }}</p>
+								<p><a href="{% url 'show_service' service.slug %}"><button>Visit Ad</button></a></p>
+							</div>
+							{% endfor %}
+							{% endif %}
+
+							{% if lends_list %}
+							{% for lend in lends_list %}
+							<div class="thumbnail">
+								<img class="thumbnail_image" src="{{ lend.image.url }}">
+								<h3>{{ lend.title }}</h3>
+								<p class="keywords">{{ lend.keywords }}</p>
+								<p class="textinthumbnail">{{ lend.description }}</p>
+								<p><a href="{% url 'show_lendandsell' lend.slug %}"><button>Visit Ad</button></a></p>
+							</div>
+							{% endfor %}
+							{% endif %}
 						</div>
-						<br>
-						{% endfor %}
-					</ul>
-					{% endif %}
-					<ul>
-						{% if service_list %}
-						{% for service in service_list %}
-						<br>
-						<div class="thumbnail">
-							<img src="{{ service.image.url }}" style="width:50%;height:auto;">
-							<h3>{{ service.title }}</h3>
-							<p class="keywords">{{ service.keywords }}</p>
-							<p class="textinthumbnail">{{ service.description }}</p>
-							<p><a href="{% url 'show_service' service.slug %}"><button>Visit Ad</button></a></p>
-						</div>
-						<br>
-						{% endfor %}
-					</ul>
-					{% endif %}
-					<ul>
-						{% if lends_list %}
-						{% for lend in lends_list %}
-						<br>
-						<div class="thumbnail">
-							<img src="{{ lend.image.url }}" style="width:50%;height:auto;">
-							<h3>{{ lend.title }}</h3>
-							<p class="keywords">{{ lend.keywords }}</p>
-							<p class="textinthumbnail">{{ lend.description }}</p>
-							<p><a href="{% url 'show_lendandsell' lend.slug %}"><button>Visit Ad</button></a></p>
-						</div>
-						<br>
-						{% endfor %}
-					</ul>
-					{% endif %}
+					</div>
 				</div>
 			</div>
 		</div>
