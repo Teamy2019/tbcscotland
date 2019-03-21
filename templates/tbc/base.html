@@ -9,11 +9,7 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" href="http://kenwheeler.github.io/slick/slick/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/cssmain.css' %}">
-    {% block extrahead %} {% endblock %}
-
-    <title>
-        TBCScotland
-    </title>
+    <title>TBCScotland</title>
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -45,7 +41,7 @@
 
 <div class="container second_nav text-center">
     <div class='col-sm-3'>
-        <a href="{% url 'profiles' %}">Profiles</a>
+        <a id="catButton" href="{% url 'profiles' %}">Profiles</a>
     </div>
     <div class='col-sm-3'>
         <a id="catButton" href="{% url 'projects' %}">Projects</a>
@@ -54,7 +50,7 @@
         <a id="catButton" href="{% url 'services' %}">Services</a>
     </div>
     <div class='col-sm-3'>
-        <a id="" href="{% url 'lendandsell' %}">Lend & Sell</a>
+        <a id="catButton" href="{% url 'lendandsell' %}">Lend & Sell</a>
     </div>
 </div>
 
