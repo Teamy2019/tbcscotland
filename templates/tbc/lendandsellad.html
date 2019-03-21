@@ -31,29 +31,6 @@
                 <strong>Price</strong>
                     <div>{{ lend_ad.price }}</div>
                 {% endif %}
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <strong>Keywords</strong>
-                            <br>
-                            {% if lend_ad.keywords %}
-                            <span class="badge badge-secondary">{{ lend_ad.keywords }}</span>
-                            {% else %}
-                            <div>User {{ lend_ad.profile }} has not added in their 'Keywords' section yet!</div>
-                            {% endif %}
-                            <br>
-                            <hr class="style1">
-                            <strong>Availability</strong>
-                            {% if lend_ad.availability %}
-                                <div>{{ lend_ad.availability }}</div>
-                            {% else %}
-                                <div>User {{ lend_ad.profile }} has not added in their 'Availability' section yet!</div>
-                            {% endif %}
-                            {% if lend_ad.price %}
-                            <hr class="style1">
-                            <strong>Price</strong>
-                                <div>{{ lend_ad.price }}</div>
-                            {% endif %}
-                            <br>
                 
 
             </div>

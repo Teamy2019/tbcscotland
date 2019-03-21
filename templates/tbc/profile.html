@@ -3,27 +3,21 @@
 
 {% block body_block %}
 <div class="container container_body">
-    <div class="row cover_image">
-        <div class="col-sm-4 profile_image">
-            {% if profile.image %}
-                <div><img class="img-responsive" src="{{ profile.image.url }}"></div>
-            {% endif %}
-        </div>
-        <div class="col-sm-8 ">
-            {% if profile.firstname and profile.lastname %}
-                <h2>{{ profile.firstname }} {{ profile.lastname }}</h2>
-            {% else %}
-                <h2>{{ profile.username }}</h2>
-            {% endif %}
-            <h4>{{ profile.profession}}</h4>
-        </div>
-    </div>
+
+    
 
     <div class="row main_profile_body">
         <div class="col-xs-4">
+                <!-- <div class="col-sm-4 profile_image"> -->
+                        {% if profile.image %}
+                            <div><img class="img-responsive" src="{{ profile.image.url }}" style="width:100%;"></div>
+                        {% endif %}
+                    <!-- </div> -->
+                    <br>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong" style="width:100%;margin-bottom:20px;">Contact
         </button>
             <div class="panel panel-default">
+
                 <div class="panel-body">
                     <strong>Skills</strong>
                     <br>
@@ -79,6 +73,12 @@
             </div>
         </div>
         <div class="col-xs-8">
+                {% if profile.firstname and profile.lastname %}
+                <h2>{{ profile.firstname }} {{ profile.lastname }}</h2>
+            {% else %}
+                <h2>{{ profile.username }}</h2>
+            {% endif %}
+            <h4>{{ profile.profession}}</h4>
             <div>
                 <div class="panel panel-default">
                     <div class="panel-heading">About me</div>
@@ -146,51 +146,7 @@
                 </div>
             </div>
             {% endif %}
-            <div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">Activity</div>
-                    <div class="panel-body">
-                        {% if resultsLend %}
-                            <strong>Here are John Smith's 'Lend and Sell' ads!</strong>
-                            {% for lend in resultsLend %}
-                                <div>{{ lend.title }}</div>
-                                <div>{{ lend.description }}
-                                <a href="{% url 'show_lendandsell' lend.slug %}">See the ad!</a>
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            <div>No lend ads detected</div>
-                        {% endif %}
-                        {% if resultsProject %}
-                            <strong>Here are John Smith's 'Project' ads!</strong>
-                            {% for project in resultsProject %}
-                                <div>{{ project.title }}</div>
-                                <div>{{ project.description }}
-                                <a href="{% url 'show_project' project.slug %}">See the ad!</a>
-                                </div>
-                            {% endfor %}
-                        {% else %}
-                            <div>No project ads detected</div>
-                        {% endif %}
-                        {% if resultsService %}
-                            <strong>Here are John Smith's 'Service' ads!</strong>
-                            {% for service in resultsService %}
-                                <div>{{ service.title }}</div>
-                                <div>{{ service.description }}
-                                <a href="{% url 'show_service' service.slug %}">See the ad!</a>
-                                /div>
-                            {% endfor %}
-                        {% else %}
-                            <div>No service ads detected</div>
-                        {% endif %} 
-                        {% else %}
-                            <strong>No Ad!</strong>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
+          <div>
             {% if user.is_authenticated %}
             <h2>Would you like to leave a comment?</h2>
                 <form id="comment_form" method="POST" action="{% url 'show_profile' profile.slug %}" enctypte="multipart/form-data">
@@ -214,18 +170,6 @@
     </div>
 </div>
 
-
-    </div>
-    {% if profile.views %}
-        <div>
-            Views: {{ visits }}
-        </div>
-    {% else %}
-        <div>
-            {{ profile.name }} has had no visitors to their profile :(
-        </div>
-    {% endif %}
-</div>
 
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -276,4 +220,5 @@
 </div>
 </div>
 </div>
+{% endif %}
 {% endblock %}

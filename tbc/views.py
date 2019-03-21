@@ -109,7 +109,7 @@ def show_profile(request, profile_name_slug):
                 else:
                     print(comment_form.errors)
 
-            elif request.POST.get('action', 'Contact'):
+            if request.POST.get('action', 'Contact'):
                 contact_form = ContactForm(request.POST)
                 if contact_form.is_valid():
                     #get user's email when logged in
