@@ -3,12 +3,33 @@
 
 {% block body_block %}
 <div class="container container_body">
-
-            <div class="col-xs-4">
-                    {% if lend_ad.image %}
-                    <div>
-                        <img src="{{ lend_ad.image.url }}" width="100%">
-                    </div>
+    <div class="col-lg-4">
+        {% if lend_ad.image %}
+        <div>
+            <img src="{{ lend_ad.image.url }}" width="100%">
+        </div>
+        {% endif %}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <strong>Keywords</strong>
+                <br>
+                {% if lend_ad.keywords %}
+                <span class="badge badge-secondary">{{ project_ad.keywords }}</span>
+                {% else %}
+                <div>User {{ lend_ad.profile }} has not added in their 'Keywords' section yet!</div>
+                {% endif %}
+                <br>
+                <hr class="style1">
+                <strong>Availability</strong>
+                {% if lend_ad.availability %}
+                    <div>{{ lend_ad.availability }}</div>
+                {% else %}
+                    <div>User {{ lend_ad.profile }} has not added in their 'Availability' section yet!</div>
+                {% endif %}
+                {% if lend_ad.price %}
+                <hr class="style1">
+                <strong>Price</strong>
+                    <div>{{ lend_ad.price }}</div>
                 {% endif %}
                     <div class="panel panel-default">
                         <div class="panel-body">
@@ -33,41 +54,41 @@
                                 <div>{{ lend_ad.price }}</div>
                             {% endif %}
                             <br>
+                
 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-8">
-                    <div>
-                            <h2>{{ lend_ad.title }}</h2>
-                            <h3>Lend and Sell</h3>
-                            {% if profile.firstname and profile.lastname %}
-                            <a href="{% url 'show_profile' profile.slug %}"><div class="keywords">{{ profile.firstname }} {{ profile.lastname }}</div></a>
-                            {% else %}
-                            <a href="{% url 'show_profile' profile.slug %}"><div class="keywords">{{ profile.username }}</div></a>
-                            {% endif %}
-                    </div>
-                        <div class="panel panel-default">
-                                <div class="panel-heading">Description</div>
-                                <div class="panel-body">
-                                    {% if lend_ad.description %}
-                                            <div>{{ lend_ad.description }}</div>
-                                        {% else %}
-                                            <div>User {{ lend_ad.profile }} has not added in their 'Description' section yet!</div>
-                                    {% endif %}
-                                </div>
-                            </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div>
+            <h2>{{ lend_ad.title }}</h2>
+            <h3>Lend and Sell</h3>
+            {% if profile.firstname and profile.lastname %}
+            <a href="{% url 'show_profile' profile.slug %}"><div class="keywords">{{ profile.firstname }} {{ profile.lastname }}</div></a>
+            {% else %}
+            <a href="{% url 'show_profile' profile.slug %}"><div class="keywords">{{ profile.username }}</div></a>
+            {% endif %}
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Description</div>
+            <div class="panel-body">
+                {% if lend_ad.description %}
+                        <div>{{ lend_ad.description }}</div>
+                    {% else %}
+                        <div>User {{ lend_ad.profile }} has not added in their 'Description' section yet!</div>
+                {% endif %}
+            </div>
+        </div>
                         
-
-<!-- Comments from below -->
+    <!-- Comments from below -->
         <hr>
         {% if comments %}
         {% for comment in comments %}
             <div class="comment" >
                 <div class="date">{{ comment.created_date }}</div>
-                    <strong>{{ comment.author }}</strong>
-                    <p>{{ comment.comment }}</p>
-                </div>
+                <strong>{{ comment.author }}</strong>
+                <p>{{ comment.comment }}</p>
+            </div>
         {% endfor %} 
         {% endif %}
 
@@ -79,7 +100,7 @@
         <input type="submit" name="submit" value"Comment" />
         </form>
         {% endif %}
-</div>
+    </div>
 </div>
 
 {% endblock %}

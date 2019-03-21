@@ -2,51 +2,54 @@
 {% load staticfiles %}
 
 {% block body_block %}
-<div class="row">
-
+<div class="row" style="height:20px;"></div>
+<header>
+  <h1 style="font-size:50px">Lend and Sell</h1>
+</header>
+<div class="row" style="height:10px;"></div>
+<div style="font-size:140%;">Buy, sell, lend or borrow items, stuffs, whatsits and thingies</div>
+<div class="row" style="height:40px;"></div>
+    <div class="row">
         {% for lend in lend_and_sell %}
-        <div class="col-md-3">
-                <br>
-                <div class="thumbnail">
-                        <img src="{{ lend.image.url }}" style="width:100%; max-height:50%;">
-                        <h1>{{ lend.title }}</h1>
-                        <p class="keywords">{{ lend.keywords }}</p>
-                        <p class="textinthumbnail">{{ lend.description }}</p>
-         
-                        <p><a href="{% url 'show_lendandsell' lend.slug %}"><button>Visit Ad</button></a></p>
-                      </div>
-                      </div>
-                    {% if forloop.counter|divisibleby:"4" and not forloop.last %}
-                      </div><div class="row">
-                    {% endif %}
+        <div class="col-lg-3">
+            <br>
+            <div class="thumbnail">
+                <img src="{{ lend.image.url }}" style="max-width:50%;max-height:50%;">
+                <h1>{{ lend.title }}</h1>
+                <p class="keywords">{{ lend.keywords }}</p>
+                <p class="textinthumbnail">{{ lend.description }}</p>
+                <p><a href="{% url 'show_lendandsell' lend.slug %}"><button>Visit Ad</button></a></p>
+            </div>
         </div>
-       
-
-        {% endfor %}
-
+    {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+    </div>
+    {% endif %}
+    {% endfor %}
 
     <div>
         {% if user.is_authenticated %}
+            <br>
             <a href="{% url 'post_lendandsell' %}"><div class="keywords">Post your own ad here!</div></a>
         {% endif %}
     </div>
-</div>
 
-<div class="pagination">
-        <span class="step-links">
-            {% if lend_and_sell.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ lend_and_sell.previous_page_number }}">previous</a>
-            {% endif %}
-    
-            <span class="current">
-                Page {{ lend_and_sell.number }} of {{ lend_and_sell.paginator.num_pages }}.</span>
-            
-            {% if lend_and_sell.has_next %}
-                <a href="?page={{ lend_and_sell.next_page_number }}">next</a>
-                <a href="?page={{ lend_and_sell.paginator.num_pages }}">last&raquo;</a>
-            {% endif %}        
-            </span>
-        </span>
+    <div class ="row">
+        <div class="col-lg-3">
+            <div class="pagination">
+                <span class="step-links">
+                    {% if lend_and_sell.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ lend_and_sell.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">Page {{ lend_and_sell.number }} of {{ lend_and_sell.paginator.num_pages }}.</span>
+
+                    {% if lend_and_sell.has_next %}
+                        <a href="?page={{ lend_and_sell.next_page_number }}">next</a>
+                        <a href="?page={{ lend_and_sell.paginator.num_pages }}">last&raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
     </div>
 {% endblock %}

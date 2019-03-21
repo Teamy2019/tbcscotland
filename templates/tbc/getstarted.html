@@ -3,46 +3,67 @@
 
 {%block body_block %}
 <div class="container">
+	<div class="row" style="height:20px;"></div>
 	<header>
-		<h4>How to get started at TBCScotland!</h4>
+		<h1 style="font-size:50px">How to get started at TBCScotland!</h1>
 	</header>
-
+	<div class="row" style="height:40px;"></div>
+	<div style="font-size:140%;">TBCScotland is a platform for those working or volunteering in the creative industry to connect with others in the same field</div>
+	<div class="row" style="height:40px;"></div>
 	<div class="row">
-		<div class="col-lg-4">
+		<div align="center" class="col-lg-4 bg-secondary">
 			<img src="{% static "icons/register.png" %}" alt="Register icon not found" height="100" width="100">
-		<div class="row" style="height:20px;"></div>
-		<div>
-			<strong>Register your new account for free</strong>
+			<div class="row" style="height:20px;"></div>
+			<div>
+				<p style="font-size:130%;">
+					<strong>Register your new account for free</strong>
+				</p></br>
+				<div><a href="/tbc/signup/">Click here to sign up!</a></div>
 			</div>
 		</div>
 
-		<div class="col-lg-4">
+		<div align="center" class="col-lg-4">
 			<img src="{% static "icons/update.png" %}" alt="Updateprofile icon not found" height="100" width="100">
-		<div class="row" style="height:20px;"></div>
-		<div>
-			<strong>Update your profile with your occupation, experience and past projects</strong>
-		</div>
+			<div class="row" style="height:20px;"></div>
+			<div>
+				<p style="font-size:130%;">
+					<strong>Update your profile with your occupation,</br> experience and past projects</strong>
+				</p>
+				{% if user.is_authenticated %}
+				</br>
+				<div>Signed up already? </div>
+				<a href="/tbc/profile/">Click here to edit your profile</a>
+				{% endif %}
+			</div>
 		</div>
 
-		<div class="col-lg-4">
+		<div align="center" class="col-lg-4">
 			<img src="{% static "icons/postadd.png" %}" alt="Postad icon not found" height="100" width="100">
-		<div class="row" style="height:20px;"></div>
-		<div>
-			<strong>Post your first ad</strong>
-		</div>
+			<div class="row" style="height:20px;"></div>
+			<div>
+				<p style="font-size:130%;">
+					<strong>Post your first ad</strong></br>
+				</p>
+				{% if user.is_authenticated %}
+				</br>
+				<div>Already got a profile? </div>
+				<a href="/tbc/postad/">Click here to post an ad!</a>
+				{% endif %}
+			</div>
 		</div>
 	</div>
 
-	<div class="row" style="height:50px;"></div>
+	<div class="row" style="height:70px;"></div>
 
 	<div>
-		<div>TBCScotland is a platofrm for those working or volunteering in the creative industry to connect with others in the same field</div>
-		<div>From this site you can browse the profiles of people working in the industry, and each user can post an ad looking for something more specific
-		</div>
-		<div>TBCScotland supports three different types of ad, <a href="/tbc/lendandsell/">'Lend and Sell'</a>, <a href="/tbc/services/">'Services'</a>, and <a href="/tbc/projects/">'Projects'</a></div>
-		<div><a href="/tbc/signup/">Click here to sign up!</a></div>
-		{% if user.is_authenticated %}
-		<a href="/tbc/postad/">Already got a profile? Click here to post an ad!</a>
-		{% endif %}
+
+		<div><p style="font-size:130%;">From this site you can browse the profiles of people
+			 working in the industry, and each user can post an ad looking for something more specific</p>
+		</div></br>
+		<div style="font-size:120%;"><b>TBCScotland supports three different types of ad,
+			 <a href="/tbc/lendandsell/">'Lend and Sell'</a>, <a href="/tbc/services/">'Services'</a>,
+			  and <a href="/tbc/projects/">'Projects'</b></a></div>
+
+
 	</div>
-{% endblock %}
+	{% endblock %}
