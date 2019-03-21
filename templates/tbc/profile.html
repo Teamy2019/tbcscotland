@@ -3,219 +3,266 @@
 
 {% block body_block %}
 <div class="container container_body">
+    <div class="row cover_image">
+        <div class="col-sm-4 profile_image">
+            {% if profile.image %}
+                <div><img class="img-responsive" src="{{ profile.image.url }}"></div>
+            {% endif %}
+        </div>
+        <div class="col-sm-8 ">
+            {% if profile.firstname and profile.lastname %}
+                <h2>{{ profile.firstname }} {{ profile.lastname }}</h2>
+            {% else %}
+                <h2>{{ profile.username }}</h2>
+            {% endif %}
+            <h4>{{ profile.profession}}</h4>
+        </div>
+    </div>
+
     <div class="row main_profile_body">
         <div class="col-xs-4">
-            {% if profile.image %}
-            <div>
-                <img src="{{ profile.image.url }}" width="100%">
-            </div>
-            {% endif %}
-            <br>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong" style="width: 100%; margin-bottom: 20px;">Contact
-            </button>
-
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong" style="width:100%;margin-bottom:20px;">Contact
+        </button>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <strong>Skills</strong>
                     <br>
                     {% if profile.skills %}
-                    <span class="badge badge-secondary">{{ profile.skills }}</span>
+                        <span class="badge badge-secondary">{{ profile.skills }}</span>
                     {% else %}
-                    <div>User {{ profile.name }} has not added in their 'Skills' section yet!</div>
+                        <div>User {{ profile.name }} has not added in their 'Skills' section yet!</div>
                     {% endif %}
                     <br>
                     <hr class="style1">
                     <strong>Education</strong>
                     {% if profile.education %}
-                    <div>{{ profile.education }}</div>
+                        <div>{{ profile.education }}</div>
                     {% else %}
-                    <div>User {{ profile.name }} has not added in their 'Education' section yet!</div>
+                        <div>User {{ profile.name }} has not added in their 'Education' section yet!</div>
                     {% endif %}
-
+                    <br>
+                    <hr class="style1">
+                    <strong>Equipment</strong>
+                    {% if profile.education %}
+                        <div>{{ profile.education }}</div>
+                    {% else %}
+                        <div>User {{ profile.name }} has not added in their 'Education' section yet!</div>
+                    {% endif %}
                     <br>
                     <hr class="style1">
                     <strong>Location</strong>
                     <div id="googleMap" style="width:100%;height:200px;">
-                        <script>
+                    <script>
                         function myMap() {
-                            var mapProp = {center:new google.maps.LatLng(55.8740524,-4.2921628),zoom:11};
-                            var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-                            var geocoder = new google.maps.Geocoder();
-                            geocodeAddress(geocoder, map);
+                        var mapProp = {center:new google.maps.LatLng(55.8740524,-4.2921628),zoom:11};
+                        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                        var geocoder = new google.maps.Geocoder();
+                        var testLocation = "{{ service_ad.location }}";
+                        var test = "glasgow";
+                        geocodeAddress(geocoder, map);
                         }
-
                         function geocodeAddress(geocoder, resultsMap) {
-                            geocoder.geocode({'address' : "{{ profile.location }}"}, function(results, status) {
+                            geocoder.geocode({'address' : "tenerife"}, function(results, status) {
                                 if (status === 'OK') {
                                     resultsMap.setCenter(results[0].geometry.location);
                                     var marker = new google.maps.Marker({
-                                        map: resultsMap,
-                                        position: results[0].geometry.location
+                                    map: resultsMap,
+                                    position: results[0].geometry.location
                                     });
-                                } else {
-                                    alert('geocode not found for: ' + status);
+                            } else {
+                                altlert('geocode not found for: ' + status);
                                 }
                             });
                         }
-                        </script>
+                    </script>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="col-xs-8">
             <div>
-                {% if profile.firstname and profile.lastname %}
-                <h2>{{ profile.firstname }} {{ profile.lastname }}</h2>
-                {% else %}
-                <h2>{{ profile.username }}</h2>
-                {% endif %}
-                <br>
-                <h4>{{ profile.profession}}</h4>
-                <br>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">About me</div>
-                <div class="panel-body">
-                    {% if profile.aboutme %}
-                    <div>{{ profile.aboutme }}</div>
-                    {% else %}
-                    <div>User {{ profile.name }} has not added in their 'About Me' section yet!</div>
-                    {% endif %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">About me</div>
+                    <div class="panel-body">
+                        {% if profile %}
+                        {% if profile.aboutme %}
+                            <div>{{ profile.aboutme }}</div>
+                        {% else %}
+                            <div>User {{ profile.name }} has not added in their 'About Me' section yet!</div>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
-
             {% if resultsLend %}
-            <div class="panel panel-default" style="width:100%;">
-                <div class="panel-heading">Lend and Sell Adverts</div>
-                <div class="panel-body" style="width:100%;">
-                    <div class="carousel slide" data-ride="carousel">
+            <div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Lend and Sell Adverts</div>
+                    <div class="panel-body">
                         <div class="portfolio-items text-center">
-                            {% for lend in resultsLend %}
-                            <div class="carousel-inner" role="listbox";>
-                                <div class="item active" style="height: 400px">
-                                    <img src="{{ lend.image.url }}" style="height:100%; margin:auto;">
-                                    <div class="carousel-caption" style="margin:auto;">
-                                        <a href="{% url 'show_lendandsell' lend.slug %}"><button>{{ lend.title }}</button></a>
-                                        <p class="keywords">{{ lend.keywords }}</p>
-                                    </div>
-                                </div>
-                            </div>
+                             {% for lend in resultsLend %}
+                                <div class="thumbnail">
+                                    <img class="thumbnail_image" src="{{ lend.image.url }}">
+                                    <a href="{% url 'show_lendandsell' lend.slug %}"><button>{{ lend.title }}</button></a>
+                                    <p class="keywords">{{ lend.keywords }}</p>
+                                </div> 
                             {% endfor %}
                         </div>
                     </div>
                 </div>
             </div>
             {% endif %}
-
             {% if resultsProject %}
-            <div class="panel panel-default" style="width:100%;">
-                <div class="panel-heading">Project Adverts</div>
-                <div class="panel-body" style="width:100%;">
-                    <div class="carousel slide" data-ride="carousel">
+            <div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Project Adverts</div>
+                    <div class="panel-body">
                         <div class="portfolio-items text-center">
                             {% for project in resultsProject %}
-                            <div class="carousel-inner" role="listbox";>
-                                <div class="item active" style="height: 400px">
-                                    <img src="{{ project.image.url }}" style="height:100%; margin:auto;">
-                                    <div class="carousel-caption" style="margin:auto;">
-                                        <a href="{% url 'show_project' project.slug %}"><button>{{ project.title }}</button></a>
-                                        <p class="keywords">{{ project.keywords }}</p>
-                                    </div>
+                                <div class="thumbnail">
+                                    <img class="thumbnail_image"  src="{{ project.image.url }}">
+                                    <a href="{% url 'show_project' project.slug %}"><button>{{ project.title }}</button></a>
+                                    <p class="keywords">{{ project.keywords }}</p>
                                 </div>
-                            </div>
                             {% endfor %}
                         </div>
                     </div>
                 </div>
             </div>
             {% endif %}
-
             {% if resultsService %}
-            <div class="panel panel-default" style="width:100%;">
-                <div class="panel-heading">Service Adverts</div>
-                <div class="panel-body" style="width:100%;">
-                    <div class="carousel slide" data-ride="carousel">
+            <div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Service Adverts</div>
+                    <div class="panel-body">
                         <div class="portfolio-items text-center">
-
                             {% for service in resultsService %}
-                            <div class="carousel-inner" role="listbox";>
-
-                                <div class="item active" style="height: 400px">
-                                    <img src="{{ service.image.url }}" style="height:100%; margin:auto;">
-                                    <div class="carousel-caption" style="margin:auto;">
-                                        <a href="{% url 'show_service' service.slug %}"><button>{{ service.title }}</button></a>
-                                        <p class="keywords">{{ service.keywords }}</p>
-                                    </div>
+                                <div class="thumbnail">
+                                    <img class="thumbnail_image" src="{{ service.image.url }}">
+                                    <a href="{% url 'show_service' service.slug %}"><button>{{ service.title }}</button></a>
+                                    <p class="keywords">{{ service.keywords }}</p>
                                 </div>
-                            </div>
-
                             {% endfor %}
                         </div>
-
                     </div>
                 </div>
             </div>
             {% endif %}
-
+            <div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Activity</div>
+                    <div class="panel-body">
+                        {% if resultsLend %}
+                            <strong>Here are John Smith's 'Lend and Sell' ads!</strong>
+                            {% for lend in resultsLend %}
+                                <div>{{ lend.title }}</div>
+                                <div>{{ lend.description }}
+                                <a href="{% url 'show_lendandsell' lend.slug %}">See the ad!</a>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div>No lend ads detected</div>
+                        {% endif %}
+                        {% if resultsProject %}
+                            <strong>Here are John Smith's 'Project' ads!</strong>
+                            {% for project in resultsProject %}
+                                <div>{{ project.title }}</div>
+                                <div>{{ project.description }}
+                                <a href="{% url 'show_project' project.slug %}">See the ad!</a>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div>No project ads detected</div>
+                        {% endif %}
+                        {% if resultsService %}
+                            <strong>Here are John Smith's 'Service' ads!</strong>
+                            {% for service in resultsService %}
+                                <div>{{ service.title }}</div>
+                                <div>{{ service.description }}
+                                <a href="{% url 'show_service' service.slug %}">See the ad!</a>
+                                /div>
+                            {% endfor %}
+                        {% else %}
+                            <div>No service ads detected</div>
+                        {% endif %} 
+                        {% else %}
+                            <strong>No Ad!</strong>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
             {% if user.is_authenticated %}
             <h2>Would you like to leave a comment?</h2>
-            <form id="comment_form" name="action" value="Comment" method="POST" action="{% url 'show_profile' profile.slug %}" enctypte="multipart/form-data">
-                {% csrf_token %}
-                {{ comment_form.as_p }}
-                <input type="submit" name="submit" value"Comment" />
-            </form>
+                <form id="comment_form" method="POST" action="{% url 'show_profile' profile.slug %}" enctypte="multipart/form-data">
+                    {% csrf_token %}
+                    {{ comment_form.as_p }}
+                    <input type="submit" name="submit" value"Comment" />
+                </form>
             {% endif %}
-
             <hr>
             {% if comments %}
-            {% for comment in comments %}
-            <div class="comment">
-                <div class="date">{{ comment.created_date }}</div>
-                <strong>{{ comment.author }}</strong>
-                <p>{{ comment.comment }}</p>
-            </div>
-            {% endfor %}
+                {% for comment in comments %}
+                    <div class="comment">
+                        <div class="date">{{ comment.created_date }}</div>
+                        <strong>{{ comment.author }}</strong>
+                        <p>{{ comment.comment }}</p>
+                    </div>
+                {% endfor %}
             {% endif %}
+            </div>
         </div>
     </div>
+</div>
+
+
+    </div>
+    {% if profile.views %}
+        <div>
+            Views: {{ visits }}
+        </div>
+    {% else %}
+        <div>
+            {{ profile.name }} has had no visitors to their profile :(
+        </div>
+    {% endif %}
 </div>
 
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-          {% if user.is_authenticated %}
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Get in touch with {{ profile.username }}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+            {% if user.is_authenticated %}
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Get in touch with {{ profile.username }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         <div class="modal-body">
-         <form method="POST" name="action" value="Contact" id="contact_form">
-            {% csrf_token %}
-            {{ contact_form.as_p }}
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary" data-target="#MySecondmodal" data-toggle="modal">Send</button>
-                <div class="modal fade" id="MySecondmodal">
-                    <div class="modal-dialog">
-                     <div class="modal-content">
-                      <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title">Success</h4>
-                      </div>
-                      <div class="modal-body">
-                         Your message to {{ profile.username }} has been sent!
-                     </div>
-                     <div class="modal-footer">
-                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-             </div>
-           </form>
-         </div>
+        <form method="post">
+        {% csrf_token %}
+        {{ contact_form.as_p }}
+        <div class="form-actions">
+            <button type="button" class="btn btn-primary contact_send_button" data-target="#MySecondmodal" data-toggle="modal">Send</button>
+            <div class="modal fade" id="MySecondmodal">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button> 
+                        <h4 class="modal-title">Success</h4>
+                    </div> 
+                    <div class="modal-body">
+                        Your message to {{ profile.username }} has been sent!
+                    </div>   
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                </div>                                      
+            </div>
+        </div>
+        </form>
+        </div>
 {% else %}
 <div class="modal-header">
     <h5 class="modal-title" id="signin">Sign in to message {{ profile.username }}</h5>
