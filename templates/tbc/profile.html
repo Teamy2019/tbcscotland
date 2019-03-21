@@ -199,7 +199,7 @@
                     <div class="form-group">
                         <textarea class="form-control rounded-0" id="Comment" type="text" name="comment" value="Comment" rows="5" placeholder="Enter your comment here"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" name="btncomment">Submit</button>
                 </form>
             {% endif %}
             <hr>
@@ -235,36 +235,76 @@
         <div class="modal-content">
             {% if user.is_authenticated %}
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Get in touch with {{ profile.username }}</h5>
+                <h5 class="modal-title"  style="font-size:140%;" id="exampleModalLongTitle">Get in touch with {{ profile.username }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-        <div class="modal-body">
-        <form method="post">
-        {% csrf_token %}
-        {{ contact_form.as_p }}
-        <div class="form-actions">
-            <button type="button" class="btn btn-primary contact_send_button" data-target="#MySecondmodal" data-toggle="modal">Send</button>
-            <div class="modal fade" id="MySecondmodal">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button> 
-                        <h4 class="modal-title">Success</h4>
-                    </div> 
-                    <div class="modal-body">
-                        Your message to {{ profile.username }} has been sent!
-                    </div>   
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <div class="modal-body">
+                
+
+                    <form id="contact_form" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                    
+                        <div class="form-group">
+                            <label for="Title">Title</label>
+                            <input type="text" class="form-control" name="subject" value="" size="50" id="subject" placeholder="Enter the title of the message">
+                        </div>
+                        <div class="form-group">
+                            <label for="Message">Message</label>
+                            <textarea class="form-control rounded-0" id="message" type="text" name="message" value="Message" rows="5" placeholder="Enter your message here"></textarea>
+                        </div>
+                        <button type="submit" name="btncontact" class="btn btn-primary contact_send_button" data-target="#MySecondmodal" data-toggle="modal">Send</button>
+                        <div class="modal fade" id="MySecondmodal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="submit" class="close" name="btncontact" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Success</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Your message to {{ profile.username }} has been sent!
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+
+                <!--<form id="contact_form" method="POST" action="Contact" enctypte="multipart/form-data"></form>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="Title">Title</label>
+                    <input type="text" class="form-control" name="subject" value="" size="50" id="subject" placeholder="Enter the title of the message">
+                </div>
+                <div class="form-group">
+                    <label for="Message">Message</label>
+
+                    <textarea class="form-control rounded-0" id="message" type="text" name="message" value="Message" rows="5" placeholder="Enter your message here"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary contact_send_button" data-target="#MySecondmodal" data-toggle="modal">Send</button>
+                <div class="modal fade" id="MySecondmodal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="submit" class="close" name="btncontact" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Success</h4>
+                            </div>
+                            <div class="modal-body">
+                                Your message to {{ profile.username }} has been sent!
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                </div>                                      
+                </form>-->
             </div>
-        </div>
-        </form>
-        </div>
 {% else %}
 <div class="modal-header">
     <h5 class="modal-title" id="signin">Sign in to message {{ profile.username }}</h5>
