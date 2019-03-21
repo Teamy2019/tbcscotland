@@ -304,11 +304,8 @@ def post_project(request):
 def post_service(request):
     if request.method == 'POST':
         desc = request.POST.get('description')
-        print(desc)
         profile = Profile.objects.get(user=request.user)
         service = Service.objects.get_or_create(title=request.POST.get('title'), profile=profile, description=desc)[0]
-        #service.description = request.POST.get('description')
-        print(request.POST.get('description'))
 
         service.price = request.POST.get('price')
         service.keywords = request.POST.get('keywords')
