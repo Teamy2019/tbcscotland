@@ -72,15 +72,38 @@ textarea {
   overflow: auto;
 }
 
+<<<<<<< HEAD
 .panel_body {
     height: 200px;  
 }
 
 .thumbnail_header {
   text-align: center;
+=======
+.textinthumbnail {
+  border: none;
+  outline: 0;
+  padding: 8px;
+  color: black;
+  text-align: centre;
+  width: 100%;
+  font-size: 12px;
+  max-height: 20px;
+  overflow: hidden;
+}
+
+.headerinthumbnail {
+  border: none;
+  outline: 0;
+  padding: 8px;
+  color: black;
+  text-align: centre;
+  width: 100%;
+>>>>>>> ce69915fe9c5089798017c2762a1273d2057ffd0
   font-size: 20px;
 }
 
+<<<<<<< HEAD
 .thumbnail_image {
   display: block;
   margin-left: auto;
@@ -93,11 +116,10 @@ textarea {
   max-height: 150px;
 }
 
-.thumbnail_button {
-  margin: auto;
-}
-
 .textinthumbnail{
+=======
+.thumbnailbutton {
+>>>>>>> ce69915fe9c5089798017c2762a1273d2057ffd0
   border: none;
   outline: 0;
   padding: 8px;

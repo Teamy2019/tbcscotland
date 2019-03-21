@@ -19,13 +19,21 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL = '/tbc/login/'
 
 AUTH_PROFILE_MODULE = "tbc.Profile"
 
+DEFAULT_FROM_EMAIL='webmaster@localhost' 
+SERVER_EMAIL='root@localhost' 
+EMAIL_HOST = 'localhost' 
+EMAIL_HOST_USER='' 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_PORT = 25 #587 
+EMAIL_USE_TLS = False
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -36,7 +44,11 @@ SECRET_KEY = 'jb$$twntcvw0to1_&ol=ggcba2n&g++9+y9yv4ad@i&pql%k5#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = ['127.0.0.1']
+=======
+ALLOWED_HOSTS = ['community.pythonanywhere.com', '127.0.0.1']
+>>>>>>> ce69915fe9c5089798017c2762a1273d2057ffd0
 
 
 # Application definition

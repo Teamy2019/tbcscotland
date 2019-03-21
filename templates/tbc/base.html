@@ -28,7 +28,7 @@
              <li><a href="{% url 'about' %}">About</a></li>
              <li><a href="{% url 'getstarted' %}">Get Started</a></li>
              {% if user.is_authenticated %}
-             <li><a href="{% url 'editprofile' %}"><span class="glyphicon glyphicon-user"></span>Edit Profile</a></li>
+             <li><a href="{% url 'editprofile' %}"><span class="glyphicon glyphicon-user"></span>{{user.username}} - Edit Profile</a></li>
              <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
              {% else %}
              <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
