@@ -5,9 +5,7 @@
 <div class="container container_body">
     <div class="col-lg-4">
         {% if lend_ad.image %}
-        <div>
-            <img src="{{ lend_ad.image.url }}" width="100%">
-        </div>
+        <div><img src="{{ lend_ad.image.url }}" width="100%"></div>
         {% endif %}
         <div class="panel panel-default">
             <div class="panel-body">
@@ -31,8 +29,11 @@
                 <strong>Price</strong>
                     <div>{{ lend_ad.price }}</div>
                 {% endif %}
+<<<<<<< HEAD
                 
 
+=======
+>>>>>>> 864db34d0331bdd2c34d3e53e3948ece4a64a367
             </div>
         </div>
     </div>
@@ -41,9 +42,9 @@
             <h2>{{ lend_ad.title }}</h2>
             <h3>Lend and Sell</h3>
             {% if profile.firstname and profile.lastname %}
-            <a href="{% url 'show_profile' profile.slug %}"><div class="keywords">{{ profile.firstname }} {{ profile.lastname }}</div></a>
+                <a href="{% url 'show_profile' profile.slug %}"><div class="ad_author">{{ profile.firstname }} {{ profile.lastname }}</div></a>
             {% else %}
-            <a href="{% url 'show_profile' profile.slug %}"><div class="keywords">{{ profile.username }}</div></a>
+                <a href="{% url 'show_profile' profile.slug %}"><div class="ad_author"> {{ profile.username }}</div></a>
             {% endif %}
         </div>
         <div class="panel panel-default">
@@ -81,5 +82,4 @@
         {% endif %}
     </div>
 </div>
-
 {% endblock %}

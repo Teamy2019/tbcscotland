@@ -10,18 +10,20 @@
     <div class="row">
         {% for service in services %}
         <div class="col-lg-3">
-            <br>
-            <div class="thumbnail">
-                <img class="thumbnail_image" src="{{ service.image.url }}">
-                <h class="headerinthumbnail">{{ service.title }}</h>
-                <p class="keywords">{{ service.keywords }}</p>
-                <p class="textinthumbnail">{{ service.description }}</p>
-                <p><a href="{% url 'show_service' service.slug %}"><button>Visit Ad</button></a></p>
+            <div class="panel panel-default text-center">
+                <div class="panel-body">
+                    <img class="thumbnail_image" src="{{ service.image.url }}">
+                    <h3 class="thumbnail_header">{{ service.title }}</h3>
+                    <p class="keywords">{{ service.keywords }}</p>
+                    <p class="textinthumbnail">{{ service.description }}</p>
+                    <p><a href="{% url 'show_service' service.slug %}"><button type="button" class="btn btn-default">Visit Ad</button></a></p>
+                </div>
             </div>
         </div>
         {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+        {% endif %}
+        {% endfor %}
     </div>
-    {% endif %} {% endfor %}
 
     <div>
         {% if user.is_authenticated %}
@@ -30,7 +32,7 @@
         {% endif %}
     </div>
 
-    <div class="row">
+    <div class="row" style="position:fixed;">
         <div class="col-lg-3">
             <div class="pagination">
                 <span class="step-links">
@@ -38,9 +40,7 @@
                     <a href="?page=1">&laquo; first</a>
                     <a href="?page={{ services.previous_page_number }}">previous</a>
                     {% endif %}
-
                     <span class="current">Page {{ services.number }} of {{ services.paginator.num_pages }}.</span>
-
                     {% if lend_servicesand_sell.has_next %}
                     <a href="?page={{ services.next_page_number }}">next</a>
                     <a href="?page={{ services.paginator.num_pages }}">last&raquo;</a>

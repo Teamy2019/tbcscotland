@@ -86,4 +86,4 @@ class ContactForm(forms.Form):
 
 #    class Meta:
 #        model = Contact
-#        fields = ('from_email', 'subject', 'message')
+#        fields = ('subject', 'message')

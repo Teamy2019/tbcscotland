@@ -3,7 +3,6 @@
 
 {% block body_block %}
 <div class="container container_body">
-
             <div class="col-xs-4">
                     {% if service_ad.image %}
                         <div>
@@ -70,9 +69,9 @@
                             <h2>{{ service_ad.title }}</h2>
                             <h3>Service</h3>
                             {% if profile.firstname and profile.lastname %}
-                            <a href="{% url 'show_profile' profile.slug %}"><div class="keywords">{{ profile.firstname }} {{ profile.lastname }}</div></a>
+                            <a href="{% url 'show_profile' profile.slug %}"><div class="ad_author">{{ profile.firstname }} {{ profile.lastname }}</div></a>
                             {% else %}
-                            <a href="{% url 'show_profile' profile.slug %}"><div class="keywords">{{ profile.username }}</div></a>
+                            <a href="{% url 'show_profile' profile.slug %}"><div class="ad_author">{{ profile.username }}</div></a>
                             {% endif %}
 
                     </div>

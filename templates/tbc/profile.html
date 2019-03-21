@@ -98,12 +98,14 @@
                     <div class="panel-heading">Lend and Sell Adverts</div>
                     <div class="panel-body">
                         <div class="portfolio-items text-center">
-                             {% for lend in resultsLend %}
-                                <div class="thumbnail">
+                            {% for lend in resultsLend %}
+                            <div class="panel panel-default">
+                                <div class="panel-body">
                                     <img class="thumbnail_image" src="{{ lend.image.url }}">
-                                    <a href="{% url 'show_lendandsell' lend.slug %}"><button>{{ lend.title }}</button></a>
                                     <p class="keywords">{{ lend.keywords }}</p>
-                                </div> 
+                                    <a href="{% url 'show_lendandsell' lend.slug %}"><button type="button" class="btn btn-default">{{ lend.title }}</button></a>
+                                </div>
+                            </div> 
                             {% endfor %}
                         </div>
                     </div>
@@ -117,11 +119,13 @@
                     <div class="panel-body">
                         <div class="portfolio-items text-center">
                             {% for project in resultsProject %}
-                                <div class="thumbnail">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
                                     <img class="thumbnail_image"  src="{{ project.image.url }}">
-                                    <a href="{% url 'show_project' project.slug %}"><button>{{ project.title }}</button></a>
                                     <p class="keywords">{{ project.keywords }}</p>
+                                    <a href="{% url 'show_project' project.slug %}"><button type="button" class="btn btn-default">{{ project.title }}</button></a>
                                 </div>
+                            </div>
                             {% endfor %}
                         </div>
                     </div>
@@ -135,18 +139,24 @@
                     <div class="panel-body">
                         <div class="portfolio-items text-center">
                             {% for service in resultsService %}
-                                <div class="thumbnail">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
                                     <img class="thumbnail_image" src="{{ service.image.url }}">
-                                    <a href="{% url 'show_service' service.slug %}"><button>{{ service.title }}</button></a>
                                     <p class="keywords">{{ service.keywords }}</p>
+                                    <a href="{% url 'show_service' service.slug %}"><button type="button" class="btn btn-default">{{ service.title }}</button></a>
                                 </div>
+                            </div>
                             {% endfor %}
                         </div>
                     </div>
                 </div>
             </div>
             {% endif %}
+<<<<<<< HEAD
           <div>
+=======
+        <div>
+>>>>>>> 864db34d0331bdd2c34d3e53e3948ece4a64a367
             {% if user.is_authenticated %}
             <div class="row" style="height:10px;"></div>
             <h2>Would you like to leave a comment?</h2>
@@ -155,7 +165,7 @@
                     <div class="form-group">
                         <textarea class="form-control rounded-0" id="Comment" type="text" name="comment" value="Comment" rows="5" placeholder="Enter your comment here"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" name="btncomment">Submit</button>
                 </form>
             {% endif %}
             <hr>
@@ -179,36 +189,44 @@
         <div class="modal-content">
             {% if user.is_authenticated %}
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Get in touch with {{ profile.username }}</h5>
+                <h5 class="modal-title"  style="font-size:140%;" id="exampleModalLongTitle">Get in touch with {{ profile.username }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-        <div class="modal-body">
-        <form method="post">
-        {% csrf_token %}
-        {{ contact_form.as_p }}
-        <div class="form-actions">
-            <button type="button" class="btn btn-primary contact_send_button" data-target="#MySecondmodal" data-toggle="modal">Send</button>
-            <div class="modal fade" id="MySecondmodal">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button> 
-                        <h4 class="modal-title">Success</h4>
-                    </div> 
-                    <div class="modal-body">
-                        Your message to {{ profile.username }} has been sent!
-                    </div>   
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-                </div>                                      
+            <div class="modal-body">
+                
+
+                    <form id="contact_form" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                    
+                        <div class="form-group">
+                            <label for="Title">Title</label>
+                            <input type="text" class="form-control" name="subject" value="" size="50" id="subject" placeholder="Enter the title of the message">
+                        </div>
+                        <div class="form-group">
+                            <label for="Message">Message</label>
+                            <textarea class="form-control rounded-0" id="message" type="text" name="message" value="Message" rows="5" placeholder="Enter your message here"></textarea>
+                        </div>
+                        <button type="submit" name="btncontact" class="btn btn-primary contact_send_button" data-target="#MySecondmodal" data-toggle="modal">Send</button>
+                        <div class="modal fade" id="MySecondmodal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="submit" class="close" name="btncontact" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Success</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Your message to {{ profile.username }} has been sent!
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
             </div>
-        </div>
-        </form>
-        </div>
 {% else %}
 <div class="modal-header">
     <h5 class="modal-title" id="signin">Sign in to message {{ profile.username }}</h5>

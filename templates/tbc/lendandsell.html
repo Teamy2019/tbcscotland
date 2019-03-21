@@ -13,19 +13,20 @@
     <div class="row">
         {% for lend in lend_and_sell %}
         <div class="col-lg-3">
-            <br>
-            <div class="thumbnail">
+            <div class="panel panel-default text-center">
+            <div class="panel-body">
                 <img class="thumbnail_image" src="{{ lend.image.url }}">
-                <h class="headerinthumbnail">{{ lend.title }}</h>
+                <h3 class="thumbnail_header">{{ lend.title }}</h3>
                 <p class="keywords">{{ lend.keywords }}</p>
                 <p class="textinthumbnail">{{ lend.description }}</p>
-                <p><a href="{% url 'show_lendandsell' lend.slug %}"><button>Visit Ad</button></a></p>
+                <p><a href="{% url 'show_lendandsell' lend.slug %}"><button type="button" class="btn btn-default">Visit Ad</button></a></p>
             </div>
         </div>
-    {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+        </div>
+        {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+        {% endif %}
+        {% endfor %}
     </div>
-    {% endif %}
-    {% endfor %}
 
     <div>
         {% if user.is_authenticated %}

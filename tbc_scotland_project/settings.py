@@ -19,7 +19,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
@@ -27,7 +27,13 @@ LOGIN_URL = '/tbc/login/'
 
 AUTH_PROFILE_MODULE = "tbc.Profile"
 
+DEFAULT_FROM_EMAIL='webmaster@localhost' 
+SERVER_EMAIL='root@localhost' 
+EMAIL_HOST = 'localhost' 
+EMAIL_HOST_USER='' 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_PORT = 25 #587 
+EMAIL_USE_TLS = False
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
