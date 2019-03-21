@@ -13,12 +13,50 @@
     <div style="font-size:130%;">Now you can edit your profile:</div></br>
     <form id="user_form" method="POST" action="{% url 'editprofile' %}"
     enctype="multipart/form-data">
+  {% csrf_token %}
 
-    {% csrf_token %}
+    <div class="row">
+      <div class="form-group col-lg-3">
+        <label for="Firstname">First Name:</label>
+        <input class="form-control" type="text" name="firstname" value="{{ profile.firstname }}" id="Firstname" placeholder="e.g. 'John'">
+      </div>
+      <div class="form-group col-lg-3">
+        <label for="Lastname">Surname:</label>
+        <input class="form-control" type="text" name="lastname" value="{{ profile.lastname }}" id="Lastname" placeholder="e.g. 'Smith'">
+      </div>
+      <div class="form-group col-lg-3">
+        <label for="Profession">Profession:</label>
+        <input class="form-control" type="text" name="profession" value="{{ profile.profession }}" id="Profession" placeholder="e.g. 'Sound Engineer'">
+      </div>
+      <div class="form-group col-lg-3">
+        <label for="Location">Location:</label>
+        <input class="form-control" type="text" name="location" value="{{ profile.location }}" id="Location" placeholder="e.g. 'Glasgow'">
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-lg-4">
+        <label for="Skills">Skills:</label>
+        <textarea class="form-control rounded-0" id="Skills" type="text" name="skills" value="{{ profile.skills }}" rows="10" placeholder="e.g. 'John'">{{ profile.skills }}</textarea>
+      </div>
+      <div class="form-group col-lg-4">
+        <label for="Education">Education:</label>
+        <textarea class="form-control rounded-0" id="Education" type="text" name="education" value="{{ profile.education }}" rows="10" placeholder="e.g. 'John'">{{ profile.education }}</textarea>
+      </div>
+      <div class="form-group col-lg-4">
+        <label for="AboutMe">About me:</label>
+        <textarea class="form-control rounded-0" id="AboutMe" type="text" name="aboutme" value="{{ profile.aboutme }}"  rows="10" placeholder="e.g. 'John'">{{ profile.aboutme }}</textarea>
+      </div>
+    </div>
 
-    {{ profile_form.as_p }}
-    <input type="submit" name="submit" value="Edit" />
-    </form>
+    <div class="row">
+      <div class="form-group col-lg-3">
+        <label for="ProfilePictureUpload">Upload a profile picture:</label>
+        <input type="file" class="form-control-file" name="uploadprofilepicture" value="{{ profile.image.url }}" id="ProfilePictureUpload">
+
+      </div>
+      <button class="btn btn-primary" type="submit" name="edited" value="Edit">Edit</button>
+    </div>
+  </form>
   {% else %}
     <strong style="font-size:150%;">Sign up here</strong><br/><br/>
     <form id="user_form" method="POST" action="{% url 'signup' %}"

@@ -2,14 +2,46 @@
 {% load staticfiles %}
 
 {% block body_block %}
+<div class="container">
     <h1>Post a 'Lend or Sell' ad</h1>
     <form id="lendAndSell_form" method="post" action="{% url 'post_lendandsell' %}"
     enctype="multipart/form-data">
 
     {% csrf_token %}
+    <div class="row">
+        <div class="form-group col-lg-3">
+            <label for="title">Title:</label>
+            <input class="form-control" type="text" name="title" value="" id="title" placeholder="e.g. Guitar for Sale">
+            </div>
+        <div class="form-group col-lg-3">
+            <label for="price">Price (if any):</label>
+            <input class="form-control" type="text" name="price" value="" id="price" placeholder="e.g. £100">
+            </div>
+        <div class="form-group col-lg-3">
+            <label for="keywords">Keywords:</label>
+            <input class="form-control" type="text" name="keywords" value="" id="keywords" placeholder="e.g. Guitar Sale">
+            </div>
+        <div class="form-group col-lg-3">
+            <label for="availability">Availability:</label>
+            <input class="form-control" type="text" name="availability" value="" id="availability" placeholder="e.g. Tuesday Nights">
+            </div>
+        </div>
+    <div class="row">
+        <div class ="form-group col-lg-4">
+            <label for="Skills">Description:</label>
+            <textarea class="form-control rounded-0" id="description" type="text" name="description" value="" rows="10" placeholder="e.g. 'Fender Guitar looking for nice home'"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-lg-3">
+          <label for="PictureUpload">Upload a picture:</label>
+          <input type="file" class="form-control-file" name="uploadpicture" value="" id="uploadpicture"> 
 
-    {{ lendAndSell_form.as_p }}
-
+        </div> 
+    </div>
+    <div class="row">
     <input type="submit" name="submit" value="Post your ad!" />
-    </form>
+</div>
+</form>
+</div>
 {% endblock %}
