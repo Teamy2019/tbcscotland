@@ -3,6 +3,14 @@
 
 {% block body_block %}
 <div class="container">
+
+    <div class="row" style="height:20px;"></div>
+  <h1 style="font-size:50px">Profiles</h1>
+</header>
+<div class="row" style="height:10px;"></div>
+<div style="font-size:140%;">Find the most talented creatives in Scotland</div>
+<div class="row" style="height:40px;"></div>
+
 {% if profiles %}
 <div class="row">
     {% for profile in profiles %}
@@ -13,7 +21,7 @@
             <h class="headerinthumbnail">{{ profile.username }}</h>
             <p class="keywords">{{ profile.profession }}</p>
             <p class="textinthumbnail">{{ profile.aboutme }}</p>
-            <p><a href="{% url 'show_profile' profile.slug %}"><button>Visit Profile</button></a></p>
+            <p><a href="{% url 'show_profile' profile.slug %}"><button class="thumbnailbutton">Visit Profile</button></a></p>
         </div>
     </div>
     {% if forloop.counter|divisibleby:"4" and not forloop.last %}
