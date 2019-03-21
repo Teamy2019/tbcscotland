@@ -23,13 +23,14 @@
             <p class="textinthumbnail">{{ profile.aboutme }}</p>
             <p><a href="{% url 'show_profile' profile.slug %}"><button type="button" class="btn btn-default">Visit Profile</button></a></p>
         </div>
-    </div>
+        </div>
     </div>
     {% if forloop.counter|divisibleby:"4" and not forloop.last %}
-{% endif %}
-{% endfor %}
-{% endif %}
+    {% endif %}
+    {% endfor %}
 </div>
+{% endif %}
+
 
 <div class ="row">
     <div class="col-lg-3">
