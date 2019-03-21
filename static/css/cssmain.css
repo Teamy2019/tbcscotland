@@ -94,7 +94,7 @@ body {
   border: none;
   outline: 0;
   padding: 8px;
-  colour: black;
+  color: black;
   text-align: centre;
   width: 100%;
   font-size: 12px;
@@ -106,7 +106,7 @@ body {
   border: none;
   outline: 0;
   padding: 8px;
-  colour: black;
+  color: black;
   text-align: centre;
   width: 100%;
   font-size: 20px;
@@ -115,7 +115,7 @@ body {
   overflow: hidden;
 }
 
-button {
+.thumbnailbutton {
   border: none;
   outline: 0;
   padding: 0px;
