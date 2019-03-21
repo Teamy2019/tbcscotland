@@ -3,20 +3,13 @@
 
 {% block body_block %}
 <div class="container">
-<div class="row" style="height:20px;"></div>
-<header>
-  <h1 style="font-size:50px">Services</h1>
-</header>
-<div class="row" style="height:10px;"></div>
-<div style="font-size:140%;">Need the job done? Check here</div>
-<div class="row" style="height:40px;"></div>
     <div class="row">
         {% for service in services %}
         <div class="col-lg-3">
             <br>
             <div class="thumbnail">
-                <img src="{{ service.image.url }}" style="max-width:50%;max-height:50%;">
-                <h1>{{ service.title }}</h1>
+                <img class="thumbnail_image" src="{{ service.image.url }}">
+                <h class="headerinthumbnail">{{ service.title }}</h>
                 <p class="keywords">{{ service.keywords }}</p>
                 <p class="textinthumbnail">{{ service.description }}</p>
                 <p><a href="{% url 'show_service' service.slug %}"><button>Visit Ad</button></a></p>
@@ -26,8 +19,6 @@
     </div>
     {% endif %}
     {% endfor %}
-</div>
-<div class="container">
 
     <div>
         {% if user.is_authenticated %}
@@ -44,13 +35,13 @@
                         <a href="?page=1">&laquo; first</a>
                         <a href="?page={{ services.previous_page_number }}">previous</a>
                     {% endif %}
-
+            
                     <span class="current">Page {{ services.number }} of {{ services.paginator.num_pages }}.</span>
 
                     {% if lend_servicesand_sell.has_next %}
                         <a href="?page={{ services.next_page_number }}">next</a>
                         <a href="?page={{ services.paginator.num_pages }}">last&raquo;</a>
-                    {% endif %}
+                    {% endif %}        
                 </span>
             </div>
         </div>
