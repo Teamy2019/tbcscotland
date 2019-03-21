@@ -28,24 +28,6 @@
 	margin-top: 50px;
 }
 
-<<<<<<< HEAD
-.profile_image {
-}
-
-.thumbnail_image {
-  	border: 1px solid #ddd;
-  	border-radius: 4px;
-  	padding: 5px;
-  	width: 150px;
-}
-
-.profile_details {
-	margin-top: 80px;
-	color: white;
-}
-
-=======
->>>>>>> 864db34d0331bdd2c34d3e53e3948ece4a64a367
 .main_profile_body {
 	margin-top: 30px;
 }
@@ -88,8 +70,11 @@ button:hover, a:hover {
 textarea {
 	resize: vertical;
   overflow: auto;
+  
 }
-
+.text-margin{
+  margin-bottom: 10px;
+}
 .panel_body {
     height: 200px;  
 }

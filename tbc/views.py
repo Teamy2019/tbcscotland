@@ -109,13 +109,8 @@ def show_profile(request, profile_name_slug):
                 else:
                     print(comment_form.errors)
 
-<<<<<<< HEAD
-            if request.POST.get('action', 'Contact'):
-                contact_form = ContactForm(request.POST)
-=======
             elif 'btncontact' in request.POST:
                 contact_form = ContactForm(data=request.POST)
->>>>>>> 864db34d0331bdd2c34d3e53e3948ece4a64a367
                 if contact_form.is_valid():
                     from_email = request.user.email
                     to_email = profile.user.email
