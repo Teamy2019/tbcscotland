@@ -3,9 +3,11 @@
 
 {%block body_block %}
 <div class="container">
+	<div class="row" style="height:20px;"></div>
 	<div class="row">
 		<h1 style="font-size:40px">Find The Perfect Freelance Services</h1>
 		<h2 style="font-size:40px">In Scotland</h2>
+		<div class="row" style="height:20px;"></div>
 		<div class="input-group">
 			<form class="form-inline" method="GET" action="{% url 'search' %}">
 				<input class="form-control" style="width:550px;height:70px;" name ="q" placeholder="Try 'video production'" value="{{request.GET.q}}">
@@ -61,8 +63,8 @@
 						<br>
 						{% endfor %}
 					</ul>
-					{% endif %} 
-					<ul>	
+					{% endif %}
+					<ul>
 						{% if service_list %}
 						{% for service in service_list %}
 						<br>

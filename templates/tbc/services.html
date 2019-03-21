@@ -2,6 +2,13 @@
 {% load staticfiles %}
 
 {% block body_block %}
+<div class="row" style="height:20px;"></div>
+<header>
+  <h1 style="font-size:50px">Services</h1>
+</header>
+<div class="row" style="height:10px;"></div>
+<div style="font-size:140%;">Need the job done? Check here</div>
+<div class="row" style="height:40px;"></div>
     <div class="row">
         {% for service in services %}
         <div class="col-lg-3">
@@ -34,13 +41,13 @@
                         <a href="?page=1">&laquo; first</a>
                         <a href="?page={{ services.previous_page_number }}">previous</a>
                     {% endif %}
-            
+
                     <span class="current">Page {{ services.number }} of {{ services.paginator.num_pages }}.</span>
 
                     {% if lend_servicesand_sell.has_next %}
                         <a href="?page={{ services.next_page_number }}">next</a>
                         <a href="?page={{ services.paginator.num_pages }}">last&raquo;</a>
-                    {% endif %}        
+                    {% endif %}
                 </span>
             </div>
         </div>

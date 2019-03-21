@@ -2,6 +2,13 @@
 {% load staticfiles %}
 
 {% block body_block %}
+<div class="row" style="height:20px;"></div>
+<header>
+  <h1 style="font-size:50px">Profiles</h1>
+</header>
+<div class="row" style="height:10px;"></div>
+<div style="font-size:140%;">Find the most talented creatives in Scotland!</div>
+<div class="row" style="height:40px;"></div>
 {% if profiles %}
 <div class="row">
     {% for profile in profiles %}
@@ -31,11 +38,11 @@
                 {% endif %}
 
                 <span class="current">Page {{ profiles.number }} of {{ profiles.paginator.num_pages }}.</span>
-                
+
                 {% if profiles.has_next %}
                 <a href="?page={{ profiles.next_page_number }}">next</a>
                 <a href="?page={{ profiles.paginator.num_pages }}">last&raquo;</a>
-                {% endif %}        
+                {% endif %}
             </span>
         </div>
     </div>
