@@ -1,16 +1,6 @@
-
 .navbar-fixed-top {
 	box-shadow: 0px 2px 3px 0px;
 	border-width: 0 0 2px;
-}
-
-.navbar-inverse {
-	background-color: white;
-	border-color: black;
-}
-
-.navbar-header {
-	margin-left: 10px;
 }
 
 .glyphicon {
@@ -18,61 +8,19 @@
 	right: 3px;
 }
 
-.navbar-inverse .navbar-brand {
-    color: black;
-}
-
-.navbar-right {
-	margin-right: -5px;
-}
-
-.navbar-brand{
-	font-size: 25px;
-	background: white;
-}
-
-.navbar-inverse .navbar-nav>li>a {
-	color: black;
-}
-
-.navbar-inverse .navbar-nav>li>a:hover {
-    background: black;
-	color: white;
-}
-
 #catButton {
 	position: relative;
 	color: black;
 	text-decoration: none;
 }
+.navbar-brand {
+    font-size: 25px;
+    background-color: #f8f8f8;
+}
 
 #catButton:hover {
     background: black;
 	color: white;
-}
-
-.navbar-inverse .navbar-header .navbar-brand:hover {
-	background: black;
-}
-
-#profID {
-	padding-right: 100px;
-	padding-left: 100px;
-}
-
-#projID {
-	padding-right: 150px;
-	padding-left: 150px;
-}
-
-#servID {
-	padding-right: 150px;
-	padding-left: 150px;
-}
-
-#lendsellID {
-	padding-right: 100px;
-	padding-left: 100px;
 }
 
 .cover_image {
@@ -127,24 +75,9 @@ body {
     background-color: white;
 }
 
-.thumbnail_panel {
-	display: grid;
-	grid-template-columns: repeat(auto-fit);
-	grid-gap: 5px;
-	padding: 20px;
-}
-
-.thumbnailbody {
-	min-height: 200px; 
-	max-height: 200px; 
-	overflow-y:hidden; 
-	overflow-x: hidden;
-}
-
 .thumbnail {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   	text-align: center;
-	margin: auto;
 }
 
 .imgthumbnail {
@@ -165,7 +98,20 @@ body {
   text-align: centre;
   width: 100%;
   font-size: 12px;
-  max-height: 100px;
+  max-height: 20px;
+  overflow: hidden;
+}
+
+.headerinthumbnail {
+  border: none;
+  outline: 0;
+  padding: 8px;
+  colour: black;
+  text-align: centre;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  max-height: 50px;
   overflow: hidden;
 }
 
