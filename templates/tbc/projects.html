@@ -2,6 +2,7 @@
 {% load staticfiles %}
 
 {% block body_block %}
+<div class="container">
 <div class="row" style="height:20px;"></div>
 <header>
   <h1 style="font-size:50px">Projects</h1>
@@ -25,13 +26,16 @@
     </div>
     {% endif %}
     {% endfor %}
-
+</div>
+<div class="container">
+<div class="row">
     <div>
         {% if user.is_authenticated %}
             <br>
             <a href="{% url 'post_project' %}"><div class="keywords">Post your own ad here!</div></a>
         {% endif %}
     </div>
+</div>
 
     <div class ="row">
         <div class="col-lg-3">
@@ -52,4 +56,5 @@
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

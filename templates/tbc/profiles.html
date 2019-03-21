@@ -2,6 +2,7 @@
 {% load staticfiles %}
 
 {% block body_block %}
+<div class="container">
 <div class="row" style="height:20px;"></div>
 <header>
   <h1 style="font-size:50px">Profiles</h1>
@@ -27,6 +28,8 @@
 {% endif %}
 {% endfor %}
 {% endif %}
+</div>
+<div class="container">
 
 <div class ="row">
     <div class="col-lg-3">
@@ -46,5 +49,6 @@
             </span>
         </div>
     </div>
+</div>
 </div>
 {% endblock %}
