@@ -19,7 +19,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
@@ -44,11 +44,7 @@ SECRET_KEY = 'jb$$twntcvw0to1_&ol=ggcba2n&g++9+y9yv4ad@i&pql%k5#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
-ALLOWED_HOSTS = ['127.0.0.1']
-=======
 ALLOWED_HOSTS = ['community.pythonanywhere.com', '127.0.0.1']
->>>>>>> ce69915fe9c5089798017c2762a1273d2057ffd0
 
 
 # Application definition

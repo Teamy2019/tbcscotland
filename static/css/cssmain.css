@@ -72,38 +72,20 @@ textarea {
   overflow: auto;
 }
 
-<<<<<<< HEAD
 .panel_body {
     height: 200px;  
 }
 
 .thumbnail_header {
+  border: none;
+  outline: 0;
+  padding: 8px;
+  color: black;
   text-align: center;
-=======
-.textinthumbnail {
-  border: none;
-  outline: 0;
-  padding: 8px;
-  color: black;
-  text-align: centre;
   width: 100%;
-  font-size: 12px;
-  max-height: 20px;
-  overflow: hidden;
-}
-
-.headerinthumbnail {
-  border: none;
-  outline: 0;
-  padding: 8px;
-  color: black;
-  text-align: centre;
-  width: 100%;
->>>>>>> ce69915fe9c5089798017c2762a1273d2057ffd0
   font-size: 20px;
 }
 
-<<<<<<< HEAD
 .thumbnail_image {
   display: block;
   margin-left: auto;
@@ -117,9 +99,6 @@ textarea {
 }
 
 .textinthumbnail{
-=======
-.thumbnailbutton {
->>>>>>> ce69915fe9c5089798017c2762a1273d2057ffd0
   border: none;
   outline: 0;
   padding: 8px;
@@ -130,6 +109,7 @@ textarea {
   max-height: 100px;
   overflow: hidden;
 }
+
 .slick-slide {
   width: 300px;
   margin-right: 15px;
